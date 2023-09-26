@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='[#](https://ese.wustl.edu/index.html)'>Affiliations</a>. Department of Electrical and Systems Engineering, Washington University in St. Louis
+subtitle: <a href='[#](https://ese.wustl.edu/index.html)'>Department of Electrical and Systems Engineering, Washington University in St. Louis</a>. <a href='mailto:hongchao@wustl.edu'>Email hongchao@wustl.edu</a>
 
 profile:
   align: right
@@ -11,7 +11,7 @@ profile:
   address: >
     <p>3153 Green Hall</p>
     <p>1 Brookings Drive</p>
-    <p>St. Louis, MO, 63130=</p>
+    <p>St. Louis, MO, 63130</p>
 
 news: true  # includes a list of news items
 latest_posts: true  # includes a list of the newest posts
