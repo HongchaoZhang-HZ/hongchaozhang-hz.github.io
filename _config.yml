@@ -8,7 +8,7 @@ middle_name:
 last_name: Zhang
 email: hongchao@wustl.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  I am a Ph.D. Candidate, under supervision of Prof. Andrew Clark in Dept. of Electrical and System Engineering, Washington University in St. Louis, St. Louis, MO.  
+  (test deployment) I am a Ph.D. Candidate, under supervision of Prof. Andrew Clark in Dept. of Electrical and System Engineering, Washington University in St. Louis, St. Louis, MO.  
 
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
