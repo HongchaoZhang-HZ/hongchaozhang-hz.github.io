@@ -6,7 +6,7 @@ subtitle: <a href='[#](https://ese.wustl.edu/index.html)'>Affiliations</a>. Depa
 
 profile:
   align: right
-  image: prof_pic.jpeg
+  image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   address: >
     <p>3153 Green Hall</p>
