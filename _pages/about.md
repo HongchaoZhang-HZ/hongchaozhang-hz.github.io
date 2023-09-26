@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='[#](https://ese.wustl.edu/index.html)'>Department of Electrical and Systems Engineering, Washington University in St. Louis</a>. <a href='mailto:hongchao@wustl.edu'>Email hongchao@wustl.edu</a>
+subtitle: <a href='[#](https://ese.wustl.edu/index.html)'>Department of Electrical and Systems Engineering, Washington University in St. Louis</a><br></br><a> Email hongchao@wustl.edu</a>
 
 profile:
   align: right
@@ -14,8 +14,8 @@ profile:
     <p>St. Louis, MO, 63130</p>
 
 news: true  # includes a list of news items
-latest_posts: true  # includes a list of the newest posts
-selected_papers: true # includes a list of papers marked as "selected={true}"
+latest_posts: False  # includes a list of the newest posts
+selected_papers: False # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
