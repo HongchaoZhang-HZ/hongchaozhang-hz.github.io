@@ -8,7 +8,8 @@ middle_name:
 last_name: Zhang
 email: hongchao@wustl.edu
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  I am a Ph.D. Candidate, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  I am a Ph.D. Candidate, under supervision of Prof. Andrew Clark in Washington University in St. Louis. 
+  # Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
