@@ -20,10 +20,14 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 ## Education
-- 2025 Ph.D., Student, Dept. of Electrical and System Engineering, Washington University in St. Louis, St. Louis, MO 
+- Expected 2025 Ph.D. in Electrical Engineering, <br />
+  Washington University in St. Louis, St. Louis, MO, USA
   - Advisor: Prof. Andrew Clark. 
-- 2020 M.S., Worcester Polytechnic Institute, Worcester, MA
-- 2018 B.E., Automation Engineering, Nanjing University of Aeronautics and Astronautics, Nanjing, China
+- 2020 M.S. in Electrical & Computer Engineering, <br />
+  Worcester Polytechnic Institute, Worcester, MA, USA
+  - Advisor: Prof. Andrew Clark. 
+- 2018 B.E. in Automation Engineering, <br />
+  Nanjing University of Aeronautics and Astronautics, Nanjing, China
 
 ## Research Interest
 - Learning-based Control
