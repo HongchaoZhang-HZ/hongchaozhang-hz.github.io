@@ -12,7 +12,7 @@
   type: time_table
   contents:
     - title: Ph.D. in Electrical Engineering
-      institution: Washington University in St. Louis
+      institution: Washington University in St. Louis, St. Louis, MO, USA
       year: 2025
       description:
         - Advisor Andrew Clark
@@ -21,9 +21,15 @@
           contents:
             - Sub-description 1.
             - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+    - title: M.S. in Electrical & Computer Engineering, 
+      institution: Worcester Polytechnic Institute, Worcester, MA, USA
+      year: 2020
+      description:
+        - Description 1.
+        - Description 2.
+    - title: B.E. in Automation Engineering, 
+      institution: Nanjing University of Aeronautics and Astronautics, Nanjing, Jiangsu, China
+      year: 2020
       description:
         - Description 1.
         - Description 2.
