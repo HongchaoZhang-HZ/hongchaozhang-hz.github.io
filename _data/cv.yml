@@ -2,20 +2,20 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Hongchao Zhang
     - name: Date of Birth
-      value: 14th March 1879
+      value: 31st Dec 1994
     - name: Languages
-      value: English, German
+      value: English, Chinese
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: Ph.D. in Electrical Engineering
+      institution: Washington University in St. Louis
+      year: 2025
       description:
-        - Description 1.
+        - Advisor Andrew Clark
         - Description 2.
         - title: Description 3.
           contents:
