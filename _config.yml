@@ -210,7 +210,7 @@ kramdown:
 include: ['_pages']
 exclude:
   - dropdown
-  - project
+  # - project
   - repositories
   - bin
   - Gemfile
