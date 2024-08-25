@@ -1,6 +1,6 @@
 ---
-layout: ./pdf/Hongchao-Zhang-CV.pdf
-permalink: /cv/
+layout: /assets/pdf/Hongchao-Zhang-CV.pdf
+permalink: /assets/pdf/Hongchao-Zhang-CV.pdf
 title: cv
 nav: true
 nav_order: 4
