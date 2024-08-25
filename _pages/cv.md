@@ -1,5 +1,5 @@
 ---
-layout: 
+layout: ./pdf/Hongchao-Zhang-CV.pdf
 permalink: /cv/
 title: cv
 nav: true
