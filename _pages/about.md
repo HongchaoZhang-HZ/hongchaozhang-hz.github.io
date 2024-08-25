@@ -35,6 +35,31 @@ social: true  # includes social icons at the bottom of the page
 - Neural Networks
 - Resilience
 
+## Professional Experience
+- 2022-Present   Research Assistant, Washington University in St. Louis, St. Louis, MO, USA
+- 2019-2022      Graduate Research Assistant, Worcester Polytechnic Institute, Worcester, MA, USA
+
+## Teaching Experience
+- Teaching Assistant for the course ESE2180 Linear Algebra and Component Analysis at Washington University in St. Louis in 2024.
+- Mentoring in Washington University Research Experience for Undergraduates (REU) in 2023 and 2024.
+- Mentoring in the Worcester Polytechnic Institute Major Qualifying Project (MQP) in 2019 and 2021.
+
+## Service
+- Reviewer of IEEE TAC, IEEE T-IFS, IEEE L-CSS, IEEE CDC
+- WUSTL ESE PhD Advisory Board
+- Public Demonstration at WPI TouchTomorrow 2019, 2022
+
+## Awards and Fellowship
+- Shao-Fang and Tsu-Chin Lee Endowed Fellowship (2022)
+- 2023 General Motors AutoDriving Security Award at the inaugural ISOC Symposium on Vehicle Security and Privacy at the Network and Distributed System Security Symposium (NDSS)
+
+## Patents
+- Hongchao Zhang, Patent- A following housekeeper robot (Patent No.: 201710406907.1)
+- Hongchao Zhang, Patent- Laptop Heat Exchange Cupholder (Patent No.: ZL 2014 2 0806400.7)
+
+## Tools
+- Python, PyTorch, Matlab, ROS, C/C++
+
 <!-- Write your biography here. Tell the world about yourself. Link to your favorite [subreddit](http://reddit.com). You can put a picture in, too. The code is already in, just name your picture `prof_pic.jpg` and put it in the `img/` folder.
 
 Put your address / P.O. box / other info right below your picture. You can also disable any of these elements by editing `profile` property of the YAML header of your `_pages/about.md`. Edit `_bibliography/papers.bib` and Jekyll will render your [publications page](/al-folio/publications/) automatically.
