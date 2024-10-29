@@ -6,7 +6,7 @@ subtitle: <a href='[#](https://ese.wustl.edu/index.html)'>Department of Electric
 
 profile:
   align: right
-  image: my_pic_casual.jpeg
+  image: my_pic_sea.jpeg
   image_circular: false # crops the image to make it circular
   address: >
     <p>1102 Green Hall</p>
