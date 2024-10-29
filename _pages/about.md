@@ -9,7 +9,7 @@ profile:
   image: my_pic_casual.jpeg
   image_circular: false # crops the image to make it circular
   address: >
-    <p>3153 Green Hall</p>
+    <p>1102 Green Hall</p>
     <p>1 Brookings Drive</p>
     <p>St. Louis, MO, 63130</p>
 
