@@ -6,7 +6,7 @@ subtitle: Ph.D. in EE, ESE WashU; Postdoctoral Scholar, ISIS VU
 
 profile:
   align: right
-  image: my_pic_seaside_front.jpg
+  image: my_pic_seaside_front_small.jpg
   image_circular: false # crops the image to make it circular
   address: 
     <p>1025 16th Ave S</p>
