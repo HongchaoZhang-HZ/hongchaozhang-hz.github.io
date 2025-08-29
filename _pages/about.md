@@ -54,9 +54,10 @@ Hi there! I'm a Postdoctoral Scholar at Institute of Software Integrated Systems
 - Public Demonstration at WPI TouchTomorrow 2019, 2022
 
 ## Teaching Experience
-### Courses Taught
-- ESE 559: Learning and Planning in Robotics, TA, Spring 2025, Washington University in St. Louis
-- ESE 2180: Linear Algebra and Component Analysis, Leading TA, Fall 2024, Washington University in St. Louis
+### Assistant Instructor
+- ESE 559: Learning and Planning in Robotics, Assistant Instructor, Spring 2025, Washington University in St. Louis
+- ESE 2180: Linear Algebra and Component Analysis, Leading Assistant Instructor, Fall 2024, Washington University in St. Louis
+
 ### Mentoring
 - Mentoring in Washington University Research Experience for Undergraduates (REU)
   - 2024 Mario Rodriguez-Montoya, Dzenan Zecevic
