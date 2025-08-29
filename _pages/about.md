@@ -6,7 +6,7 @@ subtitle: Postdoctoral Scholar at Institute of Software Integrated Systems, Vand
 
 profile:
   align: right
-  image: my_pic_seaside_front.jpeg
+  image: my_pic_casual.jpeg
   image_circular: false # crops the image to make it circular
   address: >
     <p>1025 16th Ave S</p>
