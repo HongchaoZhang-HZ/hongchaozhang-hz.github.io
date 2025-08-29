@@ -17,7 +17,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-Hi there! I'm a Postdoctoral Scholar at Institute of Software Integrated Systems, Vanderbilt University. I completed my Ph.D. degree in Electrical Engineering, advised by [Prof. Andrew Clark](https://engineering.washu.edu/faculty/Andrew-Clark.html). My research focuses on End-to-End verification and validation of autonomous systems, gaining on safety and robustness of Cyber-Physical Systems (CPS). 
+<!-- Hi there! I'm a Postdoctoral Scholar at Institute of Software Integrated Systems, Vanderbilt University. I completed my Ph.D. degree in Electrical Engineering, advised by [Prof. Andrew Clark](https://engineering.washu.edu/faculty/Andrew-Clark.html). My research focuses on End-to-End verification and validation of autonomous systems, gaining on safety and robustness of Cyber-Physical Systems (CPS).  -->
 
 ## Research Interest
 - Cyber-physical Systems (CPS)
