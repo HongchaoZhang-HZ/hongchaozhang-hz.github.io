@@ -42,7 +42,22 @@ Hi there! I'm a Postdoctoral Scholar at Institute of Software Integrated Systems
 - 08/2022-08/2025   Graduate Research Assistant, Washington University in St. Louis, St. Louis, MO, USA
 - 08/2019-08/2022   Graduate Research Assistant, Worcester Polytechnic Institute, Worcester, MA, USA
 
-<!-- ## Teaching Experience
+## Service
+- NeurIPS (Advances in Neural Information Processing Systems) 2025
+- IEEE TAC (IEEE Transactions on Automatic Control) 2023, 2024, 2025
+- IEEE CDC (IEEE Conference on Decision and Control) 2022, 2023, 2024, 2025
+- IEEE T-IFS (IEEE Transactions on Information Forensics and Security) 2023, 2024, 2025
+- ACM TCPS (ACM Transactions on Cyber-Physical Systems) 2023, 2024, 2025
+- IEEE TRO (IEEE Transactions on Robotics) 2025
+- IEEE L-CSS (IEEE Robotics and Automation Letters) 2025
+- WUSTL ESE PhD Advisory Board
+- Public Demonstration at WPI TouchTomorrow 2019, 2022
+
+## Teaching Experience
+### Courses Taught
+- ESE 559: Learning and Planning in Robotics, TA, Spring 2025, Washington University in St. Louis
+- ESE 2180: Linear Algebra and Component Analysis, Leading TA, Fall 2024, Washington University in St. Louis
+### Mentoring
 - Mentoring in Washington University Research Experience for Undergraduates (REU)
   - 2024 Mario Rodriguez-Montoya, Dzenan Zecevic
   - 2023 Nicolas Hernandez, Keyron Linarez
@@ -50,11 +65,6 @@ Hi there! I'm a Postdoctoral Scholar at Institute of Software Integrated Systems
 - Mentoring in the Worcester Polytechnic Institute Major Qualifying Project (MQP)
   - 2022 Noelle Johnson
   - 2019 Minh Le and Christopher Letherbarrow
-
-## Service
-- Reviewer of IEEE TAC, IEEE TRO, IEEE T-IFS, IEEE L-CSS, IEEE CDC
-- WUSTL ESE PhD Advisory Board
-- Public Demonstration at WPI TouchTomorrow 2019, 2022 -->
 
 ## Awards and Fellowship
 - 2023 General Motors AutoDriving Security Award at the inaugural ISOC Symposium on Vehicle Security and Privacy at the Network and Distributed System Security Symposium (NDSS)
