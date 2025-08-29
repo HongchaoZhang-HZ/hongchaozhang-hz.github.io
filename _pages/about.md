@@ -22,10 +22,9 @@ I earned my Ph.D. in Electrical Engineering under the supervision of [Prof. Andr
 
 ## Research Interest
 - Cyber-physical Systems (CPS)
+- Trustworthy AI
 - Learning-enabled Systems
-- Safe Control
-- Robotics
-- CPS Security
+- Safety and Security
 
 ## Education
 - 2025 Ph.D. in Electrical Engineering, <br />
