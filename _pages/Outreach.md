@@ -1,19 +1,23 @@
 ---
 layout: page
 permalink: /Teaching/
-title: Teaching and Outreach
+title: Teaching
 # description: Materials for courses you taught. Replace this text with your description.
 nav: true
-nav_order: 5
+nav_order: 2
 ---
 
-## Teaching Experience
+## Assistant Instructor
+- ESE 559: Learning and Planning in Robotics
+  - Location: Washington University in St. Louis
+  - Time: Spring 2025
+  - Role: Assistant Instructor
+- ESE 2180: Linear Algebra and Component Analysis
+  - Location: Washington University in St. Louis
+  - Time: Fall 2024
+  - Role: Leading Assistant Instructor
 
-### Courses Taught
-- ESE 559: Learning and Planning in Robotics, TA, Spring 2025, Washington University in St. Louis
-- ESE 2180: Linear Algebra and Component Analysis, Leading TA, Fall 2024, Washington University in St. Louis
-
-### Mentoring
+## Mentoring
 - Mentoring in Washington University Research Experience for Undergraduates (REU)
   - 2024 Mario Rodriguez-Montoya, Dzenan Zecevic
   - 2023 Nicolas Hernandez, Keyron Linarez
@@ -22,7 +26,7 @@ nav_order: 5
   - 2022 Noelle Johnson
   - 2019 Minh Le and Christopher Letherbarrow
 
-## Service
+<!-- ## Service
 - NeurIPS (Advances in Neural Information Processing Systems)
 - IEEE TAC (IEEE Transactions on Automatic Control)
 - IEEE CDC (IEEE Conference on Decision and Control)
@@ -31,7 +35,7 @@ nav_order: 5
 - IEEE TRO (IEEE Transactions on Robotics)
 - IEEE L-CSS (IEEE Robotics and Automation Letters)
 - WUSTL ESE PhD Advisory Board
-- Public Demonstration at WPI TouchTomorrow 2019, 2022
+- Public Demonstration at WPI TouchTomorrow 2019, 2022 -->
 
 <!-- 
 ## Professional Experience

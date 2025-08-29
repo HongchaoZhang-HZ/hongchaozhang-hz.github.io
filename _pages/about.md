@@ -30,7 +30,7 @@ Hi there! I'm a Postdoctoral Scholar at Institute of Software Integrated Systems
 - 2025 Ph.D. in Electrical Engineering, <br />
   Washington University in St. Louis, St. Louis, MO, USA
   - Advisor: Prof. Andrew Clark. 
-  - Ph.D. Thesis: "Resilient Safe Learning of Autonomous Systems"
+  - Ph.D. Thesis: ["Resilient Safe Learning of Autonomous Systems"](../assets/pdf/Resilient_Safe_Control_of_Autonomous_Systems.pdf)
 - 2020 M.S. in Electrical & Computer Engineering, <br />
   Worcester Polytechnic Institute, Worcester, MA, USA
 - 2018 B.E. in Automation Engineering, <br />
@@ -52,20 +52,6 @@ Hi there! I'm a Postdoctoral Scholar at Institute of Software Integrated Systems
 - IEEE L-CSS (IEEE Robotics and Automation Letters) 2025
 - WUSTL ESE PhD Advisory Board
 - Public Demonstration at WPI TouchTomorrow 2019, 2022
-
-## Teaching Experience
-### Assistant Instructor
-- ESE 559: Learning and Planning in Robotics, Assistant Instructor, Spring 2025, Washington University in St. Louis
-- ESE 2180: Linear Algebra and Component Analysis, Leading Assistant Instructor, Fall 2024, Washington University in St. Louis
-
-### Mentoring
-- Mentoring in Washington University Research Experience for Undergraduates (REU)
-  - 2024 Mario Rodriguez-Montoya, Dzenan Zecevic
-  - 2023 Nicolas Hernandez, Keyron Linarez
-- Mentoring Graduate Directed Research (Mark Charnot, Seifeldin I. Elkhashab) in 2023.
-- Mentoring in the Worcester Polytechnic Institute Major Qualifying Project (MQP)
-  - 2022 Noelle Johnson
-  - 2019 Minh Le and Christopher Letherbarrow
 
 ## Awards and Fellowship
 - 2023 General Motors AutoDriving Security Award at the inaugural ISOC Symposium on Vehicle Security and Privacy at the Network and Distributed System Security Symposium (NDSS)
