@@ -3,7 +3,7 @@ layout: page
 permalink: /Teaching/
 title: Teaching and Outreach
 # description: Materials for courses you taught. Replace this text with your description.
-nav: false
+nav: true
 nav_order: 5
 ---
 
