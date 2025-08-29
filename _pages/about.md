@@ -2,7 +2,9 @@
 layout: about
 title: About
 permalink: /
-subtitle: Postdoctoral Scholar at Institute of Software Integrated Systems, Vanderbilt University
+subtitle: 
+  <p>Ph.D. in Electrical Engineering, Washington University in St. Louis</p>
+  <p>Postdoctoral Scholar at Institute of Software Integrated Systems, Vanderbilt University</p>
 
 profile:
   align: right
@@ -51,7 +53,7 @@ I earned my Ph.D. in Electrical Engineering under the supervision of [Prof. Andr
 - ACM TCPS (ACM Transactions on Cyber-Physical Systems) 2023, 2024, 2025
 - IEEE TRO (IEEE Transactions on Robotics) 2025
 - IEEE L-CSS (IEEE Robotics and Automation Letters) 2025
-- WUSTL ESE PhD Advisory Board
+- WashU ESE PhD Advisory Board
 - Public Demonstration at WPI TouchTomorrow 2019, 2022
 
 ## Awards and Fellowship
