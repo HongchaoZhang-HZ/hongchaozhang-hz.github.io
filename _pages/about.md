@@ -2,9 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: 
-  <p>Ph.D. in Electrical Engineering, Washington University in St. Louis</p>
-  <p>Postdoctoral Scholar at Institute of Software Integrated Systems, Vanderbilt University</p>
+subtitle: Ph.D. in EE, WashU; Postdoctoral Scholar, ISIS, VU
 
 profile:
   align: right
