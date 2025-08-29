@@ -1,14 +1,39 @@
 ---
 layout: page
-permalink: /Outreach/
+permalink: /Teaching/
 title: Teaching and Outreach
 # description: Materials for courses you taught. Replace this text with your description.
-nav: false
+nav: True
 nav_order: 5
 ---
 
+## Teaching Experience
 
+### Courses Taught
+- ESE 559: Learning and Planning in Robotics, TA, Spring 2025, Washington University in St. Louis
+- ESE 2180: Linear Algebra and Component Analysis, Leading TA, Fall 2024, Washington University in St. Louis
 
+### Mentoring
+- Mentoring in Washington University Research Experience for Undergraduates (REU)
+  - 2024 Mario Rodriguez-Montoya, Dzenan Zecevic
+  - 2023 Nicolas Hernandez, Keyron Linarez
+- Mentoring Graduate Directed Research (Mark Charnot, Seifeldin I. Elkhashab) in 2023.
+- Mentoring in the Worcester Polytechnic Institute Major Qualifying Project (MQP)
+  - 2022 Noelle Johnson
+  - 2019 Minh Le and Christopher Letherbarrow
+
+## Service
+- NeurIPS (Advances in Neural Information Processing Systems)
+- IEEE TAC (IEEE Transactions on Automatic Control)
+- IEEE CDC (IEEE Conference on Decision and Control)
+- IEEE T-IFS (IEEE Transactions on Information Forensics and Security)
+- ACM TCPS (ACM Transactions on Cyber-Physical Systems)
+- IEEE TRO (IEEE Transactions on Robotics)
+- IEEE L-CSS (IEEE Robotics and Automation Letters)
+- WUSTL ESE PhD Advisory Board
+- Public Demonstration at WPI TouchTomorrow 2019, 2022
+
+<!-- 
 ## Professional Experience
 - 2022-Present   Research Assistant, Washington University in St. Louis, St. Louis, MO, USA
 - 2019-2022      Graduate Research Assistant, Worcester Polytechnic Institute, Worcester, MA, USA
@@ -28,4 +53,4 @@ nav_order: 5
 - Hongchao Zhang, Patent- Laptop Heat Exchange Cupholder (Patent No.: ZL 2014 2 0806400.7)
 
 ## Tools
-- Python, PyTorch, Matlab, ROS, C/C++
+- Python, PyTorch, Matlab, ROS, C/C++ -->
