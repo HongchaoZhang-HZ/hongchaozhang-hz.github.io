@@ -1,6 +1,6 @@
 ---
 layout: about
-title: about
+title: About
 permalink: /
 subtitle: Postdoctoral Scholar at Institute of Software Integrated Systems, Vanderbilt University
 
