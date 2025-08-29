@@ -2,7 +2,7 @@
 layout: about
 title: About
 permalink: /
-subtitle: Ph.D. in EE, WashU; Postdoctoral Scholar, ISIS, VU
+subtitle: Ph.D. in EE, ESE WashU; Postdoctoral Scholar, ISIS VU
 
 profile:
   align: right
