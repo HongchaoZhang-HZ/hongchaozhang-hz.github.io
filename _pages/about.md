@@ -18,7 +18,7 @@ social: true  # includes social icons at the bottom of the page
 ---
 
 Hi there! I’m a Postdoctoral Scholar at the Institute of Software Integrated Systems, Vanderbilt University. I work with [Prof. Taylor T. Johnson](https://www.taylortjohnson.com/), [Prof. Meiyi Ma](https://meiyima.github.io/), and [Prof. Ahmad F. Taha](https://lab.vanderbilt.edu/taha/) at the intersection of control, AI, formal methods, and cyber-physical systems (CPS), across various domains, including autonomous systems, water, transportation, and power. 
-I earned my Ph.D. in Electrical Engineering under the supervision of [Prof. Andrew Clark](https://engineering.washu.edu/faculty/Andrew-Clark.html). My research focuses on the end-to-end verification and validation of autonomous systems, with an emphasis on ensuring the safety and robustness of CPS.
+I earned my Ph.D. in Electrical Engineering under the supervision of [Prof. Andrew Clark](https://engineering.washu.edu/faculty/Andrew-Clark.html). My research focuses on the end-to-end verification and validation of CPS, with an emphasis on ensuring the safety and robustness.
 
 ## Research Interest
 - Cyber-physical Systems (CPS)
