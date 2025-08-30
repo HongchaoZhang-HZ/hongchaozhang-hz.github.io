@@ -42,20 +42,7 @@ I earned my Ph.D. in Electrical Engineering under the supervision of [Prof. Andr
 - 08/2022-08/2025   Graduate Research Assistant, Washington University in St. Louis, St. Louis, MO, USA
 - 08/2019-08/2022   Graduate Research Assistant, Worcester Polytechnic Institute, Worcester, MA, USA
 
-## Service
-- NeurIPS (Advances in Neural Information Processing Systems) 2025
-- IEEE TAC (IEEE Transactions on Automatic Control) 2023, 2024, 2025
-- IEEE CDC (IEEE Conference on Decision and Control) 2022, 2023, 2024, 2025
-- IEEE T-IFS (IEEE Transactions on Information Forensics and Security) 2023, 2024, 2025
-- ACM TCPS (ACM Transactions on Cyber-Physical Systems) 2023, 2024, 2025
-- IEEE TRO (IEEE Transactions on Robotics) 2025
-- IEEE L-CSS (IEEE Robotics and Automation Letters) 2025
-- WashU ESE PhD Advisory Board
-- Public Demonstration at WPI TouchTomorrow 2019, 2022
 
-## Awards and Fellowship
-- 2023 General Motors AutoDriving Security Award at the inaugural ISOC Symposium on Vehicle Security and Privacy at the Network and Distributed System Security Symposium (NDSS)
-- Shao-Fang and Tsu-Chin Lee Endowed Fellowship (2022)
 
 <!-- ## Software Tools
 - Python, PyTorch, Matlab, Linux, ROS, C/C++
