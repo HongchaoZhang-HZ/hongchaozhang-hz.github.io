@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Neural Barrier Certificate
+title: "Neural Barrier Certificate"
 # description: with background image
 # img: 12.jpg
 # importance: 1
