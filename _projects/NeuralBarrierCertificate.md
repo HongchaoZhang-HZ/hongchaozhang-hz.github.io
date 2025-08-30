@@ -2,7 +2,7 @@
 layout: page
 title: "Neural Barrier Certificate"
 description: with background image
-img: 12.jpg
+img: assets/img/12.jpg
 importance: 1
 category: work
 related_publications: true
