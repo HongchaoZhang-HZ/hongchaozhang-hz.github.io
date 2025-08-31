@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Trustworthy AI+CPS"
+title: "{Trustworthy AI+CPS}"
 description: Safety Guarantees of Learning-Enabled CPS
 img: assets/img/12.jpg
 importance: 1

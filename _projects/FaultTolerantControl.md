@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Resilient CPS"
+title: "Resilient {CPS}"
 description: Resilient Safe Control for CPS under Sensor Faults and Attacks
 img: assets/img/12.jpg
 importance: 1
