@@ -8,6 +8,7 @@ nav_order: 4
 ---
 
 ## Service
+- AAAI (Association for the Advancement of Artificial Intelligence) 2026
 - NeurIPS (Advances in Neural Information Processing Systems) 2025
 - IEEE TAC (IEEE Transactions on Automatic Control) 2023, 2024, 2025
 - IEEE CDC (IEEE Conference on Decision and Control) 2022, 2023, 2024, 2025
