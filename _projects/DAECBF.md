@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "{DAE-CBF}: Safety on the Constraint Manifold"
-description: Safety verification and control for differential-algebraic systems.
+title: "{DAE-CBF}"
+description: Safety on the constraint manifold — verification and control for differential-algebraic systems.
 img: assets/img/publication_preview/daecbf_manipulator.gif
 importance: 2
 category: work
@@ -23,5 +23,3 @@ The framework handles index-1 DAEs through a single projected compatibility cond
 Application domains under active development include water distribution anomaly detection, power-network voltage safety, and constrained manipulation.
 
 Related work: *Control Barrier Functions for Safety-Critical Control of Differential-Algebraic Systems* (Zhang, Kazma, Ma, Johnson, Taha; arXiv:2406.18914) and *Verification and Forward Invariance of Control Barrier Functions for Differential-Algebraic Systems* (IEEE TAC, under review).
-
-Collaborators: Mohamad H. Kazma, Prof. Meiyi Ma, Prof. Taylor T. Johnson, Prof. Ahmad F. Taha (Vanderbilt).

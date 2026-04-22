@@ -14,6 +14,4 @@ We are building an anomaly detection and diagnostics pipeline for the Nashville 
 
 This work connects to our effort on DAE-aware safety certificates: the flow-conservation equations that govern water networks are exactly the algebraic constraints that standard CBFs ignore. Treating the network as a differential-algebraic system lets us reason about safe operating regions — pressure bounds, storage limits, contaminant containment — jointly with the anomaly detector.
 
-Collaborators: Prof. Ahmad F. Taha, Prof. Meiyi Ma, Prof. Taylor T. Johnson, and Yilin Liu (Vanderbilt ISIS and Civil Engineering).
-
 Tooling: EPANET and WNTR for simulation, Nashville metro network for validation.
