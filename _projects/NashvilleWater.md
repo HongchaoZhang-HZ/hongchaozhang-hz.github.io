@@ -8,14 +8,12 @@ category: work
 related_publications: true
 ---
 
-Urban water distribution networks deliver clean water through thousands of pipes, valves, and pumps coupled by flow conservation laws. Aging infrastructure makes leakage, valve faults, and pressure anomalies common — and hard to localize from sparse sensors.
+Urban water distribution networks deliver clean water through thousands of pipes, valves, pumps, and tanks coupled by flow-conservation and head-loss equations. Aging infrastructure and sparse metering make leakage, valve faults, and pressure anomalies common and difficult to localize: a single large leak can manifest as only a faint pressure drop across many sensors, while calibration drift and demand variability cloud the signal further.
 
-We are building anomaly detection and diagnostics for the Nashville metro water network, combining machine learning with physics-based hydraulic models to flag leaks, valve faults, and pressure anomalies in near real time.
+We are building an anomaly detection and diagnostics pipeline for the Nashville metro water network that combines physics-based hydraulic models with machine learning. The approach has three components. First, a physics-informed graph neural network (PIGNN) fills in unobserved nodes and reproduces flow and pressure dynamics across the pipe graph, drawing on EPANET-based simulations for training data. Second, a coarse-to-fine localization strategy identifies the subregion most likely to contain a leak, then narrows to specific nodes or pipes. Third, subgraph learning decomposes the network by usage pattern — campus, downtown, residential — so that local models can be trained, audited, and recombined into a whole-network estimator.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/7.jpg" title="Nashville water distribution network" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
+This work connects to our effort on DAE-aware safety certificates: the flow-conservation equations that govern water networks are exactly the algebraic constraints that standard CBFs ignore. Treating the network as a differential-algebraic system lets us reason about safe operating regions — pressure bounds, storage limits, contaminant containment — jointly with the anomaly detector.
 
-Collaborators: Prof. Ahmad F. Taha, Prof. Meiyi Ma, and Prof. Taylor T. Johnson (Vanderbilt ISIS).
+Collaborators: Prof. Ahmad F. Taha, Prof. Meiyi Ma, Prof. Taylor T. Johnson, and Yilin Liu (Vanderbilt ISIS and Civil Engineering).
+
+Tooling: EPANET and WNTR for simulation, Nashville metro network for validation.
