@@ -24,6 +24,14 @@ Water distribution systems (WDS) are natively graph-structured: nodes represent 
 
 The same graph architecture supports three levels of analytic task — node-level (anomaly at a specific junction), edge-level (fault on a specific pipe), and graph-level (whole-subnetwork events) — which maps cleanly onto the operational questions a utility actually needs answered.
 
+## Theoretical foundation — spectral energy shifts for camouflaged anomalies
+
+The hard cases in water networks are not spike-like faults but **camouflaged anomalies**: slow leaks, valve drifts, and pressure shifts that look statistically normal at every individual sensor and only reveal themselves in the joint behavior across the network. Prior graph anomaly detection (GAD) methods characterize anomalies through *increased* variation in spectral energy distributions — effectively detecting disruptions that make a node spectrally louder. But anomalies that cause *decreased* variation, i.e., anomalies that silence a node into looking more normal than a real normal node, persist across multiple benchmark datasets and remain undetectable by existing spectral approaches.
+
+Our under-review ICML 2026 submission develops the theoretical foundation for detecting both directions of spectral shift. The core contribution is a **node-level spectral energy formulation** that is fully compatible with standard graph message passing, making it a drop-in addition to a GNN rather than a separate pipeline. Built on this, we introduce an **energy-aware graph learning framework** with energy-driven message passing that handles static graphs (fixed network topology, steady-state anomalies) and time-series graphs (temporal evolution, sliding-window anomaly scoring) in a unified architecture — no specialized sequence modules needed, and efficient even under long sliding windows. Large-scale benchmark experiments demonstrate effectiveness, scalability, and robustness relative to prior GAD baselines.
+
+For the Nashville water setting, this matters directly: the worst-case leak is the one that blends into demand variability. The spectral-energy formulation is what gives the GNN pipeline below a principled theoretical guarantee for catching that case, rather than an ad-hoc detection heuristic.
+
 ## Project structure
 
 The project is organized around six objectives spanning two phases.
