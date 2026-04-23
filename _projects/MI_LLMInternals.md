@@ -8,7 +8,7 @@ category: fun
 related_publications: false
 ---
 
-**Highlight.** Running Fourier probes on pre-trained Pythia, Qwen2.5, and SmolLM2 reveals weak but real structure — concentrations 3–5× above random — and this structure correlates almost perfectly with behavioral accuracy (r = 0.99 on Qwen). But the same additive Fourier basis is used for both addition and multiplication: representational structure transfers from toy grokking to real LLMs; **algorithmic basis differentiation does not**. Fine-tuning a small LLM into toy-grokked representation levels still tops out at 20% generation accuracy — the embeddings move, the rest of the network doesn't. Across six stages, I traced where arithmetic commits, how prompt scaffolds unlock latent capability, and why understanding — not computation — is the binding constraint for word-problem reasoning at this scale.
+**Highlight.** Running Fourier probes on pre-trained Pythia, Qwen2.5, and SmolLM2 reveals weak but real structure — concentrations 3–5× above random — and this structure correlates almost perfectly with behavioral accuracy (r = 0.99 on Qwen). But the same additive Fourier basis is used for both addition and multiplication: representational structure transfers from toy grokking to real LLMs; **algorithmic basis differentiation does not**. Fine-tuning a small LLM into toy-grokked representation levels still tops out at 20% generation accuracy — the embeddings move, the rest of the network doesn't. Across seven stages I traced where arithmetic commits, how prompt scaffolds unlock latent capability, why understanding — not computation — is the binding constraint for word-problem reasoning at this scale, and finally how relation structure scales up cleanly while errors keep living downstream of the residual stream.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -103,6 +103,18 @@ Grounding improves constraint recall by +20% on average but solve accuracy is fl
 
 Phi-2 residual probing in this stage sets up the handoff to the concept-probing thread: relation structure is linearly decodable at macro-F1 ≈ 0.98 from layer 4 onward; variable binding shows role-swap cosine 0.80 vs. rename cosine 0.48 (lexical encoding); an α = 4 steering intervention at layer 8 lifts perimeter-equation emission from 0/20 to 4/20; at layer 16 the effect is a dead zone.
 
+## Stage 7 — Concept probing at scale (Phi-2, Qwen-3B, Qwen-14B)
+
+The Phi-2 probe of Stage 6 is scaled to a 2 × 3 cell matrix, adding Qwen-2.5-3B and Qwen-2.5-14B-Instruct and switching to a cleaner contrast: **correct vs. incorrect on identical grounded prompts**, with both classes generated from the same input at T=0.7 to isolate reasoning-side variation. Four probes (within-variable silhouette, across-category silhouette, rename/role-swap/domain-swap cosine invariance, linear relation decoder) run on each cell, on both sides of the correctness split, layer by layer.
+
+Three findings survive the scale-up:
+
+- **Relations are linear.** The relation decoder saturates at macro-F1 ∈ [0.95, 1.00] from the quarter-depth layer onward in every cell, on both correct and incorrect samples, at every scale. Encoding is by explicit linear directions in the residual — not clusters.
+- **Variables are not Euclidean clusters.** Both the within-variable and the across-category silhouette probes peak at L0 and decline with depth in every cell (with qwen14b_ball the one mild exception mid-layer). Concept information is carried in the same linear-direction regime as relations, not in geometric separation.
+- **Output-layer rename regression is scale-invariant.** Rename invariance mid-depth strengthens with scale (Phi-2 0.63 → Qwen-3B 0.88 → Qwen-14B 0.93 on ball), but at the final layer `cos(rename) < cos(role_swap)` in every cell with a role-swap axis, and the gap actually *widens* at 14B on the farmer problem (−0.11 → −0.17).
+
+All four pre-registered representational failure hypotheses are rejected across all six cells: correct-vs-incorrect gaps are P1 ≤ 0.09, P2 rename ≤ 0.04, P3 F1 ≤ 0.03. One 14B cell (qwen14b_ball, P1 gap 0.09) is the only faint hint that representational error signatures might exist at this scale. **Errors live downstream of the residual stream**, not in whether the model has the concept — the computation–comprehension gap from Stage 4 meets the representation story from Stage 6 and closes on the same verdict. Detailed numbers and figures in [Concept Probing in Large LLMs](../mi_conceptprobing/).
+
 ## What this gives me
 
-Pre-trained LLMs carry the same *kind* of structure that grokked toy models use, detectable with the same probes, correlating with behavior the same way. But specialization, scaffolding dependence, and the computation–comprehension gap all show up at scale. The next move — taken up in the concept-probing thread — is to ask whether the failures live in the represented concepts themselves or somewhere downstream.
+Pre-trained LLMs carry the same *kind* of structure that grokked toy models use, detectable with the same probes, correlating with behavior the same way. Specialization, scaffolding dependence, and the computation–comprehension gap all show up at scale, and the Stage-7 scale-up says that even at 14B the residual-stream representation of the problem survives on failing runs. The next move is to push past the residual into MLPs, attention heads, and the decoding path — the downstream site where all the remaining error mass must live.
