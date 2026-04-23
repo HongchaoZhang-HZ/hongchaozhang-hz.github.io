@@ -10,12 +10,6 @@ related_publications: true
 
 Safety-critical CPS — autonomous vehicles, surgical robots, power grids — live in adversarial environments with sensor noise, sensor faults, actuator failures, and active cyber-attacks. Adversarial inputs invalidate the dynamical and measurement models underlying every nominal safety guarantee. This project builds the theory and practice of **resilient safe control**: controllers and observers that jointly ensure safety and stability *even when a bounded subset of sensors is compromised*, with provable guarantees under explicit fault-and-attack models.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/FTNCBF_Demo.gif" title="Fault-tolerant neural CBF online on a wheeled robot under adversarial sensor faults — the robot continues avoiding obstacles despite corrupted readings." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-
 ## The first fault-tolerant CBFs (CDC 2020)
 
 *Control Barrier Functions for Safe CPS Under Sensor Faults and Attacks* (Clark, Li, Zhang; CDC 2020) introduced the first fault-tolerant Control Barrier Function framework. The construction bounds the number of compromised sensors and shows that a CBF built from the **intersection of safe sets computed under every feasible fault pattern** preserves forward invariance — safety — as long as at least one uncorrupted sensor reading is consistent with the true state. This converted an adversarial security problem into a standard control-synthesis problem, at the cost of a combinatorial enumeration of fault patterns that the paper managed via structural properties of the observability Gramian.
@@ -23,12 +17,6 @@ Safety-critical CPS — autonomous vehicles, surgical robots, power grids — li
 ## Extensions to high relative degree (IEEE TAC 2025)
 
 *Safe Control for Nonlinear Systems under Faults and Attacks via Control Barrier Functions* (Zhang, Li, Clark; IEEE TAC 2025) generalized the CDC 2020 result to nonlinear systems with high-relative-degree CBFs, sensor and actuator faults, and bounded disturbances — a class that covers autonomous vehicles with multi-sensor perception stacks and underactuated platforms. The paper establishes joint safety and stability guarantees and provides a synthesis procedure for the fault-tolerant barrier itself, rather than requiring it as given.
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/FTNCBF_comp.gif" title="Comparison of fault-tolerant neural CBF versus nominal CBF under sensor fault — the fault-tolerant controller maintains safety through the attack window." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
 
 ## Fault-tolerant *neural* CBFs (ICRA 2024)
 

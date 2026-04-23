@@ -12,12 +12,6 @@ Efficient water service management requires timely detection of irregularities �
 
 This is a research-centered pilot jointly with **Dr. Meiyi Ma**, **Prof. Ahmad F. Taha**, and **Prof. Taylor T. Johnson** at Vanderbilt ISIS, working with domain engineers and operators from the Nashville metro water utility.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/nashvillewater.png" title="Converting a water pipeline system into a graph representation: valves, junctions, tanks, and pumps become nodes; pipes become edges." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-
 ## Why graph neural networks
 
 Water distribution systems (WDS) are natively graph-structured: nodes represent junctions, tanks, pumps, and valves; edges represent pipes with attributes like length, diameter, and roughness. Standard deep learning operates on Euclidean data and cannot exploit this structure. Graph neural networks (GNNs) update each node's embedding by aggregating messages from its neighbors through successive layers — message computation, aggregation, and update — letting a node incorporate information from multi-hop neighbors and capture both local pipe-level behavior and network-wide flow patterns in a single end-to-end model.

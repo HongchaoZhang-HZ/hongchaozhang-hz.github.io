@@ -2,19 +2,13 @@
 layout: page
 title: LLM Internals for Math Reasoning
 description: Does the Fourier structure that explains grokking in toy models show up inside pre-trained LLMs — and if so, why don't they generalize?
-img: assets/img/publication_preview/mi_llm_dft_bars.png
+img: assets/img/publication_preview/ag_biology.png
 importance: 2
 category: fun
 related_publications: false
 ---
 
 **Highlight.** Running Fourier probes on pre-trained Pythia, Qwen2.5, and SmolLM2 reveals weak but real structure — concentrations 3–5× above random — and this structure correlates almost perfectly with behavioral accuracy (r = 0.99 on Qwen). But the same additive Fourier basis is used for both addition and multiplication: representational structure transfers from toy grokking to real LLMs; **algorithmic basis differentiation does not**. Fine-tuning a small LLM into toy-grokked representation levels still tops out at 20% generation accuracy — the embeddings move, the rest of the network doesn't. Across seven stages I traced where arithmetic commits, how prompt scaffolds unlock latent capability, why understanding — not computation — is the binding constraint for word-problem reasoning at this scale, and finally how relation structure scales up cleanly while errors keep living downstream of the residual stream.
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_llm_dft_bars.png" title="Value-indexed DFT top-5 concentration across pre-trained models vs. a toy grokked baseline. LLMs sit 3–5x above random but an order of magnitude below the grokked toy." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
 
 ## Stage 1 — Probing: do pre-trained LLMs use the Fourier structure at all?
 

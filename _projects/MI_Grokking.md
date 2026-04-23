@@ -10,12 +10,6 @@ related_publications: false
 
 **Highlight.** A 1-layer transformer trained on `(a + b) mod p` normally groks around epoch 55,000. If we extract the diff-of-means (DiM) direction between grokked and memorized checkpoints, **93.7% of its energy lands in the top-5 Fourier modes** — naming the manifold the model ultimately lives on. Using that as a differentiable surrogate loss, the same model groks at epoch **1,416 — a 39x speedup** — with no curriculum and no extra data. Pushing the idea past the Fourier case exposes where it stops being automatic: manifold-agnostic methods win one task and lose another, and multi-operation mode switching is a separate bottleneck that single-layer models cannot clear.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_grokking_curves.png" title="The canonical grokking signature on (a + b) mod 59: train accuracy saturates early, test accuracy stays at random for tens of thousands of epochs, then generalization clicks on." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-
 ## Stage 1 — DiM identifies the computational manifold
 
 A 1-layer transformer (128-d model, 4 heads, ReLU MLP) is trained on `(a + b) mod 59` with a 30/70 train/test split over 55,000 epochs. We track train and test accuracy, Fourier concentration of embeddings and residual-stream activations at three sites, and run causal interventions via directional ablation and activation addition.
@@ -53,24 +47,12 @@ With the Fourier manifold named, a differentiable surrogate can pull embeddings 
 
 The baseline (no curriculum, λ=0) stalls past 55k. No curriculum + λ=10 groks at **epoch 1,416** — a 38.8× speedup. Curriculum alone produces at most 4.4× (task-relevant-first, λ=0). Combining curriculum with high λ is antagonistic: data restriction during the curriculum phase conflicts with the regularizer's direct representation guidance, leaving the combination slower than either lever alone.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_grok_testacc.png" title="Test-accuracy trajectories across runs — high-lambda runs grok by ~1.4k, baselines stall." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-
 |  | λ=0 | λ=0.01 | λ=0.1 | λ=1.0 | λ=10.0 |
 |---|---|---|---|---|---|
 | C0 (none) | stalled | 9,361 | 5,290 | 2,156 | **1,416** |
 | C1 (fund-first) | 29,819 | 10,117 | 10,094 | 10,050 | 10,055 |
 | C2 (task-rel) | 12,559 | 12,811 | 11,027 | 15,546 | 10,059 |
 | C3 (small-p) | 37,963 | 35,930 | 15,852 | 15,658 | 15,246 |
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_grok_interaction.png" title="Curriculum and Fourier regularizer are antagonistic, not additive. The regularizer does the lifting alone." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
 
 ## Stage 3 — Manifold-agnostic methods have task-dependent limits
 

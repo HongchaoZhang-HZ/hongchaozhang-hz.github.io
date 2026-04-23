@@ -10,12 +10,6 @@ related_publications: true
 
 Many safety-critical cyber-physical systems are governed by differential-algebraic equations (DAEs) rather than ordinary differential equations: power grids coupled by Kirchhoff's laws and voltage stability constraints, robotic manipulators with kinematic closure, chemical reactors with mass and energy balance, and water distribution networks governed by flow conservation. Standard Control Barrier Function (CBF) theory assumes purely ODE dynamics — ignoring the algebraic constraints can render the CBF quadratic program infeasible along real trajectories, or worse, certify safety that the system does not actually satisfy. This project builds the theory, verification machinery, and implementations to treat DAE structure as a first-class object in safety-critical control.
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/daecbf_manipulator.gif" title="Flexible manipulator with kinematic closure constraints executing a DAE-aware CBF-QP online." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-
 ## System model
 
 We work with nonlinear DAEs in semi-explicit form:
@@ -67,12 +61,6 @@ Counterexamples from either check feed back into synthesis — either directly r
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.html path="assets/img/publication_preview/daecbf_3link.gif" title="Three-link DAE-CBF executing online on a manipulator with kinematic closure — the SOS-synthesized barrier keeps the end-effector inside the safe workspace while respecting the algebraic joint constraints." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/daecbf_3link_final.png" title="Final DAE-CBF state: the synthesized barrier level set sits inside the intersection of the safe set and the constraint manifold." class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 

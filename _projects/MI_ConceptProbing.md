@@ -2,19 +2,13 @@
 layout: page
 title: Concept Probing in Large LLMs
 description: Do 2.7–14B transformers represent the concepts in a math word problem, and where do wrong answers actually come from? A matched-pair probing rig settles both questions across six cells.
-img: assets/img/publication_preview/mi_phi2_relation.png
+img: assets/img/publication_preview/ag_methods.png
 importance: 3
 category: fun
 related_publications: false
 ---
 
 **Highlight.** Six questions, one experiment. Across **three scales (Phi-2 2.7B, Qwen-2.5-3B, Qwen-2.5-14B) × two problems (farmer max-area, ball-drop impact velocity)**, we ran four layer-wise probes on matched pairs of correct and incorrect completions from identical prompts. Relations are **linearly decodable** from layer ¼ onward at every scale (P3 macro-F1 = 0.95–1.00). Role invariance **builds mid-depth** and **strengthens with scale** (rename cosine peak: 0.63 at Phi-2 → 0.88 at Qwen-3B → 0.93 at Qwen-14B) but **regresses at the output** in every cell where the test applies — token identity wins over role by up to −0.17 at 14B. Variables form **no cluster structure** at any depth in any cell — neither within-variable nor across-category — so concept information is carried by **linear directions, not Euclidean separation**. Most importantly: all three pre-registered representational failure hypotheses are rejected — the residual stream's variable, role, and relation structure are essentially identical on correct and incorrect samples. **Errors live downstream of the residual stream.** And the behavioral name-bias Qwen-3B shows on the farmer problem is a decoding-stage artefact, not a representation one.
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_phi2_relation.png" title="Relation structure is near-perfectly linearly decodable from mid-depth onward — the shape holds at 2.7B, 3B, and 14B, on both correct and incorrect samples." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
 
 ## Setup — the matched-pair rig
 
@@ -167,12 +161,6 @@ qwen3b_farmer had the largest *behavioral* name-bias and the *cleanest* mechanis
 **Phi-2 off-topic is 100% truncation.** Every Phi-2 `off_topic` sample hits the 512-token cap (farmer 2617/2617, ball 473/473). Phi-2 is verbose; the final numeric claim doesn't fit. Correct / incorrect counts are floors, not ceilings.
 
 ## Layer-wise behavior and causal steering on Phi-2 (Stage-6 parent)
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_concept_layers.png" title="Layer-wise variable binding in Phi-2 across all 33 layers on the farmer problem." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
 
 The Phi-2 probe in the parent Stage-6 grounding experiment established the foundation: relation structure decodable at macro-F1 ≈ 0.98 from layer 4 onward; variable binding shows role-swap cosine 0.80 vs. rename 0.48 (lexical encoding near the output); an α = 4 steering intervention at layer 8 lifts perimeter-equation emission from 0/20 to **4/20** — a real but partial causal handle. Steering at layer 16 produces no behavioral effect — a "dead zone" where the relation signal is present but no longer consumed downstream.
 
