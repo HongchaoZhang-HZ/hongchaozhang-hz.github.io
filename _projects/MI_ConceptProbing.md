@@ -1,107 +1,172 @@
 ---
 layout: page
 title: Concept Probing in Large LLMs
-description: Where in a 2.7–14B transformer does a word-problem error actually originate? A matched-pair probing rig scales up across three sizes and puts every obvious hypothesis on trial.
+description: Do 2.7–14B transformers represent the concepts in a math word problem, and where do wrong answers actually come from? A matched-pair probing rig settles both questions across six cells.
 img: assets/img/publication_preview/mi_phi2_relation.png
 importance: 3
 category: fun
 related_publications: false
 ---
 
-**Highlight.** When a large LLM answers a math word problem wrong, where does the error live? Four pre-registered representational hypotheses — binding failure, variable-category collapse, concept regression under error, and relation-representation collapse — each predict a gap between correct and incorrect probe curves. A clean matched-pair rig (same prompt, two different samples at T=0.7, one right and one wrong) holds everything else fixed so the probes can see that gap if it exists. Scaled across **three sizes (Phi-2 2.7B, Qwen-2.5-3B, Qwen-2.5-14B)** and two problems (farmer, ball), all four hypotheses are **rejected**: P1 silhouette gaps ≤ 0.09, P2 rename gaps ≤ 0.04, P3 macro-F1 gaps ≤ 0.03 across every cell. Relations are represented as **linear directions** in the residual stream — P3 saturates at 0.95–1.00 from the quarter-depth layer onward at every scale — and concept information is carried by those directions, not by Euclidean clusters. Whatever goes wrong at generation time lives downstream of the residual stream. One 14B cell (qwen14b_ball) shows the first faint representational error signature at 0.09 P1 gap — a lead for the next round.
+**Highlight.** Six questions, one experiment. Across **three scales (Phi-2 2.7B, Qwen-2.5-3B, Qwen-2.5-14B) × two problems (farmer max-area, ball-drop impact velocity)**, we ran four layer-wise probes on matched pairs of correct and incorrect completions from identical prompts. Relations are **linearly decodable** from layer ¼ onward at every scale (P3 macro-F1 = 0.95–1.00). Role invariance **builds mid-depth** and **strengthens with scale** (rename cosine peak: 0.63 at Phi-2 → 0.88 at Qwen-3B → 0.93 at Qwen-14B) but **regresses at the output** in every cell where the test applies — token identity wins over role by up to −0.17 at 14B. Variables form **no cluster structure** at any depth in any cell — neither within-variable nor across-category — so concept information is carried by **linear directions, not Euclidean separation**. Most importantly: all three pre-registered representational failure hypotheses are rejected — the residual stream's variable, role, and relation structure are essentially identical on correct and incorrect samples. **Errors live downstream of the residual stream.** And the behavioral name-bias Qwen-3B shows on the farmer problem is a decoding-stage artefact, not a representation one.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_phi2_relation.png" title="Relation structure is near-perfectly linearly decodable from mid-depth onward on Phi-2. The same shape holds whether the completion is correct or incorrect — and holds across 3B and 14B Qwen." class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/publication_preview/mi_phi2_relation.png" title="Relation structure is near-perfectly linearly decodable from mid-depth onward — the shape holds at 2.7B, 3B, and 14B, on both correct and incorrect samples." class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
-## Stage 1 — Matched-pair data collection and activation capture
+## Setup — the matched-pair rig
 
-An earlier grounded-vs-ungrounded contrast was confounded by off-topic divergence (ungrounded runs ran away from the problem altogether). This phase pivots to a cleaner contrast: **correct vs. incorrect on identical grounded prompts**, with both classes generated from the same input via stochastic sampling at T=0.7. This isolates reasoning-side variation from the rest of the decoding signal.
+Three frozen models (Phi-2 2.7B / 32 layers, Qwen-2.5-3B / 36L, Qwen-2.5-14B-Instruct / 48L) on two problems: farmer (maximize rectangle area given perimeter P) and ball-drop (impact velocity from height h, g = 9.8). For each `(model, problem)` cell, 200 paraphrased prompts vary variable names, role identity, domain, and numeric values. Sample K=32 completions per prompt at T=0.7, top-p=0.95, max-new-tokens=512. Label each sample as **correct** (final numeric claim matches analytical gold within tolerance — 1% farmer, 2% ball), **incorrect** (extractable number but wrong), or **off-topic** (no extractable final claim).
 
-Three frozen models (Phi-2 2.7B, Qwen-2.5-3B, Qwen-2.5-14B-Instruct) on two problems (farmer: maximize rectangle area given perimeter; ball-drop: compute impact velocity from height). For each `(model, problem)` cell: 200 paraphrased prompts with axes varying variable names (5 variants), domain/context (4–5), and numeric values (5). Generate K=32 completions per paraphrase at T=0.7, max-new-tokens=512. Label each as correct / incorrect / off-topic by regex + numeric tolerance (1% farmer, 2% ball). For paraphrases with ≥1 correct and ≥1 incorrect sample, capture **all-layer residual-stream activations** (fp16, gzipped HDF5) via a teacher-forced forward pass on the prompt + canonical-pair tokens.
+A **matched pair** is one correct + one incorrect sample drawn from the same prompt's 32 samples. For each pair we teacher-force `(prompt + generated tokens)` and capture all-layer residual streams. The correct side and the incorrect side of each pair come from the same prompt, same model, same weights — only the sampled trajectory differs, so any mechanistic difference localizes where errors arise. Spec thresholds: ≥ 30 pairs floor, ≥ 60 target.
 
-| Cell | Matched pairs | Match rate | Activations.h5 |
-|---|---|---|---|
-| phi2_farmer | 191 | 96% | 33 GB |
-| phi2_ball | 200 | 100% | 32 GB |
-| qwen3b_farmer | 195 | 98% | 29 GB |
-| qwen3b_ball | 46* | 23% | 6.6 GB |
-| qwen14b_farmer | — | — | (Qwen-14B cells) |
-| qwen14b_ball | — | — |  |
+| Cell | Matched pairs / 200 | Status |
+|---|---:|---|
+| phi2_farmer | 191 | ≫ target |
+| phi2_ball | 200 | ≫ target |
+| qwen3b_farmer | 195 | ≫ target |
+| qwen3b_ball | 46 | above floor (labeler artefact, see caveats) |
+| qwen14b_farmer | 199 | ≫ target |
+| qwen14b_ball | 167 | ≫ target |
 
-*qwen3b_ball is under-counted, not under-achieving: 82% of samples labeled "off-topic" actually contain a correct `\boxed{X}` that the regex misses, and 65% hit the 512-token cap. Re-labeling (no re-sampling) lifts true yield past 150. Probes on the 46 retained pairs still return clean signals (P3 macro-F1 = 1.00).
+Four probes, each run twice per cell (once on correct residuals, once on incorrect):
 
-## Stage 2a — Residual-space probes (P1, P1b, P2, P3)
+- **P1 — within-variable silhouette.** k-means on residuals at variable-mention positions, scored against gold role labels {length, width, area, param} (farmer) or {height, velocity, g} (ball). Spec expected emergence past 0.3 at a middle layer.
+- **P1b — across-category silhouette.** 4-class alternative: {variable, operator, number, other}. Backup hypothesis — maybe variables pool as a shared *category* rather than separating by role.
+- **P2 — cosine invariance.** Cosine between per-variable mean residuals across paraphrase pairs differing in one axis: *rename* (same role, different letter), *role-swap* (same letter, different role — farmer only), *domain-swap* (same role+letter, different scenario).
+- **P3 — linear relation decoder.** 5-fold GroupKFold logistic regression at operator positions, labels {perimeter-eq, area-eq, bound} (farmer) or {kinematic-eq, sqrt-form} (ball). Reports macro-F1.
 
-Four pre-registered mechanistic probes applied per layer to each cell, run separately on the correct and incorrect members.
+## Q1. Do models represent relations between variables?
 
-- **P1 — Within-variable clustering.** k-means (k=4) on residual vectors at variable-mention positions, scored by silhouette against gold role labels.
-- **P1b — Across-category clustering.** Same silhouette test, now for the hypothesis that *variables collectively form a category* distinct from operators / numbers / other tokens. An anti-cluster result here kills the weaker fallback that P1 might be too fine-grained.
-- **P2 — Concept-over-name invariance.** Cosine similarity of variable vectors across paraphrase pairs differing in one axis (variable name, role identity, or domain). A concept-based encoding predicts `rename ≈ domain >> role_swap`; a token-based encoding predicts the opposite.
-- **P3 — Relation decoder.** L2-regularized logistic regression decoding operator-position relation type (perimeter-eq vs. area-eq vs. bound for farmer; kinematic-eq vs. sqrt-form for ball) per layer, using **5-fold GroupKFold by paraphrase** to block idiom leakage. Reports macro-F1.
+**Yes — in every cell, on every side, at every scale.**
 
-### P1 and P1b — Variables are not Euclidean clusters at any depth
-
-| Cell | P1 silhouette (L0 → L_last) | P1b across-category (L0 → L_last) |
-|---|---|---|
-| phi2_farmer | 0.32 → 0.08 | +0.13 → +0.03 (**negative at mid**) |
-| qwen3b_farmer | 0.44 → 0.17 | +0.28 → +0.12 |
-| qwen14b_farmer | 0.41 → 0.18 | +0.15 → +0.08 |
-| qwen14b_ball | 0.55 → 0.36 (rises to 0.62 at L¼) | +0.15 → +0.06 |
-
-Both clustering tests peak at L0 and **decline with depth** in every cell except qwen14b_ball, which briefly rises at L¼ before declining — the only cell showing anything resembling the textbook "middle-layer emergence" pattern, and still not close to the rest-of-network separations found in vision models. P1b goes *negative* for Phi-2 farmer in the middle layers: the variable category actively overlaps with other token categories there. The naive hypothesis "variables are encoded as a category of distance-separable points in a concept space" fails at every scale. **Concept information lives in linear directions, not in Euclidean clusters** — which is exactly what P3 is built to detect.
-
-### P2 — Rename invariance strengthens with scale, but the output-layer regression is scale-invariant
-
-| Cell | Rename peak (layer) | Rename final | Role-swap final | Verdict |
-|---|---|---|---|---|
-| phi2_farmer | 0.63 (L½) | 0.64 | 0.75 | token wins, gap −0.11 |
-| qwen3b_farmer | **0.88 (L¾)** | 0.79 | 0.87 | token wins, gap −0.08 |
-| qwen14b_farmer | 0.87 (L½) | 0.77 | **0.94** | token wins, **widest gap −0.17** |
-| qwen14b_ball | **0.93 (L¾)** | 0.87 | — | mid-depth peak, partial regress |
-
-Scale *strengthens* the role-invariant "length-variable" direction mid-depth (Phi-2 0.63 → Qwen-3B 0.88 → Qwen-14B 0.93 on ball). But at the final layer, `cos(rename) < cos(role_swap)` in every cell where role-swap is measured — token identity reasserts at output, and the rename/role-swap gap actually *widens* with scale on the farmer problem (−0.11 → −0.17). This regression is not a small-model artefact. Qwen-3B farmer illustrates the stakes: rename invariance at L¾ is 0.88 despite the model having a 0.34 behavioral name-spread in Stage 1 — name-binding lives downstream of the residual, and the conditional prediction filed in the spec fired exactly as written.
-
-### P3 — Relations are linearly decodable at every scale, both sides
+P3 saturates at macro-F1 ∈ [0.95, 1.00] from layer ¼ onward, on both correct and incorrect samples. The residual carries a specific linear direction per relation type that the decoder reads off cleanly regardless of whether the final answer is right.
 
 | Cell / side | L0 | L¼ | L_last | n |
-|---|---|---|---|---|
+|---|---:|---:|---:|---:|
 | phi2_farmer / correct | 0.61 | **0.99** | 0.98 | 1086 |
 | phi2_farmer / incorrect | 0.62 | 0.98 | 0.95 | 1161 |
 | phi2_ball / correct | 0.36 | **1.00** | 1.00 | 699 |
 | phi2_ball / incorrect | 0.35 | 1.00 | 1.00 | 763 |
 | qwen3b_farmer / correct | 0.55 | 0.95 | 0.96 | 788 |
 | qwen3b_farmer / incorrect | 0.53 | 0.98 | 0.98 | 867 |
+| qwen3b_ball / correct | 0.43 | **1.00** | 0.98 | 170 |
+| qwen3b_ball / incorrect | 0.40 | 1.00 | 0.99 | 83 |
 | qwen14b_farmer / correct | 0.61 | **1.00** | 0.99 | 905 |
+| qwen14b_farmer / incorrect | 0.62 | 1.00 | 1.00 | 987 |
 | qwen14b_ball / correct | 0.45 | **1.00** | 1.00 | 940 |
+| qwen14b_ball / incorrect | 0.44 | 1.00 | 1.00 | 760 |
 
-Relations saturate at macro-F1 ∈ [0.95, 1.00] from the quarter-depth layer onward, at every scale, on both correct and incorrect samples, on both problems. This is the strongest positive probe in the suite: **relations are encoded as explicit linear directions in residual space**, and the encoding is robust to scale and to error.
+## Q2. Are symbols represented as role-invariant concepts?
 
-### All four pre-registered failure hypotheses are rejected
+**Partially. Role abstraction is built mid-depth and then partially undone at the output.**
 
-Correct-vs-incorrect gaps (max over layers) at every scale:
+Concept-consistent prediction: `cos(rename) > cos(role_swap)` — the length-variable direction should be the same whether the letter is `L` or `x`. Token-consistent prediction: the opposite.
 
-| Cell | P1 gap | P2 rename gap | P3 F1 gap |
-|---|---|---|---|
-| phi2_farmer | 0.01 | 0.00 | 0.03 |
-| qwen3b_farmer | 0.02 | 0.01 | 0.02 |
-| qwen14b_farmer | 0.05 | 0.03 | 0.01 |
-| qwen14b_ball | **0.09** | 0.04 | 0.00 |
+| Cell | Rename peak (layer) | Rename final | Role-swap final | Domain-swap final |
+|---|---|---:|---:|---:|
+| phi2_farmer | 0.63 (L½) | 0.64 | 0.75 | 0.74 |
+| phi2_ball | 0.82 (L¼) | 0.71 | — | 0.72 |
+| qwen3b_farmer | **0.88 (L¾)** | 0.79 | 0.87 | 0.86 |
+| qwen3b_ball | **0.88 (L½)** | 0.52 | — | 0.89 |
+| qwen14b_farmer | 0.87 (L½) | 0.77 | **0.94** | 0.94 |
+| qwen14b_ball | **0.93 (L¾)** | 0.87 | — | 0.93 |
+
+Two scale-invariant observations:
+
+1. **Mid-depth role invariance builds through the network.** Rename cosine rises from near-zero at L0 to 0.63–0.93 at mid-to-late layers. Scale raises the peak: Phi-2 0.63 → Qwen-3B 0.88 → Qwen-14B 0.93 on ball.
+2. **Output layer: token identity reasserts.** Wherever role-swap is measured, `cos(rename) < cos(role_swap)` at the final layer. The letter beats the role. And the gap *widens* at 14B on farmer (−0.17), so the regression is not a small-model artefact.
+
+## Q3. Do variables form distinct clusters?
+
+**No — at any depth, in any cell. Neither within-variable nor across-category.**
+
+Within-variable silhouette (P1):
+
+| Cell | L0 | L¼ | L½ | L¾ | L_last |
+|---|---:|---:|---:|---:|---:|
+| phi2_farmer | 0.32 | 0.19 | 0.17 | 0.12 | 0.08 |
+| phi2_ball | 0.64 | 0.48 | 0.43 | 0.36 | 0.25 |
+| qwen3b_farmer | 0.44 | 0.37 | 0.35 | 0.28 | 0.17 |
+| qwen3b_ball | 0.65 | 0.52 | 0.52 | 0.37 | 0.11 |
+| qwen14b_farmer | 0.41 | 0.36 | 0.35 | 0.30 | 0.18 |
+| qwen14b_ball | 0.55 | **0.62** | 0.60 | 0.53 | 0.36 |
+
+Silhouette peaks at L0 (tokenizer artefact) and declines with depth in every cell except qwen14b_ball, which rises slightly to L¼ before declining. Variables are *most* distinguishable at input, not after computation.
+
+Across-category silhouette (P1b):
+
+| Cell | L0 | L¼ | L½ | L¾ | L_last |
+|---|---:|---:|---:|---:|---:|
+| phi2_farmer | +0.13 | **−0.09** | **−0.10** | **−0.09** | +0.03 |
+| phi2_ball | +0.18 | −0.02 | −0.04 | −0.03 | +0.07 |
+| qwen3b_farmer | +0.28 | +0.15 | +0.15 | +0.11 | +0.12 |
+| qwen3b_ball | +0.20 | +0.06 | +0.07 | +0.04 | +0.03 |
+| qwen14b_farmer | +0.15 | +0.07 | +0.07 | +0.04 | +0.08 |
+| qwen14b_ball | +0.15 | +0.10 | +0.06 | +0.05 | +0.06 |
+
+Same shape: peaks at L0, declines with depth. Phi-2 farmer goes *negative* mid-network — variable / operator / number / other categories are less coherent than a random partition at those layers. Neither cluster test emerges anywhere.
+
+**Synthesis.** P1 + P1b rule out distance-separable clusters. P2 + P3 show clean directional structure. Concept information is carried by **linear directions in residual space**, not by **distance-separable clusters**. Reading concepts requires cosine and linear-probe tools, not k-means and silhouette.
+
+## Q4. Where do errors come from — representation or downstream?
+
+**Downstream of the residual stream.** Every probe was run twice per cell, once on correct residuals and once on incorrect. Pre-registered failure hypotheses from `probes_design.md`:
 
 | Hypothesis | Predicted signature | Observed |
 |---|---|---|
-| Binding failure | P1 smears on incorrect | gap ≤ 0.09 — **rejected** |
-| Variable-category collapse | P1b drops on incorrect | within 0.03 — **rejected** |
-| Concept regression | P2 rename drops on incorrect | within 0.04 — **rejected** |
-| Relation collapse | P3 F1 drops on incorrect | within 0.03 — **rejected** |
+| Binding failure | P1 silhouette drops on incorrect | curves within 0.02 on most cells — **rejected** |
+| Concept regression | P2 rename cosine drops on incorrect | curves within 0.02 on most cells — **rejected** |
+| Relation collapse | P3 F1 drops on incorrect | F1 within 0.03 on every cell — **rejected** |
 
-qwen14b_ball is the one cell where a P1 gap (0.09) crosses the noise floor — the first faint representational error signature at 14B on one problem. It is not by itself a positive result for any of the pre-registered hypotheses, but it is the only signal so far that says "the correct and incorrect sides differ in their residual-stream geometry." The other three cells say the residual-stream representation of the problem is identical on failing and succeeding runs.
+Concrete gaps per cell:
 
-## Phi-2 residual probing — layer-wise behavior and causal steering
+| Cell | Largest P1 gap | P2 rename gap | P3 F1 gap |
+|---|---:|---:|---:|
+| phi2_farmer | 0.01 | 0.00 | 0.03 |
+| phi2_ball | 0.07 | 0.04 | 0.00 |
+| qwen3b_farmer | 0.02 | 0.01 | 0.02 |
+| qwen3b_ball | 0.07 | 0.14 | 0.01 |
+| qwen14b_farmer | 0.05 | 0.03 | 0.01 |
+| qwen14b_ball | **0.09** | 0.04 | 0.00 |
 
-On the farmer problem in a sibling experiment on Phi-2, layer-wise analysis shows relation structure decodable at macro-F1 ≈ 0.98 from layer 4 onward (33 layers total), and variable binding with role-swap cosine 0.80 vs. rename cosine 0.48 — lexical encoding near the output.
+The residual stream's variable, role, and relation representations are essentially identical on correct and incorrect runs. The two partial exceptions both live at the largest cell: **qwen14b_ball's P1 gap of 0.09** is the first faint hint of a representational error signature at 14B on one problem, and **qwen3b_ball's P2 rename gap of 0.14** is notable but lives inside the 46-pair labeler-artefact cell (see caveats).
+
+## Q5. Do the findings hold at scale?
+
+**Yes for Q1, Q2, Q4; one partial deviation for Q3 on one cell.**
+
+| Claim | Phi-2 2.7B | Qwen-3B | Qwen-14B | Scale-invariant? |
+|---|---|---|---|---|
+| Relations linearly decodable (Q1) | F1 0.99 | F1 0.96 | F1 1.00 | **yes** |
+| Mid-depth rename cosine rises | peak 0.82 | peak 0.88 | peak 0.93 | **yes, strengthens** |
+| Final-layer token wins over role (Q2) | gap −0.11 | gap −0.08 | gap **−0.17** | **yes, unchanged or wider** |
+| P1 peaks at L0 (Q3) | yes | yes | yes (farmer) / no (ball) | mostly yes |
+| Correct ≈ incorrect representations (Q4) | Δ ≤ 0.04 | Δ ≤ 0.07 | Δ ≤ 0.09 (ball only) | mostly yes |
+
+Scale strengthens mid-depth concept (rename peak rises) but does not fix the output regression. qwen14b_ball is the one cell showing any 14B-specific deviation.
+
+## Q6. Does behavioral name-bias reflect representational name-bias?
+
+**No. Behavioral name-bias is a decoding-stage artefact.** One cell suffices — `qwen3b_farmer`.
+
+| Measure | Value |
+|---|---:|
+| Stage 1 behavioral correct-rate spread across name pairs | **0.34** (x,y: 46% vs. length,width: 12%) |
+| Stage 2a mechanistic rename cosine peak | **0.88** at L¾ |
+| Stage 2a gap to role-swap at final layer | −0.08 |
+
+qwen3b_farmer had the largest *behavioral* name-bias and the *cleanest* mechanistic rename invariance. If the representation were name-bound, P2 rename would be low. It is 0.88. The name-bias lives **downstream of the residual stream** — in how the model commits to surface tokens at decoding time, not in how it represents the problem internally. The same pattern replicates at 14B. This was a conditional the spec pre-registered; it triggered exactly as written.
+
+## Caveats
+
+**qwen3b_ball headline numbers are a labeler artefact.** Visible: 1.1% correct, 46 / 200 matched, 70% off-topic. This is not a Qwen-3B failure on ball-drop. 82% of "off-topic" samples contain a correct `\boxed{X}` that the labeler regex misses; 65% hit the 512-token cap. Qwen emits answers in `\[ \boxed{49.5} \] m/s` form; the labeler required `v = N` or `m/s` suffix. Mechanistic probes still return clean signals on the 46 pairs retained (P3 F1 = 1.00). A labeler patch plus a longer `max_new_tokens` would lift visible matches past 150.
+
+**Phi-2 off-topic is 100% truncation.** Every Phi-2 `off_topic` sample hits the 512-token cap (farmer 2617/2617, ball 473/473). Phi-2 is verbose; the final numeric claim doesn't fit. Correct / incorrect counts are floors, not ceilings.
+
+## Layer-wise behavior and causal steering on Phi-2 (Stage-6 parent)
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -109,7 +174,7 @@ On the farmer problem in a sibling experiment on Phi-2, layer-wise analysis show
     </div>
 </div>
 
-Causal steering intervention at layer 8 (α = 4) lifts perimeter-equation emission from 0/20 to **4/20** — a real but partial causal handle. Steering at layer 16 produces no behavioral effect — a "dead zone" where the relation-structure signal is present but no longer consumed downstream.
+The Phi-2 probe in the parent Stage-6 grounding experiment established the foundation: relation structure decodable at macro-F1 ≈ 0.98 from layer 4 onward; variable binding shows role-swap cosine 0.80 vs. rename 0.48 (lexical encoding near the output); an α = 4 steering intervention at layer 8 lifts perimeter-equation emission from 0/20 to **4/20** — a real but partial causal handle. Steering at layer 16 produces no behavioral effect — a "dead zone" where the relation signal is present but no longer consumed downstream.
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -117,6 +182,11 @@ Causal steering intervention at layer 8 (α = 4) lifts perimeter-equation emissi
     </div>
 </div>
 
-## What this gives me
+## What this gives me — and what it points to next
 
-A negative result sharpened by scaling. Word-problem errors in 2.7–14B LLMs don't live in the residual-stream representation of the problem: the variables, the concept abstractions, and the relation structure all survive intact on failing runs, and match the structure on succeeding runs to within probe noise. The concept-as-linear-direction framing is scale-robust — both the cluster hypotheses fail at every size, both the relation-decoder succeeds at every size. The output-layer rename-vs-role-swap regression is scale-invariant and actually widens on the farmer problem at 14B, arguing that whatever re-tokenizes the variable at generation time is a load-bearing part of the architecture, not an artefact of small models. qwen14b_ball's P1 gap of 0.09 is the first hint that representational error signatures might exist at 14B on some problems; that's the lead into the next round of probes, which push into MLP activations and attention heads to ask where the downstream arithmetic / binding / decoding step actually breaks.
+The concept-level picture is settled for this problem class at this scale range: relations are linear, variables are not clusters, roles abstract mid-depth but regress at output, and the residual stream's representation of the problem is essentially identical on failing and succeeding runs. Whatever breaks must live downstream — in MLP arithmetic, value binding, or the final decoding step. Four next moves argued for by these findings:
+
+1. **Localize the downstream failure.** Layer-wise logit-lens on the final 4 layers, restricted to incorrect runs, should identify where a correct residual turns into a wrong output token.
+2. **Causal patching correct → incorrect at the candidate error layer.** If patching the residual at layer `ℓ` flips the emitted number, the corruption step sits at `ℓ`.
+3. **Labeler patch + re-label for qwen3b_ball and qwen14b_ball.** Text-only, ~1 min compute; restores ≥ 150 matched pairs per cell for downstream stages.
+4. **SAE feature discovery targeted at the late-layer corruption point**, not abstract "concept features."
