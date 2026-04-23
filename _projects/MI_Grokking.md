@@ -2,7 +2,7 @@
 layout: page
 title: Grokking and the Fourier Manifold
 description: A 39x training speedup by naming the manifold that grokking lives on, and the limits of manifold-agnostic tricks.
-img: assets/img/publication_preview/mi_grokking_curves.png
+img: assets/img/publication_preview/mi_dim_fourier.png
 importance: 1
 category: fun
 related_publications: false
@@ -18,7 +18,7 @@ The diff-of-means direction between grokked (test > 95%) and memorized (test < 3
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_dim_fourier.png" title="DiM direction between grokked and memorized checkpoints aligns with the top-5 Fourier modes (93.7% energy concentration)." class="img-fluid rounded z-depth-1" %}
+        {% include figure.html path="assets/img/publication_preview/mi_grokking_curves.png" title="The canonical grokking signature on (a + b) mod 59: train accuracy saturates early, test accuracy stays at random for tens of thousands of epochs, then generalization clicks on." class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 
