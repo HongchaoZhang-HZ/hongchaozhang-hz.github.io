@@ -160,16 +160,6 @@ qwen3b_farmer had the largest *behavioral* name-bias and the *cleanest* mechanis
 
 **Phi-2 off-topic is 100% truncation.** Every Phi-2 `off_topic` sample hits the 512-token cap (farmer 2617/2617, ball 473/473). Phi-2 is verbose; the final numeric claim doesn't fit. Correct / incorrect counts are floors, not ceilings.
 
-## Layer-wise behavior and causal steering on Phi-2 (Stage-6 parent)
-
-The Phi-2 probe in the parent Stage-6 grounding experiment established the foundation: relation structure decodable at macro-F1 ≈ 0.98 from layer 4 onward; variable binding shows role-swap cosine 0.80 vs. rename 0.48 (lexical encoding near the output); an α = 4 steering intervention at layer 8 lifts perimeter-equation emission from 0/20 to **4/20** — a real but partial causal handle. Steering at layer 16 produces no behavioral effect — a "dead zone" where the relation signal is present but no longer consumed downstream.
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.html path="assets/img/publication_preview/mi_concept_steer.png" title="Causal steering at L8 with perimeter-equation injection, alpha sweep. 4/20 emissions at alpha=4; L16 is a dead zone." class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-
 ## What this gives me — and what it points to next
 
 The concept-level picture is settled for this problem class at this scale range: relations are linear, variables are not clusters, roles abstract mid-depth but regress at output, and the residual stream's representation of the problem is essentially identical on failing and succeeding runs. Whatever breaks must live downstream — in MLP arithmetic, value binding, or the final decoding step. Four next moves argued for by these findings:
