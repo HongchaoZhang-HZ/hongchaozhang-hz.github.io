@@ -84,5 +84,4 @@ Counterexamples from either check feed back into synthesis — either directly r
 
 ## Related work
 
-- *Control Barrier Functions for Safety-Critical Control of Differential-Algebraic Systems* — Zhang, Kazma, Ma, Johnson, Taha; arXiv:2406.18914.
-- *Verification and Forward Invariance of Control Barrier Functions for Differential-Algebraic Systems* — Zhang, Kazma, Ma, Johnson, Taha; IEEE TAC, under review.
+- *Verification and Forward Invariance of Control Barrier Functions for Differential-Algebraic Systems* — Zhang, Kazma, Ma, Johnson, Taha; arXiv:2406.18914; IEEE TAC, under review.
