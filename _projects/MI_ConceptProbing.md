@@ -106,5 +106,3 @@ Causal steering intervention at layer 8 (α = 4) lifts perimeter-equation emissi
 ## What this gives me
 
 A negative result sharper than a positive one. Word-problem errors in 2–3B LLMs don't live in the residual-stream representation of the problem: the variables, the concept abstractions, and the relation structure all survive intact through the network on failing runs, and match the structure on succeeding runs to within probe noise. That pushes the search downstream — into MLPs, attention heads, and the final decoding path — and gives a clean target for the next round of mechanistic probes. It also lines up with the computation–comprehension gap from the Stage-4 optimization work in the sibling thread: the model understood the problem; it just failed to compute with that understanding.
-
-Code and per-stage write-ups live in [`HongchaoZhang-HZ/MI`](https://github.com/HongchaoZhang-HZ/MI) (private).

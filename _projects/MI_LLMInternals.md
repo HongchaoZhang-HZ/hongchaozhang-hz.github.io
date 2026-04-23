@@ -106,5 +106,3 @@ Phi-2 residual probing in this stage sets up the handoff to the concept-probing 
 ## What this gives me
 
 Pre-trained LLMs carry the same *kind* of structure that grokked toy models use, detectable with the same probes, correlating with behavior the same way. But specialization, scaffolding dependence, and the computation–comprehension gap all show up at scale. The next move — taken up in the concept-probing thread — is to ask whether the failures live in the represented concepts themselves or somewhere downstream.
-
-Code and per-stage write-ups live in [`HongchaoZhang-HZ/MI`](https://github.com/HongchaoZhang-HZ/MI) (private).

@@ -101,5 +101,3 @@ Can a single model switch bases based on an operation token `[a, OP, b, =]`? Eve
 ## What this gives me
 
 A sharp picture of what grokking is and what it isn't. The grokking transition is *definable* as a motion onto a specific low-dimensional manifold; that manifold is detectable with a cheap direction between grokked and memorized weights; naming it lets you skip most of training. The moment you strip away the basis information, acceleration becomes task-dependent or disappears — rank structure alone is not algorithm. And the algorithm-discovery process itself scales with architectural capacity: a single transformer block cannot hold two different Fourier algorithms conditioned on a token, even when its embeddings can.
-
-Code and per-stage write-ups live in [`HongchaoZhang-HZ/MI`](https://github.com/HongchaoZhang-HZ/MI) (private).
