@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "{Safe Water Networks}"
+title: Safe Water Networks
 description: Anomaly detection and safe operation for urban water distribution.
 img: assets/img/7.jpg
 importance: 1

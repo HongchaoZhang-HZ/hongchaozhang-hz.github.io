@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "{DAE-CBF}"
+title: DAE-CBF
 description: Safety on the constraint manifold — verification and control for differential-algebraic systems.
 img: assets/img/publication_preview/daecbf_manipulator.gif
 importance: 2
