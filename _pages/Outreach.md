@@ -10,7 +10,8 @@ nav_order: 4
 ## Service
 - AAAI (Association for the Advancement of Artificial Intelligence) 2026
 - NeurIPS (Advances in Neural Information Processing Systems) 2025
-- IEEE TAC (IEEE Transactions on Automatic Control) 2023, 2024, 2025
+- IEEE TCNS (IEEE Transactions on Control of Network Systems) 2025, 2026
+- IEEE TAC (IEEE Transactions on Automatic Control) 2023, 2024, 2025, 2026
 - IEEE CDC (IEEE Conference on Decision and Control) 2022, 2023, 2024, 2025
 - IEEE T-IFS (IEEE Transactions on Information Forensics and Security) 2023, 2024, 2025
 - ACM TCPS (ACM Transactions on Cyber-Physical Systems) 2023, 2024, 2025
@@ -24,5 +25,4 @@ nav_order: 4
 ## Awards and Fellowship
 - 2023 General Motors AutoDriving Security Award at the inaugural ISOC Symposium on Vehicle Security and Privacy at the Network and Distributed System Security Symposium (NDSS)
 - Shao-Fang and Tsu-Chin Lee Endowed Fellowship (2022)
-
 

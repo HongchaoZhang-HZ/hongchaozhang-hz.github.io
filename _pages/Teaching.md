@@ -7,6 +7,16 @@ nav: true
 nav_order: 3
 ---
 
+## Guest Lecturer
+- CS 3892/5892: Projects in Cloud Computing
+  - Location: Vanderbilt University
+  - Time: Fall 2025
+  - Role: Guest Lecturer
+- CS 6315: Automated Verification
+  - Location: Vanderbilt University
+  - Time: Spring 2026
+  - Role: Guest Lecturer
+
 ## Assistant Instructor
 - ESE 559: Learning and Planning in Robotics
   - Location: Washington University in St. Louis
@@ -18,7 +28,12 @@ nav_order: 3
   - Role: Leading Assistant Instructor
 
 ## Mentoring
+- Vanderbilt University Graduate Directed Research
+  - 2025 Yilin Liu
+- Vanderbilt University Undergraduate Directed Research
+  - 2025 Aarij Atiq
 - Mentoring in Washington University Research Experience for Undergraduates (REU)
+  - 2025 Ziyi Peng
   - 2024 Mario Rodriguez-Montoya, Dzenan Zecevic
   - 2023 Nicolas Hernandez, Keyron Linarez
 - Mentoring Graduate Directed Research (Mark Charnot, Seifeldin I. Elkhashab) in 2023.
