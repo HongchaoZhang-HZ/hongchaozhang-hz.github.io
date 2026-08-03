@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 334" width="860" height="334" role="img" aria-labelledby="ug-en-title ug-en-desc" class="dg">
+<title id="ug-en-title">Selected Manager interaction architecture: the user works in one selected Manager, Codex or Claude, which manages the Project Workspace and schedules the Obsidian and Herdr working windows</title>
+<desc id="ug-en-desc">A static rendering of the canonical Mermaid source in docs/assets/user-guide-interaction-en.mmd. The user works through the Selected Manager, which is either Codex or Claude and is the single Active Manager of the Project. The Selected Manager reaches three destinations: the Project Workspace, Obsidian for complex content and durable review, and WezTerm and Herdr as the core work surface. Herdr returns its live work into the Project Workspace, and the Project Workspace is projected into Obsidian. Both Managers share this one Project Workspace, so the drawing shows one Manager box rather than two. Every arrow is a route a person or the Active Manager takes, not a checked machine attachment.</desc>
+<style>
+:root {
+  --page: #ffffff;
+  --surface: #f6f7f9;
+  --border: #dfe3e9;
+  --border-strong: #c6ccd6;
+  --text: #14171c;
+  --text-muted: #565f6d;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #0f1216;
+    --surface: #161a20;
+    --border: #262c35;
+    --border-strong: #39414d;
+    --text: #e7eaef;
+    --text-muted: #9aa4b2;
+  }
+}
+.dg {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.dg-canvas { fill: var(--page); }
+.dg-box { fill: var(--surface); stroke: var(--border-strong); stroke-width: 1.2; }
+.dg-name { font-size: 13px; font-weight: 600; fill: var(--text); }
+.dg-sub { font-size: 12px; fill: var(--text-muted); }
+.dg-edge { fill: none; stroke: var(--text-muted); stroke-width: 1.6; }
+.dg-edge--pending { stroke-dasharray: 7 4; }
+.dg-edge-label { font-size: 11px; fill: var(--text-muted); }
+.dg-arrowhead { fill: var(--text-muted); }
+</style>
+<defs>
+<marker id="dg-arrow-ug-en" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path class="dg-arrowhead" d="M 0 0 L 10 5 L 0 10 z"/>
+</marker>
+</defs>
+<rect class="dg-canvas" x="0" y="0" width="860" height="334"/>
+
+<g class="dg-nodes">
+<rect class="dg-box" x="20" y="140" width="140" height="54" rx="6"/>
+<text class="dg-name" x="90" y="172" text-anchor="middle">User</text>
+
+<rect class="dg-box" x="200" y="140" width="280" height="54" rx="6"/>
+<text class="dg-name" x="340" y="163" text-anchor="middle">Selected Manager</text>
+<text class="dg-sub" x="340" y="180" text-anchor="middle">Codex or Claude</text>
+
+<rect class="dg-box" x="520" y="20" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="43" text-anchor="middle">Obsidian</text>
+<text class="dg-sub" x="670" y="60" text-anchor="middle">complex content and durable review</text>
+
+<rect class="dg-box" x="520" y="140" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="172" text-anchor="middle">Project Workspace</text>
+
+<rect class="dg-box" x="520" y="260" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="283" text-anchor="middle">WezTerm and Herdr</text>
+<text class="dg-sub" x="670" y="300" text-anchor="middle">core work surface</text>
+</g>
+
+<g class="dg-edges">
+<path class="dg-edge" d="M 160 167 H 200" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 480 167 H 520" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 480 152 H 500 V 47 H 520" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 480 182 H 500 V 287 H 520" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 600 260 V 194" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 740 140 V 74" marker-end="url(#dg-arrow-ug-en)"/>
+</g>
+</svg>

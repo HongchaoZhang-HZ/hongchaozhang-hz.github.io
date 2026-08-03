@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theorem Derivation purpose and boundary | Derivation Engine documentation</title>
+<meta name="description" content="What the Theorem Derivation vertical slice owns, what it refuses to own, and which rounds of its implementation are finished.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary">User Guide</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="user-guide-en.html#section-1">1. What this system is</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-2">2. Responsibilities of the user, Manager, and work surfaces</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-3">3. Shortest way to use it</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-4">4. Starting a Project</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-5">5. Adding material and the Loading Dock</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-6">6. Establishing Notation</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-7">7. Creating and managing a Hypothesis</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-8">8. Theorem Derivation and verification</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-9">9. When to switch windows</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-10">10. Current Project layout</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-11">11. Current limitations</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-12">12. Current local deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-13">13. Next stage: Agent-native deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-14">14. User quick reference</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="hypothesis-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link" href="hypothesis-artifacts.html">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link" href="hypothesis-workflow.html">Workflow replay</a></li>
+        <li><a class="nav-link" href="hypothesis-state.html">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link" href="notation-cli.html">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link is-current" href="theorem-overview.html" aria-current="page">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>Purpose and boundary</h1>
+      <p class="lede">Theorem Derivation records what a project is entitled to treat as established, keeps that
+      apart from what was merely attempted, and lets exactly one interface advance the committed state.</p>
+      <p class="status status--implemented">
+        <span class="status__label">Implemented</span>
+        <span class="status__text">Rounds 01 through 07 of the vertical slice are implemented and passed
+        their recorded review and regression gates. Rounds 08 through 10 are not started. The package uses
+        the Python standard library only.</span>
+      </p>
+
+      <h2>The one-sentence boundary</h2>
+      <p>The module is a <strong>vertical slice</strong>: a thin but complete path from a proposed claim to a
+      committed checkpoint, with every step recorded. It is not a general theorem prover, and this
+      documentation does not claim it is one. The bundled adapter enumerates declared finite domains, the
+      external SMT seam reports <code>unsupported</code> because no solver is configured in this repository,
+      and no solver is installed, emulated, or invoked here.</p>
+
+      <h2>What it owns</h2>
+      <ul>
+        <li><strong>A records and the B theorem graph</strong> hold committed theorem state. The graph is the
+        single authoritative statement store and it is a frozen value: every extension returns a new graph
+        and revalidates the whole structure, so a refused transition cannot leave a partial write
+        behind.</li>
+        <li><strong>The C attempt ledger</strong> records what was tried. It never determines what holds.</li>
+        <li><strong>The verifier plane</strong> produces scoped evidence about one target at a time.</li>
+        <li><strong>The commit automaton</strong> is the only boundary that advances a checkpoint. Every
+        non-advanced outcome returns the caller's own state object, so the prior checkpoint is preserved by
+        construction rather than by a comparison after the fact.</li>
+      </ul>
+      <p>Those four lines are the whole authority story, and the
+      <a href="theorem-architecture.html">organization architecture</a> page draws them twice: once across the
+      repository's modules, and once inside this one.</p>
+
+      <h2>What it refuses to own</h2>
+      <ul>
+        <li>It does not decide human questions. A recorded review changes governance status only, and
+        mathematical verification status and human governance status are separate fields with disjoint
+        vocabularies.</li>
+        <li>It does not rewrite the Hypothesis Work Unit. A theorem outcome does not change a Hypothesis
+        status, and publication never edits a human-owned Hypothesis package.</li>
+        <li>It does not admit notation. No adapter imports a Notation V1 snapshot into a theorem case, and no
+        theorem record carries a checked Notation V1 or V2 record identifier.</li>
+        <li>It does not coordinate writers. Concurrency and coordination between independent writers remain
+        out of scope.</li>
+      </ul>
+
+      <h2>What Rounds 01 through 07 cover</h2>
+      <p>The implemented and test-backed rounds cover formal records, the theorem graph, the attempt ledger,
+      proof-support paths, semantic invalidation, segmented replay and recovery, verifier and adapter
+      contracts, authenticated promotion, checkpoint lineage, and the deterministic Obsidian and Herdr
+      projection. Snapshot segmentation, authenticated recovery, single-read public carriers, append
+      idempotency, and deterministic read-only views are implemented.</p>
+      <div class="callout">
+        <p><strong>Status language on these pages.</strong> Implemented behavior is described in the present
+        tense. A current human procedure is called a manual step. A missing adapter is called not
+        implemented, and it is drawn as a dashed arrow rather than left to look finished. Rounds 08 through
+        10 are not started, so nothing on these pages describes them as available.</p>
+      </div>
+
+      <h2>The bundled case is an example, not a result</h2>
+      <p>The example case states one claim under four formulations, and the four land on four different
+      outcomes: one refused by a replayed witness, one advanced over a finite declared domain, one
+      indeterminate when the same formulation is stated over an unbounded quantity domain, and one
+      unsupported because it asks for a solver capability nothing provides. The published round artifacts are
+      reproducibility evidence, not theorem-state authority.</p>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="notation-cli.html">CLI entry command</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="theorem-architecture.html">Organization architecture</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>

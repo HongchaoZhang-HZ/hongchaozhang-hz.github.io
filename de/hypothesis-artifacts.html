@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Durable artifacts | Derivation Engine documentation</title>
+<meta name="description" content="Which Hypothesis Work Unit files are durable conceptual authority, which runtime files are reconstructable, and what the human owns.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary">User Guide</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="user-guide-en.html#section-1">1. What this system is</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-2">2. Responsibilities of the user, Manager, and work surfaces</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-3">3. Shortest way to use it</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-4">4. Starting a Project</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-5">5. Adding material and the Loading Dock</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-6">6. Establishing Notation</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-7">7. Creating and managing a Hypothesis</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-8">8. Theorem Derivation and verification</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-9">9. When to switch windows</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-10">10. Current Project layout</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-11">11. Current limitations</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-12">12. Current local deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-13">13. Next stage: Agent-native deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-14">14. User quick reference</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="hypothesis-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link is-current" href="hypothesis-artifacts.html" aria-current="page">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link" href="hypothesis-workflow.html">Workflow replay</a></li>
+        <li><a class="nav-link" href="hypothesis-state.html">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link" href="notation-cli.html">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="theorem-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>Durable artifacts and human ownership</h1>
+      <p class="lede">Durable Markdown files carry the meaning of a work unit. Runtime files carry only the
+      current session, and can be thrown away.</p>
+      <p class="status status--draft">
+        <span class="status__label">Draft design</span>
+        <span class="status__text">The artifact boundary below belongs to the draft Hypothesis Work Unit
+        design. The runtime that renders these Markdown files is implemented and covered by the repository
+        tests.</span>
+      </p>
+
+      <h2>Durable artifacts</h2>
+      <p>Four kinds of file are durable. They are the conceptual authority for the unit:</p>
+      <ul>
+        <li><code>HY-001.md</code> &mdash; the Hypothesis definition, owned by the human.</li>
+        <li><code>Handoff.md</code> &mdash; the current position and next action, so a cold start does not
+        need chat history.</li>
+        <li><code>Review/RV-*.md</code> &mdash; Review Packets for definition changes, pinned decisions,
+        alternatives, and long evidence.</li>
+        <li><code>AGENTS.md</code> &mdash; the instructions agents read before acting inside the unit.</li>
+      </ul>
+
+      <h2>Runtime files are not authority</h2>
+      <p>Files under <code>Runtime/</code> are reconstructable adapters. They record what the current live
+      workspace happens to look like, and they can be recreated. They are explicitly <em>not</em> conceptual
+      authority: nothing that matters should exist only there.</p>
+      <div class="callout">
+        <p>A useful test when reading a unit: if deleting a file would lose a decision, that file is durable.
+        If deleting it would only cost you a restart, it is runtime.</p>
+      </div>
+
+      <h2>What the human owns</h2>
+      <p>The human owns checkbox completion and decisions. Agents maintain task wording and links so that the
+      TODO stays readable and every item points at an exact heading, but agents do not silently approve or
+      complete human work.</p>
+      <p>That single rule explains several details elsewhere in the design: why the workflow replay uses an
+      intentional Command-click to complete a TODO instead of an automatic update, why completion history
+      stays visible after an item is checked, and why a Review Packet exists at all. If an agent could
+      complete human items, the durable files would stop being evidence of what the human actually
+      decided.</p>
+
+      <h2>When to open a Review Packet</h2>
+      <p>Move work into an Obsidian Review Packet when it changes the Hypothesis definition, pins a decision,
+      records alternatives, or carries long evidence. Short, reversible exchanges stay in Dialogue; anything
+      that should still be legible next month belongs in <code>Review/RV-*.md</code>.</p>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="hypothesis-roles.html">Roles and surfaces</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="hypothesis-human-path.html">The human path</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>

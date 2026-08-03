@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Purpose and boundary | Derivation Engine documentation</title>
+<meta name="description" content="What a Hypothesis Work Unit is, what it owns, and what it deliberately does not try to be.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary">User Guide</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="user-guide-en.html#section-1">1. What this system is</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-2">2. Responsibilities of the user, Manager, and work surfaces</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-3">3. Shortest way to use it</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-4">4. Starting a Project</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-5">5. Adding material and the Loading Dock</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-6">6. Establishing Notation</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-7">7. Creating and managing a Hypothesis</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-8">8. Theorem Derivation and verification</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-9">9. When to switch windows</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-10">10. Current Project layout</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-11">11. Current limitations</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-12">12. Current local deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-13">13. Next stage: Agent-native deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-14">14. User quick reference</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link is-current" href="hypothesis-overview.html" aria-current="page">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link" href="hypothesis-artifacts.html">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link" href="hypothesis-workflow.html">Workflow replay</a></li>
+        <li><a class="nav-link" href="hypothesis-state.html">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link" href="notation-cli.html">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="theorem-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>Purpose and boundary</h1>
+      <p class="lede">The sidebar group <em>Hypothesis Test</em> documents the component the repository calls
+      the <strong>Hypothesis Work Unit</strong>.</p>
+      <p class="status status--draft">
+        <span class="status__label">Draft design</span>
+        <span class="status__text">This page describes a draft local design snapshot. It is not ground
+        truth, and it defines one DE work unit rather than the whole Derivation Engine architecture. The
+        runtime that renders the artifacts described here is implemented; the surrounding design is
+        contestable and expected to change.</span>
+      </p>
+
+      <h2>Purpose</h2>
+      <p>A Hypothesis Work Unit is the smallest independently recoverable unit in which a human and several
+      agents define, investigate, review, and continue work around one Hypothesis. Everything in the unit
+      exists to make that single question survivable: if a terminal closes, a process dies, or a week
+      passes, the work can be picked up again from files rather than from memory or scrollback.</p>
+      <p>Stable identity comes from an exact ID. A unit is addressed as <code>HY-001</code>, and that
+      identifier is what every role, path, and status pane agrees on.</p>
+
+      <h2>What one unit owns</h2>
+      <p>The owned boundary of a single work unit is deliberately small:</p>
+      <ul>
+        <li>one human-owned Hypothesis definition;</li>
+        <li>one current Handoff;</li>
+        <li>one Human TODO list;</li>
+        <li>zero or more Review Packets;</li>
+        <li>one live interaction workspace while the unit is active;</li>
+        <li>disposable runtime metadata.</li>
+      </ul>
+      <p>The first four are durable and conceptual. The last two are reconstructable: they can be rebuilt
+      without asking the human to remember anything. <a href="hypothesis-artifacts.html">Durable
+      artifacts</a> shows exactly which files fall on which side of that line.</p>
+
+      <h2>Non-goals</h2>
+      <p>The design states its non-goals as plainly as its purpose. A Hypothesis Work Unit is not:</p>
+      <ul>
+        <li>the final Derivation Engine architecture;</li>
+        <li>a universal scientific method;</li>
+        <li>a solver;</li>
+        <li>automatic approval of theory or evidence;</li>
+        <li>a publication or deployment pipeline;</li>
+        <li>a holder of destructive authority.</li>
+      </ul>
+      <div class="callout">
+        <p>The non-goals are the load-bearing part of the boundary. A work unit routes questions, records
+        answers, and keeps state recoverable. It does not decide whether a Hypothesis is true, and it does
+        not act on the human's behalf where a decision is required.</p>
+      </div>
+
+      <h2>Why the unit is the boundary</h2>
+      <p>Choosing one Hypothesis as the unit of recovery has a practical consequence: recovery never needs to
+      reconstruct a whole project. A unit knows its own ID, its own durable files, and the roles that were
+      attached to it, so <a href="hypothesis-state.html">state and recovery</a> can be defined as a small,
+      checkable procedure rather than an open-ended repair.</p>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="user-guide-zh.html" hreflang="zh-CN">User guide (Chinese)</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="hypothesis-roles.html">Roles and surfaces</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>

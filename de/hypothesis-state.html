@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>State and recovery | Derivation Engine documentation</title>
+<meta name="description" content="The state flow of a Hypothesis Work Unit and the recovery procedure that rebuilds only what is missing.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary">User Guide</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="user-guide-en.html#section-1">1. What this system is</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-2">2. Responsibilities of the user, Manager, and work surfaces</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-3">3. Shortest way to use it</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-4">4. Starting a Project</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-5">5. Adding material and the Loading Dock</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-6">6. Establishing Notation</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-7">7. Creating and managing a Hypothesis</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-8">8. Theorem Derivation and verification</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-9">9. When to switch windows</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-10">10. Current Project layout</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-11">11. Current limitations</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-12">12. Current local deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-13">13. Next stage: Agent-native deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-14">14. User quick reference</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="hypothesis-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link" href="hypothesis-artifacts.html">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link" href="hypothesis-workflow.html">Workflow replay</a></li>
+        <li><a class="nav-link is-current" href="hypothesis-state.html" aria-current="page">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link" href="notation-cli.html">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="theorem-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>State and recovery</h1>
+      <p class="lede">A work unit is designed to be resumed. The state names below describe where a unit is,
+      and the recovery rules describe how it gets picked up again.</p>
+      <p class="status status--draft">
+        <span class="status__label">Draft design</span>
+        <span class="status__text">State names and recovery rules come from the draft Hypothesis Work Unit
+        design snapshot.</span>
+      </p>
+
+      <h2>State flow</h2>
+      <p>The flow includes these states:</p>
+      <ul>
+        <li><strong>Proposed</strong> &mdash; an exact ID, title, and statement have been offered.</li>
+        <li><strong>Defined</strong> &mdash; the human-owned definition exists.</li>
+        <li><strong>Active</strong> &mdash; the unit has a live interaction workspace.</li>
+        <li><strong>Working</strong> &mdash; bounded delegated execution is in progress.</li>
+        <li><strong>Verifying</strong> &mdash; results are being checked before they are reported.</li>
+        <li><strong>WaitingHuman</strong> &mdash; progress depends on a human answer or decision.</li>
+        <li><strong>Idle</strong> &mdash; nothing is in flight and nothing is blocked.</li>
+        <li><strong>Recovering</strong> &mdash; durable state is being read back and missing runtime pieces
+        are being rebuilt.</li>
+        <li><strong>Blocked</strong> &mdash; something ambiguous or external is preventing progress.</li>
+      </ul>
+      <p><em>WaitingHuman</em> and <em>Blocked</em> are deliberately distinct. Waiting for the human is a
+      normal, expected state in a unit whose owner holds the decisions; being blocked is not.</p>
+
+      <h2>Recovery</h2>
+      <p>Recovery follows four rules:</p>
+      <ol class="steps">
+        <li><strong>Read durable state first.</strong> The Hypothesis, the Handoff, and any active Review
+        Packet are the input. Chat history and terminal scrollback are not canonical state.</li>
+        <li><strong>Reuse matching roles.</strong> If a role is already attached and matches, it is kept
+        rather than duplicated.</li>
+        <li><strong>Recreate only missing runtime pieces.</strong> Recovery is not a rebuild. Disposable
+        identifiers are replaced, and anything still valid is left alone.</li>
+        <li><strong>Stop on ambiguity.</strong> When the durable state does not determine the answer,
+        recovery stops and reports instead of guessing.</li>
+      </ol>
+      <div class="callout">
+        <p>Rule four is the reason the other three are safe. A recovery procedure that guesses would
+        eventually invent a decision the human never made, which is exactly the failure the
+        <a href="hypothesis-artifacts.html">ownership boundary</a> exists to prevent.</p>
+      </div>
+
+      <h2>What makes recovery possible</h2>
+      <p>Recovery works because the durable artifacts are complete enough to reconstruct intent, and because
+      the runtime metadata is explicitly disposable. Nothing in <code>Runtime/</code> has to be preserved,
+      so a lost workspace is an inconvenience rather than a loss of work.</p>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="hypothesis-workflow.html">Workflow replay</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="hypothesis-cli.html">CLI entry commands</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>

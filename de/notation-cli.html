@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notation CLI entry command | Derivation Engine documentation</title>
+<meta name="description" content="The implemented command-line entry point for the Notation Backbone and the workflow its subcommands expose.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary">User Guide</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="user-guide-en.html#section-1">1. What this system is</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-2">2. Responsibilities of the user, Manager, and work surfaces</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-3">3. Shortest way to use it</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-4">4. Starting a Project</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-5">5. Adding material and the Loading Dock</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-6">6. Establishing Notation</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-7">7. Creating and managing a Hypothesis</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-8">8. Theorem Derivation and verification</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-9">9. When to switch windows</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-10">10. Current Project layout</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-11">11. Current limitations</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-12">12. Current local deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-13">13. Next stage: Agent-native deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-14">14. User quick reference</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="hypothesis-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link" href="hypothesis-artifacts.html">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link" href="hypothesis-workflow.html">Workflow replay</a></li>
+        <li><a class="nav-link" href="hypothesis-state.html">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link is-current" href="notation-cli.html" aria-current="page">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="theorem-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>CLI entry command</h1>
+      <p class="lede">The Notation Backbone exposes its workflow as explicit commands. Start from the help
+      output.</p>
+      <p class="status status--implemented">
+        <span class="status__label">Implemented</span>
+        <span class="status__text">The entry point below belongs to the published, standard-library-only
+        implementation. This page makes no claim about any package that is not in this repository.</span>
+      </p>
+
+      <h2>Entry point</h2>
+      <pre><code>python3 code/notation-backbone/notation.py --help</code></pre>
+      <p>The help output lists the available subcommands. Every step of the workflow is an explicit command:
+      nothing runs as a background daemon, and nothing is admitted as a side effect of putting a file
+      somewhere.</p>
+
+      <h2>The shape of the workflow</h2>
+      <p>The commands follow the same order as the concepts in these pages:</p>
+      <ol class="steps">
+        <li><strong>Create the workspace layout.</strong> The numbered directories described in
+        <a href="notation-architecture.html">Architecture and roles</a> are created explicitly.</li>
+        <li><strong>Scan the dock.</strong> Incoming files are hashed, recorded, classified, and routed, as
+        described in <a href="notation-admission.html">Loading Dock and admission</a>.</li>
+        <li><strong>Submit a proposal.</strong> Staged files are bundled into a proposal package. Staging is
+        not admission.</li>
+        <li><strong>Review it independently.</strong> A decision is appended by someone other than the
+        proposer and submitter.</li>
+        <li><strong>Run admission.</strong> Every gate runs, and the registry is written only on
+        success.</li>
+        <li><strong>Read the state, snapshot it, or reproduce a case.</strong> Status reports the workspace,
+        a snapshot hashes the concept, notation, and mapping layers, and a manifest-driven case can be
+        reproduced in a clean target.</li>
+      </ol>
+
+      <div class="callout">
+        <p>Run the help command first. It is the authoritative list of subcommands and options for the
+        version you have checked out; this page describes what those commands are for, not a substitute for
+        their exact usage text.</p>
+      </div>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="notation-snapshots.html">Snapshots and invalidation</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="theorem-overview.html">Purpose and boundary</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>

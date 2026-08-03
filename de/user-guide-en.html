@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>User guide (English) | Derivation Engine documentation</title>
+<meta name="description" content="The English edition of the Derivation Engine user guide: the Selected Manager interaction architecture in which the user picks Codex or Claude as the one Active Manager of a Project, Herdr is the core live-work surface, and Obsidian presents complex durable content, with the boundary between current capability and next-stage targets.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary is-current" aria-current="page">User Guide</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="#section-1">1. What this system is</a></li>
+        <li><a class="nav-link" href="#section-2">2. Responsibilities of the user, Manager, and work surfaces</a></li>
+        <li><a class="nav-link" href="#section-3">3. Shortest way to use it</a></li>
+        <li><a class="nav-link" href="#section-4">4. Starting a Project</a></li>
+        <li><a class="nav-link" href="#section-5">5. Adding material and the Loading Dock</a></li>
+        <li><a class="nav-link" href="#section-6">6. Establishing Notation</a></li>
+        <li><a class="nav-link" href="#section-7">7. Creating and managing a Hypothesis</a></li>
+        <li><a class="nav-link" href="#section-8">8. Theorem Derivation and verification</a></li>
+        <li><a class="nav-link" href="#section-9">9. When to switch windows</a></li>
+        <li><a class="nav-link" href="#section-10">10. Current Project layout</a></li>
+        <li><a class="nav-link" href="#section-11">11. Current limitations</a></li>
+        <li><a class="nav-link" href="#section-12">12. Current local deployment</a></li>
+        <li><a class="nav-link" href="#section-13">13. Next stage: Agent-native deployment</a></li>
+        <li><a class="nav-link" href="#section-14">14. User quick reference</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="hypothesis-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link" href="hypothesis-artifacts.html">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link" href="hypothesis-workflow.html">Workflow replay</a></li>
+        <li><a class="nav-link" href="hypothesis-state.html">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link" href="notation-cli.html">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="theorem-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>Derivation Engine user guide</h1>
+      <p class="lede">How a person actually uses this repository: the user selects Codex or Claude as the
+      Manager Host, that one Active Manager starts and keeps managing the Project, WezTerm and Herdr are the
+      core live-work surface, and Obsidian presents complex, structured, durable content.</p>
+
+      <nav class="lang-switch" aria-label="Guide language">
+        <p class="lang-switch__label">Language</p>
+        <ul class="lang-switch__list">
+          <li><span class="lang-switch__current" aria-current="true">English</span></li>
+          <li><a href="user-guide-zh.html" hreflang="zh-CN" lang="zh-CN">中文</a></li>
+        </ul>
+        <p class="lang-switch__raw">Markdown editions:
+        <a href="user-guide/en.md">user-guide/en.md</a> ·
+        <a href="user-guide/zh-CN.md" hreflang="zh-CN">user-guide/zh-CN.md</a></p>
+      </nav>
+
+      <p class="status status--implemented">
+        <span class="status__label">Current capability</span>
+        <span class="status__text">Every paragraph carrying this label describes behavior that exists in the
+        published code today. One npm installation package now provisions the five Python Modules under
+        <code>code/</code> into a package-owned Runtime, and the Agent acting as Manager invokes them.</span>
+      </p>
+      <p class="status status--draft">
+        <span class="status__label">Next-stage target</span>
+        <span class="status__text">The Agent-native layer in Section 13 is a proposal, and the same label marks
+        every earlier paragraph that describes a target. The two Manager plugins and their shared Manager interface, automatic
+        dual-window launch, a Project-level Herdr workspace, Inbox intake, the shared local MCP tools,
+        <code>work_dispatch</code>, and <code>manager_handoff</code> are not implemented.</span>
+      </p>
+      <p>This page is the English edition of the manual kept as
+      <a href="user-guide/en.md">docs/user-guide/en.md</a>. Both editions carry the same fourteen sections,
+      the same examples, and the same lists. This is a user-facing guide, not a fourth design component: the
+      three component groups in the sidebar document the design of the modules, while this page documents how
+      a person drives them.</p>
+
+      <h2 id="section-1">1. What this system is</h2>
+      <p>Derivation Engine uses a <strong>Project Workspace</strong> as its top level. A user creates a
+      Project first, then adds Notation, Hypotheses, and Theorem Derivation as needed.</p>
+      <figure class="diagram">
+        <div class="diagram__frame" role="region" aria-label="Selected Manager interaction architecture diagram, scrollable" tabindex="0">
+<svg viewBox="0 0 860 334" width="860" height="334" role="img" aria-labelledby="ug-en-title ug-en-desc" class="dg">
+<title id="ug-en-title">Selected Manager interaction architecture: the user works in one selected Manager, Codex or Claude, which manages the Project Workspace and schedules the Obsidian and Herdr working windows</title>
+<desc id="ug-en-desc">A static rendering of the canonical Mermaid source in docs/assets/user-guide-interaction-en.mmd. The user works through the Selected Manager, which is either Codex or Claude and is the single Active Manager of the Project. The Selected Manager reaches three destinations: the Project Workspace, Obsidian for complex content and durable review, and WezTerm and Herdr as the core work surface. Herdr returns its live work into the Project Workspace, and the Project Workspace is projected into Obsidian. Both Managers share this one Project Workspace, so the drawing shows one Manager box rather than two. Every arrow is a route a person or the Active Manager takes, not a checked machine attachment.</desc>
+<defs>
+<marker id="dg-arrow-ug-en" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path class="dg-arrowhead" d="M 0 0 L 10 5 L 0 10 z"/>
+</marker>
+</defs>
+<rect class="dg-canvas" x="0" y="0" width="860" height="334"/>
+<g class="dg-nodes">
+<rect class="dg-box" x="20" y="140" width="140" height="54" rx="6"/>
+<text class="dg-name" x="90" y="172" text-anchor="middle">User</text>
+<rect class="dg-box" x="200" y="140" width="280" height="54" rx="6"/>
+<text class="dg-name" x="340" y="163" text-anchor="middle">Selected Manager</text>
+<text class="dg-sub" x="340" y="180" text-anchor="middle">Codex or Claude</text>
+<rect class="dg-box" x="520" y="20" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="43" text-anchor="middle">Obsidian</text>
+<text class="dg-sub" x="670" y="60" text-anchor="middle">complex content and durable review</text>
+<rect class="dg-box" x="520" y="140" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="172" text-anchor="middle">Project Workspace</text>
+<rect class="dg-box" x="520" y="260" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="283" text-anchor="middle">WezTerm and Herdr</text>
+<text class="dg-sub" x="670" y="300" text-anchor="middle">core work surface</text>
+</g>
+<g class="dg-edges">
+<path class="dg-edge" d="M 160 167 H 200" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 480 167 H 520" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 480 152 H 500 V 47 H 520" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 480 182 H 500 V 287 H 520" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 600 260 V 194" marker-end="url(#dg-arrow-ug-en)"/>
+<path class="dg-edge" d="M 740 140 V 74" marker-end="url(#dg-arrow-ug-en)"/>
+</g>
+</svg>
+        </div>
+        <figcaption>The Selected Manager interaction architecture. The user selects Codex or Claude, and that
+        one Active Manager is the window a person starts in; Obsidian and WezTerm with Herdr are the two
+        working windows it schedules. Both Managers share this single Project Workspace, which is why one
+        Manager box is drawn rather than two. Every arrow is a route, not a checked machine attachment: no
+        arrow claims that a theorem case is attached back to the Project manifest, because that attachment is
+        not implemented.</figcaption>
+      </figure>
+      <details class="source">
+        <summary class="source__summary">Canonical Mermaid source: Selected Manager interaction architecture</summary>
+        <p>Reproduced exactly from section 1 of <code>docs/user-guide/en.md</code>. The same text is stored
+        beside this page as <a href="assets/user-guide-interaction-en.mmd">assets/user-guide-interaction-en.mmd</a>,
+        and the drawing above is also available on its own as
+        <a href="assets/user-guide-interaction-en.svg">assets/user-guide-interaction-en.svg</a>. The drawing
+        is a static local image: no Mermaid runtime is downloaded or executed to display it.</p>
+<pre><code id="user-guide-interaction-en-source">flowchart LR
+  U["User"] --&gt; M["Selected Manager&lt;br/&gt;Codex or Claude"]
+  M --&gt; P["Project Workspace"]
+  M --&gt; O["Obsidian&lt;br/&gt;complex content and durable review"]
+  M --&gt; W["WezTerm and Herdr&lt;br/&gt;core work surface"]
+  W --&gt; P
+  P --&gt; O</code></pre>
+      </details>
+      <p>Users do not need to remember the internal Python commands. When starting a Project, the user selects
+      Codex or Claude as the <strong>Manager Host</strong>; the current profile defaults to Codex. The selected
+      Manager owns startup and ongoing management, Herdr is the core live-work surface, and Obsidian presents
+      complex, structured, durable content. Both Managers share one Project Workspace and Framework Runtime
+      rather than creating two systems.</p>
+      <p class="status status--draft">
+        <span class="status__label">Next-stage target</span>
+        <span class="status__text">Choosing that Manager Host through a plugin, and opening or focusing both
+        working windows from one request, are next-stage targets: today one Agent performs the Manager role by
+        invoking the module commands directly, and the user opens Obsidian and WezTerm/Herdr after it reports
+        the Project.</span>
+      </p>
+
+      <h2 id="section-2">2. Responsibilities of the user, Manager, and work surfaces</h2>
+      <h3>User</h3>
+      <p>The user owns the research intent and consequential decisions: the Project goal, whether to reuse a
+      related Project, the meaning of Notation, the Hypothesis definition, and acceptance of Review
+      results.</p>
+      <h3>Selected Manager</h3>
+      <p>The user may select the Codex Manager plugin or Claude Manager plugin. Both satisfy the same Manager
+      interface: inspect existing Projects, establish or recover the workspace, open or focus Obsidian and
+      WezTerm/Herdr, and remain responsible for source registration, state recovery, module preparation, task
+      scheduling, and next-step management. A Project has exactly one <strong>Active Manager</strong> at a
+      time; switching requires a durable Handoff and never permits concurrent state mutation by both
+      Managers.</p>
+      <p class="status status--draft">
+        <span class="status__label">Next-stage target</span>
+        <span class="status__text">The two Manager plugins and the shared Manager interface are the approved
+        next-stage design, not current behavior. Today one Agent performs the Manager role by invoking the
+        module commands directly, and <code>.de/project.json</code> records neither the Manager selection nor
+        Handoff state.</span>
+      </p>
+      <h3>Obsidian</h3>
+      <p>Obsidian is the complex-content and durable-review window. It displays the Project, Sources,
+      Background, Notation, Hypotheses, derivation paths, Evidence, Counterexamples, and Commit Decisions.
+      When content is long or requires graph structure, Mermaid, Graph view, comparison, or formal Review, the
+      Agent projects it into Obsidian.</p>
+      <h3>WezTerm and Herdr</h3>
+      <p>WezTerm hosts the Herdr workspace. Herdr is the core work surface in the current Reference Profile:
+      Dialogue handles live work conversations scheduled by the Active Manager, and Worker handles bounded
+      execution. Herdr does not independently acquire Project management authority. Terminal scrollback is not
+      authoritative state; complex results must be written to Obsidian or a durable Project artifact, after
+      which the Active Manager recovers the next action. The implemented Herdr runtime is created per
+      Hypothesis; a Project-level Herdr workspace is a next-stage target.</p>
+
+      <h2 id="section-3">3. Shortest way to use it</h2>
+      <p>A user starts and continues to manage the Project in the selected Manager, enters Herdr for live
+      work, and enters Obsidian for complex review:</p>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Goal</th>
+            <th scope="col">Interaction surface</th>
+            <th scope="col">Example user request</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Create an empty Project</td><td>Selected Manager</td><td>“Start a new Derivation Engine Project titled ...”</td></tr>
+          <tr><td>Start from LaTeX</td><td>Selected Manager</td><td>“Start a Derivation Engine Project from <code>/path/paper.tex</code>.”</td></tr>
+          <tr><td>Add material</td><td>Selected Manager</td><td>“Add <code>/path/notes.pdf</code> to this Project.”</td></tr>
+          <tr><td>Inspect status</td><td>Selected Manager</td><td>“Check what this Project is missing.”</td></tr>
+          <tr><td>Establish Notation</td><td>Selected Manager</td><td>“Organize Notation from the current material.”</td></tr>
+          <tr><td>Review complex Notation</td><td>Obsidian</td><td>Open the Notation Registry or Review link provided by the Agent.</td></tr>
+          <tr><td>Propose a Hypothesis</td><td>Selected Manager</td><td>“Propose a Hypothesis inside this Project.”</td></tr>
+          <tr><td>Recover a Hypothesis</td><td>Selected Manager</td><td>“Manage HY-NNN.”</td></tr>
+          <tr><td>Start derivation</td><td>Selected Manager</td><td>“Create a theorem derivation case from HY-NNN.”</td></tr>
+          <tr><td>Enter live work</td><td>WezTerm + Herdr</td><td>Clarify the task in Dialogue or supervise Worker execution.</td></tr>
+          <tr><td>Inspect derivation paths and evidence</td><td>Obsidian</td><td>Open the Derivation View provided by the Agent.</td></tr>
+        </tbody>
+      </table>
+      <p>The Active Manager should report findings and blockers first, then ask the user only for decisions
+      that genuinely require human authority.</p>
+
+      <h2 id="section-4">4. Starting a Project</h2>
+      <h3>4.1 Empty Project</h3>
+      <p>The user does not need to create a directory manually. In the Codex or Claude Manager, say “Create a
+      new Project under this directory,” supply a title, and optionally state an initial problem. If no
+      default is saved, the Manager first asks whether this Project uses Codex or Claude; the current
+      Reference Profile defaults to Codex. It then:</p>
+      <ol class="steps">
+        <li>Inspects the target catalog for existing Project Workspaces.</li>
+        <li>Discusses reuse, extension, or separation if a plausibly related Project exists.</li>
+        <li>Selects or confirms a <code>PRJ-NNN</code> identifier.</li>
+        <li>Creates the Project scaffold without silently creating Notation or a Hypothesis.</li>
+        <li>Creates or recovers a Project-level Herdr workspace.</li>
+        <li>Opens or focuses the Project's Obsidian vault and WezTerm/Herdr.</li>
+        <li>Reports Background and next-module readiness in the selected Manager.</li>
+      </ol>
+      <p class="status status--draft">
+        <span class="status__label">Next-stage target</span>
+        <span class="status__text">Steps 5 through 7 describe the next-stage bootstrap target. The current
+        implementation creates the Project scaffold but does not yet launch both working windows or create
+        Project-level Herdr automatically.</span>
+      </p>
+      <p>An empty Project may remain incomplete. It is a managed research container, not a claim that the
+      research question has already been settled.</p>
+      <h3>4.2 Project from LaTeX or an article</h3>
+      <p>The file may remain in Downloads or any user directory. The user gives the selected Manager its exact
+      path. The Manager copies it into the Project <code>Sources/</code>, records its source name and SHA-256
+      digest, and does not modify the original.</p>
+<pre><code>PRJ-NNN/
+└── Sources/
+    ├── SRC-001-paper.tex
+    ├── SRC-002-article.pdf
+    └── README.md</code></pre>
+      <p>Adding a file means only that the material was registered. It does not mean the paper's contents,
+      Notation, or conclusions were accepted.</p>
+
+      <h2 id="section-5">5. Adding material and the Loading Dock</h2>
+      <h3>Current capability</h3>
+      <p class="status status--implemented">
+        <span class="status__label">Current capability</span>
+        <span class="status__text">Source registration and the Notation V1 Loading Dock exist in the
+        published code. Both are explicit operations that someone has to invoke with a file path or a
+        URL.</span>
+      </p>
+      <p>The user gives the selected Manager a file path or webpage and asks it to add the material to the
+      current Project. The Manager invokes <code>add-source</code>; local files are copied, while a webpage is
+      recorded as provenance only. The Agent must retrieve and analyze webpage content separately.</p>
+      <p>Merely placing an arbitrary file in <code>Sources/</code> does not start a workflow; there is no
+      watcher today. A manually placed file is also not added automatically to
+      <code>.de/project.json</code>.</p>
+      <div class="callout">
+        <p>The Notation V1 Loading Dock is implemented, but it belongs to a separate Notation V1 workspace:
+        scanning is explicit, and no Project Workspace command attaches that workspace to
+        <code>.de/project.json</code>. A Project therefore has no Loading Dock of its own today.</p>
+      </div>
+      <p>A user can say:</p>
+      <blockquote>
+        <p>Send this material to the Notation V1 Loading Dock used for PRJ-NNN and check whether it can form
+        a formal semantic record.</p>
+      </blockquote>
+      <p>The Active Manager selects or creates that separate Notation V1 workspace, keeps the note of which
+      workspace serves PRJ-NNN outside the Project manifest, then performs classification, proposal, review,
+      and admission. If the material type is unclear, the Loading Dock places it in <code>needs-user</code>,
+      and the Manager asks one concrete question.</p>
+      <h3>Next-stage target</h3>
+      <p class="status status--draft">
+        <span class="status__label">Next-stage target</span>
+        <span class="status__text">The intake flow below is planned. <code>Sources/Inbox</code> is not
+        watched, not registered, and not implemented.</span>
+      </p>
+      <p>The planned flow is:</p>
+<pre><code>Sources/Inbox
+  -&gt; registration and deduplication
+  -&gt; Project ownership check
+  -&gt; Sources/Library
+  -&gt; optional Project-local Loading Dock</code></pre>
+      <p>The target interaction is: the user drops files into <code>Sources/Inbox/</code> and says only
+      “Load the new material” in the selected Manager. This flow is not implemented yet.</p>
+
+      <h2 id="section-6">6. Establishing Notation</h2>
+      <p>Notation is normally the first module after Sources and Background. A user does not need to prepare
+      a JSON manifest and can tell the Active Manager:</p>
+      <blockquote>
+        <p>Organize Notation from the current Sources. List symbols, meanings, and conflicts first; do not
+        resolve ambiguity silently.</p>
+      </blockquote>
+      <p>The Active Manager should:</p>
+      <ol class="steps">
+        <li>Propose candidate symbols and their physical or mathematical meanings.</li>
+        <li>Expose overloaded symbols, multiple symbols for one concept, and scope conflicts.</li>
+        <li>Ask the user to resolve ambiguities that affect Project semantics.</li>
+        <li>Generate and check the Notation V2 Registry.</li>
+        <li>Attach Notation to the Project and provide its Obsidian entrypoint.</li>
+      </ol>
+      <p>Use Notation V1 and the Loading Dock when material requires formal semantic admission, snapshots,
+      or invalidation checks. V1 and V2 are currently independent modules.</p>
+
+      <h2 id="section-7">7. Creating and managing a Hypothesis</h2>
+      <p>A Hypothesis is a fluid second-layer work unit, not the Project itself. Before creation, the Active
+      Manager checks:</p>
+      <ul>
+        <li>problem statement;</li>
+        <li>scope;</li>
+        <li>background summary;</li>
+        <li>related-Project decision;</li>
+        <li>source basis.</li>
+      </ul>
+      <p>When Background is incomplete, the Agent should report blockers and must not attach a Hypothesis to
+      the Project. A formal mathematical Hypothesis should normally have Notation first; missing Notation is
+      currently a warning, not a universal prohibition on every Hypothesis.</p>
+      <p>After the user confirms a title and falsifiable working statement, the Agent creates
+      <code>HY-NNN</code>. Later, saying “Manage HY-NNN” in the selected Manager recovers the same work unit,
+      Handoff, Review, and Worker runtime.</p>
+
+      <h2 id="section-8">8. Theorem Derivation and verification</h2>
+      <p>The user can ask the Active Manager to create a derivation case from an existing Hypothesis. The
+      system separates:</p>
+      <ul>
+        <li>A records and the B theorem graph: committed static state;</li>
+        <li>the C attempt ledger: dynamic proposals and failed attempts;</li>
+        <li>verifier evidence: scoped results from SMT, finite-domain checks, or another adapter;</li>
+        <li>the commit automaton: the only interface that advances a checkpoint.</li>
+      </ul>
+      <p>An outcome is <code>advanced</code>, <code>refused</code>, <code>unsupported</code>, or
+      <code>indeterminate</code>. Only <code>advanced</code> produces a new checkpoint. A Counterexample must
+      be decoded and replayed; an unavailable solver cannot be reported as having verified anything.</p>
+
+      <h2 id="section-9">9. When to switch windows</h2>
+<pre><code>Selected Manager: Codex or Claude
+  -&gt; create/recover the Project
+  -&gt; ongoing management and scheduling after startup
+  -&gt; launch or focus both working windows (next-stage target)
+WezTerm + Herdr                         Obsidian
+  -&gt; live work dialogue                 -&gt; complex content
+  -&gt; Agent/Worker execution             -&gt; graphs, paths, and Evidence
+  -&gt; return durable results             -&gt; durable Review and Handoff
+          \                               /
+           -&gt; shared durable Project state &lt;-</code></pre>
+      <p>The Active Manager handles startup and all post-startup management. Herdr is the core live-work
+      surface. Obsidian handles complex presentation. The user enters Herdr or focuses an Obsidian page from
+      the selected Manager, then returns to that same Manager after the work or Review to manage the next
+      action.</p>
+      <p>Launching or focusing both working windows automatically belongs to the next stage; today the Active
+      Manager reports the Project and the user opens the window it names.</p>
+
+      <h2 id="section-10">10. Current Project layout</h2>
+<pre><code>PRJ-NNN/
+├── .de/
+│   └── project.json
+├── Project.md
+├── Background.md
+├── Sources/
+│   └── README.md
+├── Modules/
+│   ├── README.md
+│   └── Notation/
+├── Hypotheses/
+│   └── HY-NNN/
+└── Theorem Derivation Views/</code></pre>
+      <p>Creating a Project writes <code>.de/project.json</code>, <code>Project.md</code>,
+      <code>Background.md</code>, <code>Sources/README.md</code>, and <code>Modules/README.md</code>.
+      <code>Modules/Notation/</code>, <code>Hypotheses/HY-NNN/</code>, and
+      <code>Theorem Derivation Views/</code> are conditional outputs: they appear only after Notation is
+      attached, a Hypothesis package is attached, or theorem-derivation views are generated into the
+      vault.</p>
+      <p><code>.de/project.json</code> is the machine authority for the Project Workspace.
+      <code>Project.md</code>, <code>Background.md</code>, and <code>Sources/README.md</code> are Obsidian
+      projections. Hypothesis Markdown remains human-owned.</p>
+
+      <h2 id="section-11">11. Current limitations</h2>
+      <p>The following capabilities are not complete:</p>
+      <ul>
+        <li>watching <code>Sources/Inbox</code> and starting intake automatically;</li>
+        <li>automatically understanding LaTeX or PDF and generating correct Notation;</li>
+        <li>deciding automatically whether two Projects are semantically identical;</li>
+        <li>a formal Project Workspace attachment to the Loading Dock;</li>
+        <li>a checked attachment from theorem cases to the Project manifest;</li>
+        <li>a shared identifier adapter across Notation V1, V2, and theorem records.</li>
+      </ul>
+      <p>The Agent can assist with the interpretive work, but it must not present a human procedure as an
+      implemented deterministic guarantee.</p>
+
+      <h2 id="section-12">12. Current local deployment</h2>
+      <p class="status status--implemented">
+        <span class="status__label">Current capability</span>
+        <span class="status__text">This is how the repository is installed and run today.</span>
+      </p>
+      <p>The repository now contains an npm package around the five internal Python packages. npm is the
+      installation surface. Its postinstall step reuses an available <code>uv</code>, or downloads a versioned,
+      checksum-pinned <code>uv</code> fallback, then creates an isolated Python 3.11 Runtime inside the installed
+      npm package and installs all five Modules there. The Runtime and the <code>uv</code> cache do not modify the
+      system Python environment or shell profile.</p>
+      <p>The packed artifact is implemented and tested on the current macOS <strong>Reference Profile</strong>.
+      After a maintainer builds or publishes that artifact, installing it is one npm command. The intended
+      public command is:</p>
+<pre><code>npm install -g derivation-engine</code></pre>
+      <p>The package has not been published to the npm registry yet, so that exact registry command is not
+      currently available. A locally packed <code>.tgz</code> can already be installed with the same one-command
+      npm flow. The installed compatibility dispatcher is for the Active Manager and maintenance checks;
+      ordinary Project interaction remains natural-language dialogue in Codex or Claude.</p>
+      <p>The installer reports whether Obsidian, WezTerm, Herdr, Codex, and Claude are available, but it does
+      not install or reconfigure them. Project creation also does not yet launch Obsidian and Project-level
+      Herdr together: the implemented Herdr runtime is created per Hypothesis. Other terminals, workspace
+      managers, knowledge views, Manager plugins, and automatic window launch remain later compatibility work.</p>
+
+      <h2 id="section-13">13. Next stage: Agent-native deployment</h2>
+      <p class="status status--draft">
+        <span class="status__label">Next-stage target</span>
+        <span class="status__text">The npm Framework Runtime described in Section 12 is implemented. This
+        section describes the Agent-native layer that remains: the two Manager plugins, Herdr Dialogue skill,
+        Local MCP adapter, automatic two-window startup, and Agent tool interface are not implemented yet.</span>
+      </p>
+      <p>Verdict: when starting a Project, the user selects Codex or Claude as the Manager Host. Both Manager
+      Adapters share the same Framework Runtime, Project Workspace, Herdr, and Obsidian, and each Project has
+      exactly one Active Manager. There is no user-facing <code>de</code> CLI.</p>
+      <h3>Target user interaction</h3>
+<pre><code>User says in Codex or Claude: “Start a Derivation Engine Project.”
+  -&gt; select a Manager Host when no default exists; current default is Codex
+  -&gt; Manager Adapter creates or recovers the Project Workspace
+  -&gt; automatically opens/focuses Obsidian
+  -&gt; automatically opens/focuses WezTerm + Project-level Herdr
+User drops files into Sources/Inbox
+  -&gt; User says in the Active Manager: “Load the new material.”
+Active Manager
+  -&gt; registers, deduplicates, and checks Project ownership and Background
+  -&gt; prepares Notation, a Hypothesis, or Derivation when requested
+  -&gt; schedules Herdr when live work is required
+  -&gt; focuses Obsidian when complex presentation is required</code></pre>
+      <p>The selected Agent remains the Active Manager after bootstrap. Except for decisions that genuinely
+      require human authority, it initiates every Project-management action; Herdr performs only scheduled
+      live work. Switching Managers requires an explicit durable handoff and never allows Codex and Claude to
+      write Project state concurrently.</p>
+      <h3>Recommended installation unit: shared Runtime and two Manager plugins</h3>
+<pre><code>derivation-engine runtime
+├── Manager interface
+│   ├── Codex Manager plugin
+│   └── Claude Manager plugin
+├── Herdr Dialogue skill
+│   └── scheduled live terminal dialogue and execution rules
+├── Local MCP adapter
+│   └── deterministic tools shared by both Manager Adapters and Herdr roles
+├── Python runtime
+│   ├── project
+│   ├── intake
+│   ├── notation
+│   ├── hypothesis
+│   └── theorem
+└── templates</code></pre>
+      <p>Install the implemented npm Framework Runtime once on the local machine. The next-stage Codex and
+      Claude plugins use their own platform-native formats, but both must remain thin Adapters of the same Manager interface
+      and must not copy or fork Project logic. A user may install one or both Manager plugins and select one
+      Active Manager for each Project. Each Project stores only research state, the Manager selection, and
+      Handoff state; it does not copy the runtime.</p>
+      <h3>Planned Agent tool interface</h3>
+<pre><code>project_start   -&gt; create/recover with a selected Manager and launch/focus both work surfaces
+source_intake   -&gt; load material the user placed in Inbox
+project_status  -&gt; return readiness, blockers, and the next recommendation
+module_prepare  -&gt; prepare Notation, a Hypothesis, or Derivation
+work_dispatch   -&gt; schedule bounded live work in Herdr and recover a durable result
+manager_handoff -&gt; explicitly switch Codex/Claude Manager after a checkpoint
+view_focus      -&gt; focus an Obsidian page or Herdr workspace</code></pre>
+      <p>These are Agent tool interfaces, not user commands, and they are not implemented yet. Tools return
+      structured results; the Agent explains them, asks questions, and decides the next invocation.</p>
+      <h3>Roles of the Manager plugins and Herdr skill</h3>
+      <p>The Codex Manager plugin and Claude Manager plugin must execute the same Project startup,
+      ongoing-management, and window-scheduling protocol. The Herdr Dialogue skill defines scheduled live
+      work. The current Active Manager receives all management-oriented natural-language triggers:</p>
+      <ul>
+        <li>“Create a new Project.”</li>
+        <li>“Create a Project from this LaTeX file.”</li>
+        <li>“Load the new material.”</li>
+        <li>“Manage HY-NNN.”</li>
+      </ul>
+      <p>The shared protocol requires the Agent to inspect existing Projects first, create or recover both
+      work surfaces at startup, check Background before creating a Hypothesis, avoid silently resolving
+      Notation ambiguity, allow exactly one Active Manager per Project, send live work to Herdr, and write
+      complex results and formal Review to Obsidian.</p>
+      <h3>Why the internal runtime may still be packaged</h3>
+      <p>The implemented npm package fixes the Runtime version, Python dependencies, and five internal Module
+      entrypoints. It is an installation boundary, not the user interaction surface. The local MCP adapter can
+      later load this same Runtime without duplicating it. Development and compatibility CLIs remain internal
+      to the Active Manager and maintenance flow.</p>
+      <h3>Recommended implementation order</h3>
+      <ol class="steps">
+        <li>Implement <code>Sources/Inbox -&gt; intake</code> to close the Project bootstrap loop.</li>
+        <li>Implement <code>project_start</code> to create or recover a Project and automatically launch or
+        focus both working windows.</li>
+        <li>Refactor the existing command implementations into stable importable Python interfaces.</li>
+        <li>Implement startup and preflight for the current macOS + WezTerm + Herdr + Obsidian Reference
+        Profile.</li>
+        <li>Add a local MCP adapter shared by both Manager Adapters and Herdr roles, keeping its tool
+        interface small.</li>
+        <li>Implement <code>work_dispatch</code>, durable Handoff, and exclusive
+        <code>manager_handoff</code>.</li>
+        <li>Build separate Codex and Claude Manager plugins and run the same conformance tests against their
+        shared Manager interface.</li>
+        <li>Test both Managers from an empty directory: startup and ongoing management, Herdr live work,
+        Obsidian presentation, Project recovery, and Manager switching.</li>
+        <li>Add other terminal or view installation profiles later; do not introduce an unverified generic
+        terminal interface now.</li>
+        <li>Retain existing CLIs only as development and compatibility entrypoints; ordinary users never need
+        them.</li>
+      </ol>
+
+      <h2 id="section-14">14. User quick reference</h2>
+      <p>For daily use, remember only:</p>
+      <ol class="steps">
+        <li>Select Codex or Claude as the Manager; the current default is Codex.</li>
+        <li>The Active Manager automatically opens or focuses Obsidian and WezTerm/Herdr.</li>
+        <li>Continue to manage the Project and its next actions in the same Active Manager.</li>
+        <li>Use Herdr as the core live-work surface.</li>
+        <li>Read complex content and complete Reviews in Obsidian.</li>
+        <li>Create a durable Handoff before switching Managers; concurrent management is forbidden.</li>
+        <li>Preserve human confirmation for semantic decisions.</li>
+      </ol>
+      <p>The Chinese edition of this guide is <a href="user-guide-zh.html" hreflang="zh-CN">user-guide-zh.html</a>,
+      and the raw Markdown editions are <a href="user-guide/en.md">user-guide/en.md</a> and
+      <a href="user-guide/zh-CN.md" hreflang="zh-CN">user-guide/zh-CN.md</a>.</p>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="index.html">Introduction</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="user-guide-zh.html" hreflang="zh-CN">User guide (Chinese)</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>

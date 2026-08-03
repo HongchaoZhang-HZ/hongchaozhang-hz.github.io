@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Workflow replay | Derivation Engine documentation</title>
+<meta name="description" content="A seven-part replay of one Hypothesis Work Unit pass, from proposing an exact ID in Codex App to the completed Human TODO visible in Obsidian.">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary">User Guide</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="user-guide-en.html#section-1">1. What this system is</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-2">2. Responsibilities of the user, Manager, and work surfaces</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-3">3. Shortest way to use it</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-4">4. Starting a Project</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-5">5. Adding material and the Loading Dock</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-6">6. Establishing Notation</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-7">7. Creating and managing a Hypothesis</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-8">8. Theorem Derivation and verification</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-9">9. When to switch windows</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-10">10. Current Project layout</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-11">11. Current limitations</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-12">12. Current local deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-13">13. Next stage: Agent-native deployment</a></li>
+        <li><a class="nav-link" href="user-guide-en.html#section-14">14. User quick reference</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="hypothesis-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link" href="hypothesis-artifacts.html">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link is-current" href="hypothesis-workflow.html" aria-current="page">Workflow replay</a></li>
+        <li><a class="nav-link" href="hypothesis-state.html">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link" href="notation-cli.html">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="theorem-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>Workflow replay</h1>
+      <p class="lede">One Hypothesis moving from a proposal to a completed, human-owned TODO, in seven
+      parts.</p>
+      <p class="status status--draft">
+        <span class="status__label">Draft design</span>
+        <span class="status__text">The replay illustrates the draft Hypothesis Work Unit design. Treat it as
+        a walkthrough of intended interaction, not as a performance claim or a product demonstration.</span>
+      </p>
+      <p class="status status--implemented">
+        <span class="status__label">Current capability</span>
+        <span class="status__text">The published Hypothesis Work Unit runtime and workflow replay use the
+        Codex App as Manager. That is the implemented role mapping this page describes.</span>
+      </p>
+      <p class="status status--draft">
+        <span class="status__label">Next-stage target</span>
+        <span class="status__text">The bilingual <a href="user-guide-en.html">user guide</a> proposes Codex
+        or Claude as the one Selected Manager, the single Active Manager of a Project, reached through shared
+        Manager Adapters and a durable Handoff. That selection is a next-stage target, not implemented current
+        Hypothesis behavior.</span>
+      </p>
+
+      <figure class="figure">
+        <img src="assets/hypothesis-workflow.gif"
+             alt="Animated replay in seven parts: a Hypothesis is proposed with an exact ID in Codex App; the Manager reports the durable paths, Herdr workspace, Dialogue and Worker roles, and resume command; the Dialogue Facilitator asks one short question beside a status pane; the human answers in natural language; a separate Worker tab waits for bounded delegation; the recorded answer appears in the Handoff and a Human TODO is completed by an intentional Command-click; Obsidian shows the same durable Hypothesis, Handoff, Review area, and completed TODO."
+             width="1280" height="720">
+        <figcaption>A privacy-safe synthetic replay built from invented demo data. It is not a capture of a
+        real desktop, a real vault, or anyone's private work. Every step is also described in text
+        below, so the page is fully readable without watching the animation.</figcaption>
+      </figure>
+
+      <h2>The seven parts</h2>
+      <ol class="steps">
+        <li><strong>Propose the Hypothesis.</strong> In Codex App, the user proposes a Hypothesis with an
+        exact ID and title. The ID is chosen up front because every later path, link, and status projection
+        resolves against it.</li>
+        <li><strong>The Manager creates the unit and reports.</strong> The Manager creates the work unit and
+        reports the durable paths, the Herdr workspace, the Dialogue role, the Worker role, and the resume
+        command. After this frame, nothing important is held only in the conversation.</li>
+        <li><strong>A short bounded question.</strong> In Herdr Dialogue, the Facilitator asks one short
+        bounded question, while Dialogue Status shows the shared state and the Human TODO beside it. The
+        question is small enough to answer without opening a document.</li>
+        <li><strong>The human answers in natural language.</strong> The Facilitator records the boundary that
+        the answer establishes and keeps reversible work inside Dialogue instead of escalating it.</li>
+        <li><strong>The Worker waits for delegation.</strong> A separate Worker tab shows Claude Code in Auto
+        Mode waiting for bounded delegation and reading durable state. Execution is a distinct surface, not
+        a side effect of the conversation.</li>
+        <li><strong>The answer becomes durable, and the human completes the TODO.</strong> Dialogue Status
+        shows the answer recorded in <code>Handoff.md</code>. An intentional Command-click completes the
+        human-owned TODO item while visible completion history is preserved.</li>
+        <li><strong>Obsidian shows the same durable state.</strong> The vault shows the same Hypothesis, the
+        same Handoff, the Review area, and the completed Human TODO. The tools and panes were views; the
+        files are the record.</li>
+      </ol>
+
+      <h2>What to notice</h2>
+      <ul>
+        <li>The exact ID appears in frame one and never changes.</li>
+        <li>Each frame ends with durable state that could survive losing every open window.</li>
+        <li>The only completion of human-owned work is done by the human, in frame six.</li>
+        <li>Dialogue and Worker stay separate throughout, exactly as
+        <a href="hypothesis-roles.html">Roles and surfaces</a> describes.</li>
+      </ul>
+      <div class="callout">
+        <p>To reproduce the artifact side of this replay locally, see
+        <a href="hypothesis-cli.html">CLI entry commands</a>. Artifact rendering needs only Python; the live
+        panes in the replay additionally need Herdr and the configured agent runtimes.</p>
+      </div>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="hypothesis-human-path.html">The human path</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="hypothesis-state.html">State and recovery</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>

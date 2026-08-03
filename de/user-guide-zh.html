@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用户手册（中文） | Derivation Engine documentation</title>
+<meta name="description" content="Derivation Engine 用户手册中文版：Selected Manager 交互架构，用户选择 Codex 或 Claude 作为唯一的 Active Manager，Herdr 是核心实时工作视窗，Obsidian 呈现复杂持久内容，并区分当前可用能力与下一阶段目标。">
+<link rel="stylesheet" href="assets/styles.css">
+<script src="assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">跳到正文</a>
+<header class="site-header">
+  <div class="header__inner">
+    <a class="brand" href="index.html">
+      <span class="brand__mark" aria-hidden="true">DE</span>
+      <span class="brand__text">Derivation Engine <span class="brand__sub">documentation</span></span>
+    </a>
+    <div class="header__actions">
+      <button class="button" type="button" data-nav-toggle aria-controls="site-nav" aria-expanded="false" hidden>Menu</button>
+      <button class="button" type="button" data-theme-toggle aria-pressed="false" hidden>Dark theme</button>
+    </div>
+  </div>
+</header>
+<div class="layout">
+  <nav class="sidebar" id="site-nav" aria-label="Documentation sections" lang="en">
+    <p class="sidebar__title">Contents</p>
+    <ul class="nav-list">
+      <li><a class="nav-link" href="index.html">Introduction</a></li>
+    </ul>
+    <details class="nav-group" data-nav-group="user-guide" open>
+      <summary class="nav-group__summary is-current" aria-current="page">User Guide</summary>
+      <ul class="nav-list" lang="zh-CN">
+        <li><a class="nav-link" href="#section-1">1. 这套系统是什么</a></li>
+        <li><a class="nav-link" href="#section-2">2. 用户、Manager 和工作视窗的职责</a></li>
+        <li><a class="nav-link" href="#section-3">3. 最短使用方式</a></li>
+        <li><a class="nav-link" href="#section-4">4. 开始一个 Project</a></li>
+        <li><a class="nav-link" href="#section-5">5. 添加材料与 Loading Dock</a></li>
+        <li><a class="nav-link" href="#section-6">6. 建立 Notation</a></li>
+        <li><a class="nav-link" href="#section-7">7. 建立和管理 Hypothesis</a></li>
+        <li><a class="nav-link" href="#section-8">8. Theorem Derivation 与验证</a></li>
+        <li><a class="nav-link" href="#section-9">9. 什么时候切换视窗</a></li>
+        <li><a class="nav-link" href="#section-10">10. 当前 Project 目录</a></li>
+        <li><a class="nav-link" href="#section-11">11. 当前限制</a></li>
+        <li><a class="nav-link" href="#section-12">12. 当前本地部署方式</a></li>
+        <li><a class="nav-link" href="#section-13">13. 下一阶段：Agent 原生部署</a></li>
+        <li><a class="nav-link" href="#section-14">14. 用户快速参考</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="hypothesis" open>
+      <summary class="nav-group__summary">Hypothesis Test</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="hypothesis-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="hypothesis-roles.html">Roles and surfaces</a></li>
+        <li><a class="nav-link" href="hypothesis-artifacts.html">Durable artifacts</a></li>
+        <li><a class="nav-link" href="hypothesis-human-path.html">The human path</a></li>
+        <li><a class="nav-link" href="hypothesis-workflow.html">Workflow replay</a></li>
+        <li><a class="nav-link" href="hypothesis-state.html">State and recovery</a></li>
+        <li><a class="nav-link" href="hypothesis-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="notation" open>
+      <summary class="nav-group__summary">Notation System</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="notation-overview.html">Semantic chain</a></li>
+        <li><a class="nav-link" href="notation-architecture.html">Architecture and roles</a></li>
+        <li><a class="nav-link" href="notation-artifacts.html">Canonical artifacts</a></li>
+        <li><a class="nav-link" href="notation-admission.html">Loading Dock and admission</a></li>
+        <li><a class="nav-link" href="notation-snapshots.html">Snapshots and invalidation</a></li>
+        <li><a class="nav-link" href="notation-cli.html">CLI entry command</a></li>
+      </ul>
+    </details>
+    <details class="nav-group" data-nav-group="theorem" open>
+      <summary class="nav-group__summary">Theorem Derivation</summary>
+      <ul class="nav-list">
+        <li><a class="nav-link" href="theorem-overview.html">Purpose and boundary</a></li>
+        <li><a class="nav-link" href="theorem-architecture.html">Organization architecture</a></li>
+        <li><a class="nav-link" href="theorem-layers.html">Committed state and layers</a></li>
+        <li><a class="nav-link" href="theorem-paths.html">Proof-support paths</a></li>
+        <li><a class="nav-link" href="theorem-verification.html">Verification and commit</a></li>
+        <li><a class="nav-link" href="theorem-revision.html">Revision and recovery</a></li>
+        <li><a class="nav-link" href="theorem-views.html">Obsidian and Herdr views</a></li>
+        <li><a class="nav-link" href="theorem-cli.html">CLI entry commands</a></li>
+      </ul>
+    </details>
+  </nav>
+  <main class="content" id="main" tabindex="-1">
+    <article class="page">
+      <h1>Derivation Engine 用户手册</h1>
+      <p class="lede">实际使用这个仓库的方式：用户选择 Codex 或 Claude 作为 Manager Host，由这一个 Active Manager
+      启动并持续管理 Project；WezTerm 与 Herdr 是核心实时工作视窗，Obsidian 呈现复杂、结构化和持久的内容。</p>
+
+      <nav class="lang-switch" aria-label="手册语言">
+        <p class="lang-switch__label">语言</p>
+        <ul class="lang-switch__list">
+          <li><a href="user-guide-en.html" hreflang="en" lang="en">English</a></li>
+          <li><span class="lang-switch__current" aria-current="true">中文</span></li>
+        </ul>
+        <p class="lang-switch__raw">Markdown 版本：
+        <a href="user-guide/en.md" hreflang="en">user-guide/en.md</a> ·
+        <a href="user-guide/zh-CN.md">user-guide/zh-CN.md</a></p>
+      </nav>
+
+      <p class="status status--implemented">
+        <span class="status__label">当前可用</span>
+        <span class="status__text">带这个标签的段落描述已发布代码中现有的行为。一个 npm 安装 package
+        已经把 <code>code/</code> 下五个 Python Module 部署到 package 自己的 Runtime 中，承担 Manager 角色的 Agent 再调用它们。</span>
+      </p>
+      <p class="status status--draft">
+        <span class="status__label">下一阶段目标</span>
+        <span class="status__text">第 13 节的 Agent 原生层是提案，同一标签也标出前面每一段属于目标的内容。两个 Manager plugin
+        与共享的 Manager interface、自动启动两个工作视窗、Project-level Herdr workspace、Inbox intake、共享的本地
+        MCP 工具、<code>work_dispatch</code> 和 <code>manager_handoff</code> 都尚未实现。</span>
+      </p>
+      <p>本页是手册中文版，对应的 Markdown 文件是
+      <a href="user-guide/zh-CN.md">docs/user-guide/zh-CN.md</a>。中英文版本包含相同的十四节、相同的示例和相同的列表。
+      这是面向用户的手册，不是第四个设计组件：侧栏中的三个组件分组记录模块的设计，而本页记录人如何驱动它们。</p>
+
+      <h2 id="section-1">1. 这套系统是什么</h2>
+      <p>Derivation Engine 以 <strong>Project Workspace</strong> 为顶层。用户先建立 Project，再按需要添加
+      Notation、Hypothesis 和 Theorem Derivation。</p>
+      <figure class="diagram">
+        <div class="diagram__frame" role="region" aria-label="Selected Manager 交互架构图，可横向滚动" tabindex="0">
+<svg viewBox="0 0 860 334" width="860" height="334" role="img" aria-labelledby="ug-zh-title ug-zh-desc" class="dg">
+<title id="ug-zh-title">Selected Manager 交互架构：用户在所选的一个 Manager（Codex 或 Claude）中工作，由它管理 Project Workspace 并调度 Obsidian 与 Herdr 两个工作视窗</title>
+<desc id="ug-zh-desc">这是 docs/assets/user-guide-interaction-zh.mmd 中标准 Mermaid 源文本的静态渲染。用户通过 Selected Manager 工作；它是 Codex 或 Claude，并且是该 Project 唯一的 Active Manager。Selected Manager 通向三个目标：Project Workspace、承载复杂内容与持久审阅的 Obsidian，以及作为核心工作视窗的 WezTerm 与 Herdr。Herdr 把实时工作结果写回 Project Workspace，Project Workspace 再投影到 Obsidian。两个 Manager 共享同一个 Project Workspace，所以图中只画一个 Manager 方块，而不是两个。图中每个箭头都是人或 Active Manager 经过的路线，而不是受检查的机器 attachment。</desc>
+<defs>
+<marker id="dg-arrow-ug-zh" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path class="dg-arrowhead" d="M 0 0 L 10 5 L 0 10 z"/>
+</marker>
+</defs>
+<rect class="dg-canvas" x="0" y="0" width="860" height="334"/>
+<g class="dg-nodes">
+<rect class="dg-box" x="20" y="140" width="140" height="54" rx="6"/>
+<text class="dg-name" x="90" y="172" text-anchor="middle">用户</text>
+<rect class="dg-box" x="200" y="140" width="280" height="54" rx="6"/>
+<text class="dg-name" x="340" y="163" text-anchor="middle">Selected Manager</text>
+<text class="dg-sub" x="340" y="180" text-anchor="middle">Codex 或 Claude</text>
+<rect class="dg-box" x="520" y="20" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="43" text-anchor="middle">Obsidian</text>
+<text class="dg-sub" x="670" y="60" text-anchor="middle">复杂内容与持久审阅</text>
+<rect class="dg-box" x="520" y="140" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="172" text-anchor="middle">Project Workspace</text>
+<rect class="dg-box" x="520" y="260" width="300" height="54" rx="6"/>
+<text class="dg-name" x="670" y="283" text-anchor="middle">WezTerm 与 Herdr</text>
+<text class="dg-sub" x="670" y="300" text-anchor="middle">核心工作视窗</text>
+</g>
+<g class="dg-edges">
+<path class="dg-edge" d="M 160 167 H 200" marker-end="url(#dg-arrow-ug-zh)"/>
+<path class="dg-edge" d="M 480 167 H 520" marker-end="url(#dg-arrow-ug-zh)"/>
+<path class="dg-edge" d="M 480 152 H 500 V 47 H 520" marker-end="url(#dg-arrow-ug-zh)"/>
+<path class="dg-edge" d="M 480 182 H 500 V 287 H 520" marker-end="url(#dg-arrow-ug-zh)"/>
+<path class="dg-edge" d="M 600 260 V 194" marker-end="url(#dg-arrow-ug-zh)"/>
+<path class="dg-edge" d="M 740 140 V 74" marker-end="url(#dg-arrow-ug-zh)"/>
+</g>
+</svg>
+        </div>
+        <figcaption>Selected Manager 交互架构。用户选择 Codex 或 Claude，这一个 Active Manager
+        就是用户唯一需要启动的视窗；Obsidian 与 WezTerm 加 Herdr 是它调度的两个工作视窗。两个 Manager
+        共享同一个 Project Workspace，所以图中只画一个 Manager 方块。图中每个箭头都是路线，而不是受检查的机器
+        attachment：没有任何箭头声称 theorem case 已经附着回 Project manifest，因为该 attachment 尚未实现。</figcaption>
+      </figure>
+      <details class="source">
+        <summary class="source__summary">标准 Mermaid 源文本：Selected Manager 交互架构</summary>
+        <p>与 <code>docs/user-guide/zh-CN.md</code> 第 1 节完全一致。相同文本保存在本页旁边的
+        <a href="assets/user-guide-interaction-zh.mmd">assets/user-guide-interaction-zh.mmd</a>，
+        上面的图形也可以单独查看：<a href="assets/user-guide-interaction-zh.svg">assets/user-guide-interaction-zh.svg</a>。
+        该图是本地静态图像：显示它不会下载或执行任何 Mermaid runtime。</p>
+<pre><code id="user-guide-interaction-zh-source">flowchart LR
+  U["用户"] --&gt; M["Selected Manager&lt;br/&gt;Codex 或 Claude"]
+  M --&gt; P["Project Workspace"]
+  M --&gt; O["Obsidian&lt;br/&gt;复杂内容与持久审阅"]
+  M --&gt; W["WezTerm 与 Herdr&lt;br/&gt;核心工作视窗"]
+  W --&gt; P
+  P --&gt; O</code></pre>
+      </details>
+      <p>用户不需要记住内部 Python 命令。启动 Project 时，用户选择 Codex 或 Claude 作为
+      <strong>Manager Host</strong>，默认使用当前配置中的 Codex。所选 Manager 负责启动和持续管理；Herdr
+      是最核心的实时工作视窗；Obsidian 呈现复杂、结构化和持久的内容。两个 Manager 共享同一个 Project Workspace 和
+      Framework Runtime，不形成两套系统。</p>
+      <p class="status status--draft">
+        <span class="status__label">下一阶段目标</span>
+        <span class="status__text">通过 plugin 选择 Manager Host，以及由一个请求同时打开或聚焦两个工作视窗，都属于下一阶段目标：当前由一个
+        Agent 直接调用模块命令承担 Manager 角色，并且需要用户在它汇报 Project 之后自行打开 Obsidian 与
+        WezTerm/Herdr。</span>
+      </p>
+
+      <h2 id="section-2">2. 用户、Manager 和工作视窗的职责</h2>
+      <h3>用户</h3>
+      <p>用户负责研究意图和高影响决定：项目目标、是否复用类似项目、Notation 的含义、Hypothesis 定义，以及是否接受
+      Review 结果。</p>
+      <h3>Selected Manager</h3>
+      <p>用户可以选择 Codex Manager plugin 或 Claude Manager plugin。两者满足同一个 Manager interface：检查已有
+      Project，建立或恢复 workspace，启动或聚焦 Obsidian 与 WezTerm/Herdr，并继续负责材料登记、状态恢复、模块准备、
+      任务调度和下一步管理。每个 Project 同时只能有一个 <strong>Active Manager</strong>；切换必须先形成持久
+      Handoff，不能让两个 Manager 并发修改状态。</p>
+      <p class="status status--draft">
+        <span class="status__label">下一阶段目标</span>
+        <span class="status__text">两个 Manager plugin 与共享的 Manager interface 是已确认的下一阶段设计，不是当前行为。当前由一个
+        Agent 直接调用模块命令承担 Manager 角色，<code>.de/project.json</code> 既不记录 Manager 选择，也不记录
+        Handoff 状态。</span>
+      </p>
+      <h3>Obsidian</h3>
+      <p>Obsidian 是复杂内容与持久审阅视窗。它显示 Project、Sources、Background、Notation、Hypothesis、推导路径、Evidence、
+      Counterexample 和 Commit Decision。当内容很长、需要图结构、Mermaid、Graph、对比或正式 Review 时，Agent
+      将结果投影到 Obsidian。</p>
+      <h3>WezTerm 与 Herdr</h3>
+      <p>WezTerm 承载 Herdr workspace。Herdr 是当前参考配置中的核心工作视窗：Dialogue 用于 Active Manager
+      调度出的实时工作对话，Worker 用于边界明确的执行。Herdr 不独立取得 Project 管理权。终端滚动记录不是权威状态，
+      复杂结果必须写入 Obsidian 或持久 Project artifact，再由 Active Manager 恢复下一步。当前实现的 Herdr runtime 按
+      Hypothesis 建立；Project-level Herdr workspace 属于下一阶段目标。</p>
+
+      <h2 id="section-3">3. 最短使用方式</h2>
+      <p>用户在所选 Manager 中启动并持续管理 Project；需要实时工作时进入 Herdr，需要复杂审阅时进入 Obsidian：</p>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">目的</th>
+            <th scope="col">交互视窗</th>
+            <th scope="col">用户可以说</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>建立空项目</td><td>Selected Manager</td><td>“启动一个新的 Derivation Engine Project，标题是……”</td></tr>
+          <tr><td>从 LaTeX 开始</td><td>Selected Manager</td><td>“用 <code>/path/paper.tex</code> 启动一个 Derivation Engine Project。”</td></tr>
+          <tr><td>加载新材料</td><td>Selected Manager</td><td>“把 <code>/path/notes.pdf</code> 加入当前 Project。”</td></tr>
+          <tr><td>查看当前状态</td><td>Selected Manager</td><td>“检查这个 Project 现在缺少什么。”</td></tr>
+          <tr><td>建立 Notation</td><td>Selected Manager</td><td>“根据当前材料整理 Notation。”</td></tr>
+          <tr><td>审阅复杂 Notation</td><td>Obsidian</td><td>打开 Agent 提供的 Notation Registry 或 Review 链接。</td></tr>
+          <tr><td>提出 Hypothesis</td><td>Selected Manager</td><td>“在当前 Project 中提出一个 Hypothesis。”</td></tr>
+          <tr><td>恢复 Hypothesis</td><td>Selected Manager</td><td>“管理 HY-NNN。”</td></tr>
+          <tr><td>开始推导</td><td>Selected Manager</td><td>“根据 HY-NNN 建立 theorem derivation case。”</td></tr>
+          <tr><td>进入实时工作</td><td>WezTerm + Herdr</td><td>与 Dialogue 澄清任务，或监督 Worker 执行。</td></tr>
+          <tr><td>查看推导路径与证据</td><td>Obsidian</td><td>打开 Agent 提供的 Derivation View。</td></tr>
+        </tbody>
+      </table>
+      <p>Active Manager 应先汇报发现和 blocker，再要求用户处理真正需要人类决定的问题。</p>
+
+      <h2 id="section-4">4. 开始一个 Project</h2>
+      <h3>4.1 空项目</h3>
+      <p>用户不需要预先手动建立目录。可以直接在 Codex 或 Claude Manager 中说“在这个目录下创建一个新项目”，提供标题，并可选地说明初始问题。没有保存默认值时，Manager
+      先询问本 Project 使用 Codex 还是 Claude；当前参考配置默认 Codex。随后依次完成：</p>
+      <ol class="steps">
+        <li>检查目标目录附近是否存在 Project Workspace。</li>
+        <li>如果存在可能相关的项目，与用户讨论复用、扩展或单独新建。</li>
+        <li>分配或确认 <code>PRJ-NNN</code>。</li>
+        <li>建立 Project 骨架，但不自动建立 Notation 或 Hypothesis。</li>
+        <li>创建或恢复 Project-level Herdr workspace。</li>
+        <li>打开或聚焦 Project 的 Obsidian vault 与 WezTerm/Herdr。</li>
+        <li>在所选 Manager 中汇报 Background 和下一模块的 readiness。</li>
+      </ol>
+      <p class="status status--draft">
+        <span class="status__label">下一阶段目标</span>
+        <span class="status__text">第 5 到第 7 步描述下一阶段的 bootstrap
+        目标。当前实现能够建立 Project 骨架，但还不会自动启动两个工作视窗，也不会自动建立 Project-level Herdr。</span>
+      </p>
+      <p>空 Project 可以处于 incomplete 状态。它只是一个受管理的研究容器，不代表研究问题已经确定。</p>
+      <h3>4.2 从 LaTeX 或文章开始</h3>
+      <p>文件可以暂时位于 Downloads 或任何用户目录。用户向所选 Manager 提供准确路径，Manager 把它复制到 Project 的
+      <code>Sources/</code>，记录来源名称和 SHA-256 摘要，不修改原文件。</p>
+<pre><code>PRJ-NNN/
+└── Sources/
+    ├── SRC-001-paper.tex
+    ├── SRC-002-article.pdf
+    └── README.md</code></pre>
+      <p>把文件加入 Project 只表示“材料已登记”，不表示论文内容、Notation 或结论已经得到认可。</p>
+
+      <h2 id="section-5">5. 添加材料与 Loading Dock</h2>
+      <h3>当前可用</h3>
+      <p class="status status--implemented">
+        <span class="status__label">当前可用</span>
+        <span class="status__text">来源登记和 Notation V1 的 Loading Dock 都存在于已发布代码中。两者都是需要用文件路径或
+        URL 显式调用的操作。</span>
+      </p>
+      <p>用户在所选 Manager 中提供文件路径或网页地址，并要求加入当前 Project。Manager 调用
+      <code>add-source</code>，本地文件被复制，网页只记录 provenance。网页内容需要由 Agent 另行读取和分析。</p>
+      <p>仅把任意文件手动放入 <code>Sources/</code> 不会自动启动流程；当前没有 watcher。直接放入的文件也不会自动进入
+      <code>.de/project.json</code>。</p>
+      <div class="callout">
+        <p>Notation V1 的 Loading Dock 已实现，但它属于独立的 Notation V1 workspace：扫描需要显式执行，而且没有任何
+        Project Workspace 命令把该 workspace 附着到 <code>.de/project.json</code>。因此 Project 目前没有属于自己的
+        Loading Dock。</p>
+      </div>
+      <p>用户可以说：</p>
+      <blockquote>
+        <p>把这个材料送入服务于 PRJ-NNN 的 Notation V1 Loading Dock，检查它是否可以形成正式 semantic record。</p>
+      </blockquote>
+      <p>Active Manager 选择或建立这个独立的 Notation V1 workspace，并把“哪个 workspace 服务于 PRJ-NNN”记录在
+      Project manifest 之外，再执行 classification、proposal、review 和 admission。无法确定材料类型时，Loading Dock
+      把它放入 <code>needs-user</code>，Manager 再向用户提出一个具体问题。</p>
+      <h3>下一阶段目标</h3>
+      <p class="status status--draft">
+        <span class="status__label">下一阶段目标</span>
+        <span class="status__text">下面的 intake 流程属于计划。<code>Sources/Inbox</code> 不被监视、不被登记，也尚未实现。</span>
+      </p>
+      <p>计划增加：</p>
+<pre><code>Sources/Inbox
+  -&gt; 登记与去重
+  -&gt; Project 归属检查
+  -&gt; Sources/Library
+  -&gt; 可选的 Project-local Loading Dock</code></pre>
+      <p>目标交互是：用户把文件放入 <code>Sources/Inbox/</code>，然后在所选 Manager 中只说“加载新材料”。这一流程当前尚未实现。</p>
+
+      <h2 id="section-6">6. 建立 Notation</h2>
+      <p>Notation 通常是 Sources 和 Background 之后的第一个模块。用户不必准备 JSON manifest，可以向 Active Manager 说明：</p>
+      <blockquote>
+        <p>根据当前 Sources 整理 Notation；先列出符号、含义和冲突，不要静默决定歧义。</p>
+      </blockquote>
+      <p>Active Manager 应当：</p>
+      <ol class="steps">
+        <li>从材料中提出候选符号及其物理或数学含义。</li>
+        <li>标出同符号多义、同概念多符号和 scope 冲突。</li>
+        <li>让用户决定真正影响项目语义的歧义。</li>
+        <li>生成并检查 Notation V2 Registry。</li>
+        <li>在 Project 中附着 Notation，并提供 Obsidian 入口。</li>
+      </ol>
+      <p>当材料需要正式 semantic admission、快照或 invalidation 检查时，使用 Notation V1 和 Loading Dock。V1 与 V2
+      目前是独立模块。</p>
+
+      <h2 id="section-7">7. 建立和管理 Hypothesis</h2>
+      <p>Hypothesis 是第二层、可流动的工作单元，不是 Project 本身。创建前，Active Manager 检查：</p>
+      <ul>
+        <li>problem statement；</li>
+        <li>scope；</li>
+        <li>background summary；</li>
+        <li>related-Project decision；</li>
+        <li>source basis。</li>
+      </ul>
+      <p>Background 未准备好时，Agent 应报告 blocker，不应把 Hypothesis 附着到 Project。正式数学 Hypothesis
+      通常还应先建立 Notation；Notation 缺失目前是 warning，不是对所有 Hypothesis 的绝对禁止。</p>
+      <p>用户确认 title 和 falsifiable working statement 后，Agent 创建 <code>HY-NNN</code>。以后在所选 Manager
+      中说“管理 HY-NNN”即可恢复同一 work unit、Handoff、Review 和 Worker runtime。</p>
+
+      <h2 id="section-8">8. Theorem Derivation 与验证</h2>
+      <p>用户可以要求 Active Manager 从已存在的 Hypothesis 创建 derivation case。系统区分：</p>
+      <ul>
+        <li>A records 与 B theorem graph：已提交的静态状态；</li>
+        <li>C attempt ledger：动态 proposal 和失败尝试；</li>
+        <li>verifier evidence：SMT、有限域检查或其他 adapter 的范围化结果；</li>
+        <li>commit automaton：唯一能够推进 checkpoint 的接口。</li>
+      </ul>
+      <p>结果可能是 <code>advanced</code>、<code>refused</code>、<code>unsupported</code> 或
+      <code>indeterminate</code>。只有 <code>advanced</code> 产生新 checkpoint。Counterexample 必须经过解码和
+      replay；solver 不可用不能被写成“已经验证”。</p>
+
+      <h2 id="section-9">9. 什么时候切换视窗</h2>
+<pre><code>Selected Manager: Codex 或 Claude
+  -&gt; 新建/恢复 Project
+  -&gt; 启动后的持续管理与调度
+  -&gt; 同时启动或聚焦两个工作视窗（下一阶段目标）
+WezTerm + Herdr                         Obsidian
+  -&gt; 实时工作对话                        -&gt; 复杂内容
+  -&gt; Agent/Worker 执行                   -&gt; 图、路径、Evidence
+  -&gt; 返回持久结果                        -&gt; 持久 Review 与 Handoff
+          \                               /
+           -&gt; 共享 Project 持久状态 &lt;-</code></pre>
+      <p>Active Manager 负责启动和启动后的管理。Herdr 是核心实时工作视窗。Obsidian 负责复杂呈现。用户从所选 Manager
+      进入 Herdr 或聚焦某个 Obsidian 页面；工作或 Review 完成后，回到同一个 Manager 继续管理下一步。</p>
+      <p>自动启动或聚焦两个工作视窗属于下一阶段；当前由 Active Manager 汇报 Project，再由用户打开它指出的视窗。</p>
+
+      <h2 id="section-10">10. 当前 Project 目录</h2>
+<pre><code>PRJ-NNN/
+├── .de/
+│   └── project.json
+├── Project.md
+├── Background.md
+├── Sources/
+│   └── README.md
+├── Modules/
+│   ├── README.md
+│   └── Notation/
+├── Hypotheses/
+│   └── HY-NNN/
+└── Theorem Derivation Views/</code></pre>
+      <p>创建 Project 时写入 <code>.de/project.json</code>、<code>Project.md</code>、<code>Background.md</code>、
+      <code>Sources/README.md</code> 和 <code>Modules/README.md</code>。<code>Modules/Notation/</code>、
+      <code>Hypotheses/HY-NNN/</code> 和 <code>Theorem Derivation Views/</code>
+      是条件产物：只有在附着 Notation、附着 Hypothesis package 或生成 theorem-derivation 视图之后才会出现。</p>
+      <p><code>.de/project.json</code> 是 Project Workspace 的机器权威。<code>Project.md</code>、
+      <code>Background.md</code> 和 <code>Sources/README.md</code> 是 Obsidian 投影视图。Hypothesis Markdown
+      仍由人类拥有。</p>
+
+      <h2 id="section-11">11. 当前限制</h2>
+      <p>以下能力尚未完成：</p>
+      <ul>
+        <li>监视 <code>Sources/Inbox</code> 并自动 intake；</li>
+        <li>自动理解 LaTeX 或 PDF 并生成正确 Notation；</li>
+        <li>自动判断两个 Project 在语义上是否相同；</li>
+        <li>Project Workspace 与 Loading Dock 的正式 attachment；</li>
+        <li>theorem case 与 Project manifest 的 checked attachment；</li>
+        <li>Notation V1、V2 和 theorem records 的统一 identifier adapter。</li>
+      </ul>
+      <p>Agent 可以协助完成其中的解释性工作，但不能把人工过程表述成已实现的确定性保证。</p>
+
+      <h2 id="section-12">12. 当前本地部署方式</h2>
+      <p class="status status--implemented">
+        <span class="status__label">当前可用</span>
+        <span class="status__text">这是当前仓库的安装与运行方式。</span>
+      </p>
+      <p>当前仓库已经在五个内部 Python package 外增加了一个 npm package。npm 是安装入口；它的 postinstall
+      会复用已有的 <code>uv</code>，或下载固定版本并校验 checksum 的 <code>uv</code> fallback，然后在已安装的 npm package
+      内创建隔离的 Python 3.11 Runtime，并把五个 Module 全部安装进去。Runtime 与 <code>uv</code> cache 都不会修改系统
+      Python 环境或 shell profile。</p>
+      <p>打包产物已经在当前 macOS <strong>Reference Profile</strong> 上实现并通过测试。维护者构建或发布产物后，
+      用户只需一条 npm 命令安装。计划公开的命令是：</p>
+<pre><code>npm install -g derivation-engine</code></pre>
+      <p>该 package 目前尚未发布到 npm registry，因此这条 registry 命令现在还不能直接使用。本地打包得到的
+      <code>.tgz</code> 已经可以通过同样的一条 npm 安装命令完成安装。随 package 安装的兼容 dispatcher 只供 Active Manager
+      和维护检查使用；普通 Project 交互仍然是在 Codex 或 Claude 中使用自然语言。</p>
+      <p>安装器会报告 Obsidian、WezTerm、Herdr、Codex 与 Claude 是否可用，但不会替用户安装或重新配置它们。当前
+      Project 创建也不会自动同时启动 Obsidian 与 Project-level Herdr：当前实现的 Herdr runtime 按 Hypothesis 建立。
+      其他 terminal、workspace manager、知识视图、Manager plugin 与自动视窗启动仍属于后续兼容工作。</p>
+
+      <h2 id="section-13">13. 下一阶段：Agent 原生部署</h2>
+      <p class="status status--draft">
+        <span class="status__label">下一阶段目标</span>
+        <span class="status__text">第 12 节的 npm Framework Runtime 已经实现。本节描述其上的 Agent 原生层：
+        两个 Manager plugin、Herdr Dialogue skill、Local MCP adapter、自动启动两个工作视窗和 Agent tool interface 目前尚未实现。</span>
+      </p>
+      <p>结论：用户在启动 Project 时选择 Codex 或 Claude 作为 Manager Host。两个 Manager Adapter 共享同一个
+      Framework Runtime、Project Workspace、Herdr 和 Obsidian；每个 Project 同时只有一个 Active Manager。不存在用户可见的
+      <code>de</code> CLI。</p>
+      <h3>用户目标交互</h3>
+<pre><code>用户在 Codex 或 Claude 中说“启动一个 Derivation Engine Project”
+  -&gt; 没有默认值时选择 Manager Host；当前默认 Codex
+  -&gt; Manager Adapter 创建或恢复 Project Workspace
+  -&gt; 自动打开/聚焦 Obsidian
+  -&gt; 自动打开/聚焦 WezTerm + Project-level Herdr
+用户把文件放进 Sources/Inbox
+  -&gt; 用户在 Active Manager 中说“加载新材料”
+Active Manager
+  -&gt; 登记、去重、检查 Project 归属和 Background
+  -&gt; 按需准备 Notation、Hypothesis 或 Derivation
+  -&gt; 需要实时工作时调度 Herdr
+  -&gt; 需要复杂呈现时聚焦 Obsidian</code></pre>
+      <p>所选 Agent 完成 bootstrap 后仍然是 Active Manager。除真正需要人类决定的问题外，所有 Project
+      管理动作都由它发起；Herdr 只承担被调度的实时工作。切换 Manager 必须显式执行 durable handoff，不能让 Codex 和
+      Claude 同时写入 Project 状态。</p>
+      <h3>推荐安装单元：共享 Runtime 与两个 Manager plugin</h3>
+<pre><code>derivation-engine runtime
+├── Manager interface
+│   ├── Codex Manager plugin
+│   └── Claude Manager plugin
+├── Herdr Dialogue skill
+│   └── Terminal 中被调度的实时对话与执行规则
+├── Local MCP adapter
+│   └── 两个 Manager Adapter 与 Herdr roles 共享的确定性工具
+├── Python runtime
+│   ├── project
+│   ├── intake
+│   ├── notation
+│   ├── hypothesis
+│   └── theorem
+└── templates</code></pre>
+      <p>已经实现的 npm Framework Runtime 在本地安装一次。下一阶段的 Codex 与 Claude plugin 使用各自平台原生的格式，但两个 plugin 必须是同一
+      Manager interface 的薄 Adapter，不能复制或分叉 Project 逻辑。用户可以安装一个或两个 Manager plugin，并为每个
+      Project 选择一个 Active Manager。每个 Project 只保存研究状态、Manager 选择和 Handoff，不复制 runtime。</p>
+      <h3>计划中的 Agent 工具接口</h3>
+<pre><code>project_start   -&gt; 用指定 Manager 创建/恢复 Project，并启动/聚焦两个工作视窗
+source_intake   -&gt; 加载用户放入 Inbox 的材料
+project_status  -&gt; 返回 readiness、blocker 和下一建议
+module_prepare  -&gt; 准备 Notation、Hypothesis 或 Derivation
+work_dispatch   -&gt; 把有边界的实时任务调度到 Herdr 并收回持久结果
+manager_handoff -&gt; 在 checkpoint 后显式切换 Codex/Claude Manager
+view_focus      -&gt; 聚焦 Obsidian 页面或 Herdr workspace</code></pre>
+      <p>这些是 Agent 的 tool interface，不是用户命令，目前尚未实现。工具返回结构化结果；Agent
+      负责解释、提问和决定下一次调用。</p>
+      <h3>Manager plugin 与 Herdr skill 的作用</h3>
+      <p>Codex Manager plugin 和 Claude Manager plugin 必须执行同一套 Project 启动、持续管理和视窗调度协议。Herdr
+      Dialogue skill 定义被调度后的实时工作协议。管理类自然语言触发由当前 Active Manager 接收：</p>
+      <ul>
+        <li>“创建一个新项目”；</li>
+        <li>“用这个 LaTeX 建项目”；</li>
+        <li>“加载新材料”；</li>
+        <li>“管理 HY-NNN”。</li>
+      </ul>
+      <p>共同协议规定：先检查已有 Project；启动时建立或恢复两个工作视窗；先检查 Background 再建立
+      Hypothesis；不静默解决 Notation 歧义；一个 Project 只允许一个 Active Manager；实时工作进入 Herdr；复杂结果和正式
+      Review 写入 Obsidian。</p>
+      <h3>内部 runtime 为什么仍然可以 package 化</h3>
+      <p>已经实现的 npm package 固定 Runtime 版本、Python 依赖和五个内部 Module 入口。它是安装边界，不是用户交互面。
+      本地 MCP adapter 以后可以加载同一个 Runtime，不需要复制一套。开发和兼容 CLI 只保留给 Active Manager 与维护流程使用。</p>
+      <h3>推荐实施顺序</h3>
+      <ol class="steps">
+        <li>实现 <code>Sources/Inbox -&gt; intake</code>，形成真正的 Project 启动闭环。</li>
+        <li>实现 <code>project_start</code>，创建或恢复 Project，并自动启动/聚焦两个工作视窗。</li>
+        <li>把现有命令实现整理成稳定的可导入 Python interface。</li>
+        <li>为当前 macOS + WezTerm + Herdr + Obsidian Reference Profile 实现启动和 preflight。</li>
+        <li>建立两个 Manager Adapter 与 Herdr roles 共享的本地 MCP adapter，并保持 tool interface 很小。</li>
+        <li>实现 <code>work_dispatch</code>、持久 Handoff 和互斥的 <code>manager_handoff</code>。</li>
+        <li>分别建立 Codex Manager plugin 与 Claude Manager plugin，并对同一 Manager interface 运行一致性测试。</li>
+        <li>从空目录分别测试 Codex 和 Claude：启动与持续管理、Herdr 实时工作、Obsidian 呈现、Project 恢复和 Manager 切换。</li>
+        <li>以后再增加其他 terminal 或视图安装 profile；现阶段不建立抽象但未验证的通用 terminal interface。</li>
+        <li>只保留现有 CLI 作为开发/兼容入口，普通用户不需要接触。</li>
+      </ol>
+
+      <h2 id="section-14">14. 用户快速参考</h2>
+      <p>日常使用只需记住：</p>
+      <ol class="steps">
+        <li>选择 Codex 或 Claude 作为 Manager；当前默认 Codex。</li>
+        <li>Active Manager 自动打开或聚焦 Obsidian 与 WezTerm/Herdr。</li>
+        <li>启动后继续在同一个 Active Manager 中管理 Project 和下一步。</li>
+        <li>把 Herdr 作为核心实时工作视窗。</li>
+        <li>在 Obsidian 中阅读复杂内容并完成 Review。</li>
+        <li>切换 Manager 时先形成持久 Handoff，禁止并发管理。</li>
+        <li>对所有语义决定保留人类确认。</li>
+      </ol>
+      <p>本手册的英文版是 <a href="user-guide-en.html" hreflang="en">user-guide-en.html</a>，原始 Markdown 版本是
+      <a href="user-guide/en.md" hreflang="en">user-guide/en.md</a> 和
+      <a href="user-guide/zh-CN.md">user-guide/zh-CN.md</a>。</p>
+    </article>
+    <nav class="page-nav" aria-label="Page navigation" lang="en">
+      <div class="page-nav__prev">
+        <span class="page-nav__label">Previous</span>
+        <a href="user-guide-en.html" hreflang="en">User guide (English)</a>
+      </div>
+      <div class="page-nav__next">
+        <span class="page-nav__label">Next</span>
+        <a href="hypothesis-overview.html" hreflang="en">Purpose and boundary</a>
+      </div>
+    </nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>Derivation Engine documentation. Static pages, no external assets or trackers. Source code is published
+  under the MIT license recorded in the repository <code>LICENSE</code> file.</p>
+</footer>
+</body>
+</html>
