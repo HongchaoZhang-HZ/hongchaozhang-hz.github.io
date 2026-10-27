@@ -193,6 +193,15 @@ img {
   max-width: 90vw;
 }
 
+img.research-challenges {
+  display: block;
+  width: 100%;
+  max-width: 900px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 img.research-overview {
   display: block;
   width: 86%;
