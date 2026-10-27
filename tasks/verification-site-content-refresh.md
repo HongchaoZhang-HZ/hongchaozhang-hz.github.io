@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — prior full-site refresh is pushed; T18 homepage image-size correction is validated and awaiting commit/push
+PASS — T18 homepage image-size correction committed as `efaf819` and pushed to `origin/master`
 
 ## Scope
 
@@ -46,7 +46,7 @@ PASS — prior full-site refresh is pushed; T18 homepage image-size correction i
 
 ## Publication Boundary
 
-The user explicitly authorized commit and push to the existing `master` branch after PASS. Product commit `ce8cbd9` was pushed successfully. No separate manual deployment action was performed; the push may trigger the repository's existing GitHub Pages workflow.
+The user explicitly authorized commit and push to the existing `master` branch after PASS. Full-refresh product commit `ce8cbd9` and T18 product commit `efaf819` were pushed successfully. No separate manual deployment action was performed; the pushes may trigger the repository's existing GitHub Pages workflow.
 
 ## T18 Follow-Up
 

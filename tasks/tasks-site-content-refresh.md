@@ -2,7 +2,7 @@
 
 ## Status
 
-Homepage image-size correction validated; commit/push eligible
+Complete — homepage image-size correction committed and pushed
 
 The full-site refresh passed its first final verification. The 2026-10-27 user correction reopens the task to restore publication year dividers, use one chronological timeline with inline under-review labels, and restore the public title `Outreach`. Commit and push are authorized after validation; no separate manual deployment is authorized.
 
@@ -656,7 +656,7 @@ Optional previews are omitted before any content, metadata, privacy, build, acce
   - Scope: `_pages/about.md`, `_sass/_base.scss`
   - Acceptance: the Research overview remains centered and legible but no longer spans the full content width; mobile and desktop layouts have no horizontal overflow.
   - Validate: production build, generated HTML audit, browser inspection at 400×837 and desktop width, and `git diff --check`.
-  - Evidence: only the homepage image gains `research-overview`; its scoped rule uses `width: 86%`, `max-width: 720px`, automatic height, and centered margins. The production build, generated-HTML audit, and `git diff --check` pass. Independent browser measurements report 309.6 px at 400×837 and 662.2 px at 1440×900, centered and legible with no horizontal overflow.
+  - Evidence: only the homepage image gains `research-overview`; its scoped rule uses `width: 86%`, `max-width: 720px`, automatic height, and centered margins. The production build, generated-HTML audit, and `git diff --check` pass. Independent browser measurements report 309.6 px at 400×837 and 662.2 px at 1440×900, centered and legible with no horizontal overflow. Product commit `efaf819` (`Reduce homepage research overview size`) was pushed successfully to `origin/master`.
 
 ## Blockers
 
