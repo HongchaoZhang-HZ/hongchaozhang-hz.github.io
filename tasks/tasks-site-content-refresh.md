@@ -2,7 +2,7 @@
 
 ## Status
 
-Complete — publication-year clarification committed and pushed
+About-page research narrative correction validated; commit/push eligible
 
 The full-site refresh passed its first final verification. The 2026-10-27 user correction reopens the task to restore publication year dividers, use one chronological timeline with inline under-review labels, and restore the public title `Outreach`. Commit and push are authorized after validation; no separate manual deployment is authorized.
 
@@ -665,6 +665,14 @@ Optional previews are omitted before any content, metadata, privacy, build, acce
   - Validate: production build, bibliography/generated-HTML audits, focused rendered-text inspection, browser inspection, and `git diff --check`.
   - Evidence: Springer and the active CV both prescribe citation year 2027 while naming the venue SAIV 2026 and the first-online date 18 July 2026. The rendered entry remains under the 2027 divider and displays all three meanings explicitly. The production build, bibliography/generated-HTML audits, focused timeline check, mobile browser inspection, `git diff --check`, and independent read-only verification pass; all 32 records and year dividers 2027 through 2020 remain intact. Product commit `0e55028` (`Clarify SAIV publication year`) was pushed successfully to `origin/master`.
 
+- [x] T20 Reorder About and lead Research with the Research Statement vision and Figure 1.
+  - Dependencies: T19
+  - Scope: `_pages/about.md`, `_sass/_base.scss`, `assets/img/cps-challenges.png`
+  - Acceptance: Education and Professional Experience precede Research; the Research section opens with the approved long-term vision, then the RS Figure 1 closed-loop challenge diagram and its two challenges, followed by the existing research-framework figure, established areas, and future directions.
+  - Validate: production build, generated-HTML audit, heading/figure order check, responsive browser inspection, `git diff --check`, and AcadJob no-change check.
+  - Media provenance: source `AcadJob/job_app/research_statement/figures/cps-challenges.png`; target `assets/img/cps-challenges.png`; source SHA-256 `126f42b60b154b0ec1aae0306a832925c2b0ef2d8134bc8f6c861c573ad690c4`; 1536×1024 PNG; copied without modifying AcadJob.
+  - Evidence: generated order is Education → Professional Experience → Research → approved long-term vision → RS Figure 1 and exact caption → two challenges → existing research-framework Figure 2 → established areas → future directions. The copied asset is byte-identical to the active RS source. The production build, media/orphan/accessibility/generated-HTML audits, exact-order check, `git diff --check`, and AcadJob no-change gate pass. Browser replay reports Figure 1 at 360×240 in the 400×837 viewport and 770×513.328 in the 1440×900 viewport, with no horizontal overflow. Final independent verification returned PASS and declared commit/push eligible.
+
 ## Blockers
 
-None. The final T19 independent replay returned PASS and declared commit/push eligible under the existing authorization.
+None. The final T20 independent replay returned PASS and declared commit/push eligible under the existing authorization.

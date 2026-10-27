@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — T19 publication-year clarification committed as `0e55028` and pushed to `origin/master`
+PASS — prior delivery is pushed; T20 About-page research narrative correction is validated and awaiting commit/push
 
 ## Scope
 
@@ -30,6 +30,9 @@ PASS — T19 publication-year clarification committed as `0e55028` and pushed to
 | Homepage Research overview size | Only the homepage image uses the scoped class; it renders centered at 86% width with a 720px maximum and automatic height | PASS |
 | Homepage responsive behavior | Independent measurements at 400×837 and 1440×900 report centered, legible rendering and no horizontal overflow | PASS |
 | SAIV/Springer year distinction | `wooding2027selfcorrecting` remains under 2027 and visibly distinguishes SAIV 2026, Springer citation year 2027, and first online 18 July 2026 | PASS |
+| About section order | Education and Professional Experience precede Research | PASS |
+| RS vision and Figure 1 | Research opens with the approved long-term vision, the byte-identical RS Figure 1 and exact caption, then the two challenges before the existing research-framework figure | PASS |
+| About responsive behavior | Figure 1 renders at 360×240 on 400×837 and 770×513.328 on 1440×900, with no horizontal overflow | PASS |
 
 ## Preserved Full-Site Evidence
 
@@ -56,3 +59,7 @@ The production build, generated-HTML audit, and `git diff --check` pass. Indepen
 ## T19 Follow-Up
 
 Springer's official record prescribes citation year 2027, names the venue `AI Verification (SAIV 2026)`, and reports first online 18 July 2026. The active CV matches that distinction. The generated entry remains under the 2027 divider and now labels the citation year and first-online date explicitly. The production build, focused timeline check, bibliography/generated-HTML audits, mobile browser inspection, `git diff --check`, AcadJob no-change check, and independent read-only replay pass. T19 is commit/push eligible under the existing authorization.
+
+## T20 Follow-Up
+
+The About page now places Education and Professional Experience before Research. Research opens with the approved long-term vision, then the RS Figure 1 and exact caption, the two RS challenges, and the existing research-framework figure before the established areas and future directions. The copied Figure 1 hash matches the active read-only source. The production build, deterministic audits, exact-order check, responsive browser replays, `git diff --check`, AcadJob no-change check, and independent read-only replay pass. T20 is commit/push eligible under the existing authorization.
