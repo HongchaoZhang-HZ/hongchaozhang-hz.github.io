@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — validated product commit `ce8cbd9` pushed to `origin/master`
+PASS — prior full-site refresh is pushed; T18 homepage image-size correction is validated and awaiting commit/push
 
 ## Scope
 
@@ -27,6 +27,8 @@ PASS — validated product commit `ce8cbd9` pushed to `origin/master`
 | Source integrity | `AcadJob/job_app` retains the expected revision, empty status, and zero diff | PASS |
 | Repository integrity | `git diff --check` passes; generated output remains ignored | PASS |
 | Independent review | Final replay reports no blocking product or coordination finding and declares T17 eligible | PASS |
+| Homepage Research overview size | Only the homepage image uses the scoped class; it renders centered at 86% width with a 720px maximum and automatic height | PASS |
+| Homepage responsive behavior | Independent measurements at 400×837 and 1440×900 report centered, legible rendering and no horizontal overflow | PASS |
 
 ## Preserved Full-Site Evidence
 
@@ -45,3 +47,7 @@ PASS — validated product commit `ce8cbd9` pushed to `origin/master`
 ## Publication Boundary
 
 The user explicitly authorized commit and push to the existing `master` branch after PASS. Product commit `ce8cbd9` was pushed successfully. No separate manual deployment action was performed; the push may trigger the repository's existing GitHub Pages workflow.
+
+## T18 Follow-Up
+
+The production build, generated-HTML audit, and `git diff --check` pass. Independent review confirmed the scoped CSS and responsive rendering. Its first verdict withheld commit/push eligibility only because the task plan and current-task record had not yet been reconciled. After reconciliation, the final replay returned PASS and declared T18 commit/push eligible under the existing authorization.

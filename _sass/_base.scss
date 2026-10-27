@@ -72,6 +72,15 @@ img {
   max-width: 90vw;
 }
 
+img.research-overview {
+  display: block;
+  width: 86%;
+  max-width: 720px;
+  height: auto;
+  margin-right: auto;
+  margin-left: auto;
+}
+
 blockquote {
   background: var(--global-bg-color);
   border-left: 2px solid var(--global-theme-color);

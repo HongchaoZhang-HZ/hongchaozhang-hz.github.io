@@ -18,7 +18,7 @@ My research develops foundations and methods for trustworthy decision-making in 
 
 ## Research
 
-{% include figure.html path="assets/img/research-overview.png" class="img-fluid rounded z-depth-1" alt="Research map connecting formal verification, control theory, and artificial intelligence with trustworthy autonomy and critical infrastructure." %}
+{% include figure.html path="assets/img/research-overview.png" class="research-overview img-fluid rounded z-depth-1" alt="Research map connecting formal verification, control theory, and artificial intelligence with trustworthy autonomy and critical infrastructure." %}
 
 My established work spans three connected areas:
 
