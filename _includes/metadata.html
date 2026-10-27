@@ -23,9 +23,7 @@
     {%- else -%}
         {%- capture title -%}{{ site.title }}{%- endcapture -%}
     {%- endif -%}
-    {% if page.url == '/blog/index.html' %}
-        {{ site.blog_nav_title }} | {{ title }}
-    {%- elsif page.title != "blank" and page.url != "/" -%}
+    {% if page.title != "blank" and page.url != "/" -%}
         {%- if page.title == nil or page.title == "" -%}
             {{ page.date | date: "%Y" }} | {{ title }}
         {%- else -%}
@@ -41,17 +39,10 @@
     <meta name="keywords" content="{%- if page.keywords -%}{{ page.keywords }}{%- else -%}{{ site.keywords }}{%- endif -%}" />
 {%- endif %}
 
-{%- assign is_blog_post = false -%}
-{%- if page.url != '/blog/index.html' and page.url contains '/blog/' -%}
-    {%- unless page.url contains '/tag/' or page.url contains '/category/' -%}
-        {%- assign is_blog_post = true -%}
-    {%- endunless -%}
-{%- endif -%}
-
 {%- if site.serve_og_meta %}
     <!-- OpenGraph -->
     <meta property="og:site_name" content="{{ title }}" />
-    <meta property="og:type" content="{%- if is_blog_post -%}article{%- else -%}website{%- endif -%}" />
+    <meta property="og:type" content="website" />
     <meta property="og:title" content="{%- if page.title -%}{{ title }} | {{ page.title }}{%- else -%}{{ title }}{%- endif -%}" />
     <meta property="og:url" content="{{ page.url | prepend: site.baseurl | prepend: site.url | remove_first: 'index.html' }}" />
     <meta property="og:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description }}{%- endif -%}" />

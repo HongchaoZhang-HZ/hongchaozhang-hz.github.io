@@ -7,10 +7,16 @@
     <a href="{{ project.url | relative_url }}">
       {%- endif %}
       <div class="card hoverable">
-        {%- if project.img %}
+        {%- if project.img_fallback %}
+        {%- include animated_media.html
+          path=project.img
+          fallback=project.img_fallback
+          alt=project.img_alt
+          compact=true -%}
+        {%- elsif project.img %}
         {%- include figure.html
           path=project.img
-          alt="project thumbnail" -%}
+          alt=project.img_alt -%}
         {%- endif %}
         <div class="card-body">
           <h2 class="card-title">{{ project.title }}</h2>

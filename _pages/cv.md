@@ -1,11 +1,11 @@
 ---
-layout: /assets/pdf/Hongchao-Zhang-CV.pdf
-permalink: /assets/pdf/Hongchao-Zhang-CV.pdf
+layout: page
+permalink: /cv/
 title: CV
+description: Hongchao Zhang's curriculum vitae.
 nav: true
 nav_order: 5
-cv_pdf: Hongchao-Zhang-CV.pdf
-# description: This is a description of the page. You can modify it in 'pages/_cv.md'. You can also change or remove the top pdf download button.
-toc:
-  sidebar: left
+redirect: /assets/pdf/Hongchao-Zhang-CV.pdf
 ---
+
+[Download the current CV](/assets/pdf/Hongchao-Zhang-CV.pdf).

@@ -1,0 +1,176 @@
+media:
+  - target: assets/img/research-overview.png
+    source: AcadJob/job_app/research_statement/figures/research-venn-two-directions.png
+    sha256: 24d8ec6c9e1e024ce47344431218c27443f0cc39b8e0292844ab9e5cb688464f
+    alt: Diagram connecting established work in safe AI control, resilient control, AI verification, and infrastructure monitoring to future work in cyber-physical-system foundation models and language-enabled safe autonomy.
+
+  - target: assets/img/publication_preview/FTNCBF_Demo.gif
+    source: website/assets/img/publication_preview/FTNCBF_Demo.gif
+    sha256: 1bdee416ceff36bd441b47624725e001142fc33881733e09bbc055ea53527910
+    alt: Animated robot demonstration of fault-tolerant neural control barrier function control.
+    frames: 332
+    duration_cs: 666
+    dimensions: 1476x1418
+    bytes: 13621343
+    optimization: Retained because the tested ImageMagick candidate was larger or changed rendered frames.
+
+  - target: assets/img/publication_preview/ICRA2021.gif
+    source: website/assets/img/publication_preview/ICRA2020.gif
+    sha256: 3777da42862ca03f26b903a9e5933d08ee50b4e6faa38c2e9cd28945c9709ee3
+    alt: Model-based reinforcement learning demonstration with control-barrier-function safety constraints.
+    frames: 160
+    duration_cs: 1600
+    dimensions: 800x450
+    bytes: 1002422
+    optimization: Renamed to match the 2021 publication; retained because the tested ImageMagick candidate changed rendered frames.
+
+  - target: assets/img/publication_preview/IEEECDC2024.gif
+    source: website/assets/img/publication_preview/IEEECDC2024.gif
+    sha256: eb0b37cf1b816a2421677b3ab6874e63df1efd08e22efa6db8f6db036418f164
+    alt: Demonstration of a learned and formally verified control barrier function in a stochastic environment.
+    frames: 22
+    duration_cs: 220
+    dimensions: 633x359
+    bytes: 782211
+    optimization: Retained because the tested ImageMagick candidate changed rendered frames.
+
+  - target: assets/img/publication_preview/TAC25FTSCBF.gif
+    source: website/assets/img/publication_preview/TAC25FTSCBF.gif
+    sha256: 2c1b1cbc5284a0e4cda283cadc2facb37e21c3a8625db332a95e784a876cf04e
+    alt: Nonlinear-system safe-control demonstration under sensor faults and attacks.
+    frames: 300
+    duration_cs: 600
+    dimensions: 800x477
+    bytes: 29879030
+    optimization: Retained because the tested ImageMagick candidate changed rendered frames.
+
+  - target: assets/img/publication_preview/TAC25SNCBF.gif
+    source: website/assets/img/publication_preview/TAC25SNCBF.gif
+    sha256: 7567a4f368a8a104f2a7cf559ba349f1b7dd87638281417882de9356ae411022
+    alt: Stochastic neural control barrier function demonstration.
+    frames: 19
+    duration_cs: 190
+    dimensions: 633x364
+    bytes: 463617
+    optimization: Retained because the tested ImageMagick candidate changed rendered frames.
+
+  - target: assets/img/publication_preview/daecbf_3link.gif
+    source: website/assets/img/publication_preview/daecbf_3link.gif
+    sha256: 25e63ce6e1e2932fe388cbf824c298cad26d09692ffe9c69d387dab9fcd3ecd0
+    alt: Animated three-link constrained system under DAE-aware control.
+    frames: 501
+    duration_cs: 1700
+    dimensions: 500x167
+    bytes: 5841617
+    optimization: Retained because the tested ImageMagick candidate changed rendered frames.
+
+  - target: assets/img/publication_preview/daecbf_manipulator.gif
+    source: website/assets/img/publication_preview/daecbf_manipulator.gif
+    source_sha256: 49e5ddb6182a01e715039f7e4363baf94641f296ab1f1fc695b67a9a2cdbe2aa
+    sha256: 45830e1bdcdac7924605359a510d5cdb9042962a19a6fd44a82b9e5bbeb6c4cc
+    alt: Animated constrained manipulator operating under a DAE-aware safety controller.
+    frames: 300
+    duration_cs: 900
+    dimensions: 393x400
+    bytes: 641228
+    optimization: Losslessly reduced from 3691670 bytes; frame count, duration, dimensions, and coalesced-frame signatures match.
+
+  - target: assets/img/publication_preview/FTNCBF_Demo-static.png
+    source: assets/img/publication_preview/FTNCBF_Demo.gif frame 1
+    sha256: ee9cdbb4603d3a626a45534898b1ba4d272cf054e4177b1022f4e84fe878f62e
+    alt: Static frame of the fault-tolerant neural control barrier function demonstration.
+
+  - target: assets/img/publication_preview/ICRA2021-static.png
+    source: assets/img/publication_preview/ICRA2021.gif frame 1
+    sha256: 8d5611292cca2010bde286172d0b3793b2d5e2d1195995ab79f698713135c262
+    alt: Static frame of model-based reinforcement learning with control-barrier-function safety constraints.
+
+  - target: assets/img/publication_preview/IEEECDC2024-static.png
+    source: assets/img/publication_preview/IEEECDC2024.gif frame 1
+    sha256: 357a53cd277cb2c92c36f3e56f5fd4b56e3623776aeaed2efc2c2d1207f6a3a3
+    alt: Static frame of a learned and formally verified control barrier function in a stochastic environment.
+
+  - target: assets/img/publication_preview/TAC25FTSCBF-static.png
+    source: assets/img/publication_preview/TAC25FTSCBF.gif frame 1
+    sha256: decfcaeac63bfdc6b0e3de71f0ebee959428645fbd304350e25e8165f6d9abfe
+    alt: Static frame of nonlinear-system safe control under faults and attacks.
+
+  - target: assets/img/publication_preview/TAC25SNCBF-static.png
+    source: assets/img/publication_preview/TAC25SNCBF.gif frame 1
+    sha256: cc06291f170c9052ce08bfcd0a07ecb758ac199459dbf5fb821c9d6234278e15
+    alt: Static frame of a stochastic neural control barrier function demonstration.
+
+  - target: assets/img/publication_preview/daecbf_3link-static.png
+    source: assets/img/publication_preview/daecbf_3link.gif frame 1
+    sha256: ffec64d6fd3874cd4119e74fbd9e7a753b1696fc19af72874ce24a295cd942c9
+    alt: Static frame of a three-link constrained system under DAE-aware control.
+
+  - target: assets/img/publication_preview/daecbf_manipulator-static.png
+    source: assets/img/publication_preview/daecbf_manipulator.gif frame 1
+    sha256: 664fbca631ac582361e5197f6cc85e253375f47ea4d49ee4a59014e77c11b1ba
+    alt: Static frame of a constrained manipulator under DAE-aware safety control.
+
+  - target: assets/img/publication_preview/IEEECDC2020.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/IEEECDC2020.png"
+    sha256: 0320bef24031aeb6d332512d9403bf11ef5dc68c85a199a6b368d91d9055c152
+    alt: Architecture connecting multiple sensor-based controllers to a control-barrier-function quadratic-program controller under sensor faults and attacks.
+
+  - target: assets/img/publication_preview/IEEECDC2021.jpg
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/IEEECDC2021.jpg"
+    sha256: 450f3f6f2db59f218fdf1ba58b37264e4dd411fd7dbd049bc2f0a0f78abc7b3f
+    alt: State trajectory plot comparing the proposed safe-control approach with a baseline and the safe-set boundary.
+
+  - target: assets/img/publication_preview/IEEECDC2022.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/IEEECDC2022.png"
+    sha256: c63ac991bb876ac4a6235d37e7f5d1e7d88faac211846d5ba10c54d8d84f4b7b
+    alt: Simulated driving scene and workflow for fault-tolerant LiDAR estimation and safe control.
+
+  - target: assets/img/publication_preview/IEEECDC2023.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/IEEECDC2023.png"
+    sha256: b4b2b748e0e4f2842dc653c4d29810f3bd8ac37879fa63bfdef194b60c967ac2
+    alt: Control-barrier-function level-set visualizations with tables comparing sum-of-squares verification and synthesis methods.
+
+  - target: assets/img/publication_preview/VehicleSec23Thumbnail.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/VehicleSec23Thumbnail.png"
+    sha256: de89e211a7ad49f35080819531e603dacea948c2823162fb7a5251cb31b12793
+    alt: Cooperative-perception attack scenarios showing false obstacles, occluded vehicles, and LiDAR spoofing responses.
+
+  - target: assets/img/publication_preview/cdc24compatible.jpg
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/cdc24compatible.jpg"
+    sha256: c5adaf417a98a042690e9f90cb06b9ec2de17d8110170c46b5fc3d0efa90733b
+    alt: Multi-agent aerial-robot trajectories illustrating compatible control Lyapunov and control barrier functions.
+
+  - target: assets/img/publication_preview/daecbf_manifold.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/daecbf_manifold.png"
+    sha256: 81f3b41684aa18faad84e871b10af0874d70226a1b1b3afbf375f4d64b1a56d8
+    alt: Three-dimensional trajectory and barrier contours on intersecting differential-algebraic constraint surfaces.
+
+  - target: assets/img/publication_preview/ft_estimation.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/ft_estimation.png"
+    sha256: 30cdcab7f9e7738c76a674a5af50e20765a5c1ab12a95b836f16f38c74a31394
+    alt: Block diagram for fault-tolerant state estimation using proprioceptive sensors, LiDAR, extended Kalman filters, and fault detection.
+
+  - target: assets/img/publication_preview/icaa2024.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/icaa2024.png"
+    sha256: e5fda1bb16e993b783c5738d0c8362a524ca4af30acac5306e0fddd0fe54e42c
+    alt: Multi-agent safety-violation examples with vehicle scenes and corresponding responsibility graphs.
+
+  - target: assets/img/publication_preview/nashvillewater.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/nashvillewater.png"
+    sha256: 571e2fc0e5b491e31de34e116830dd312ed67d10699c8018a1e355b8b84cf0b6
+    alt: Map of the Nashville water network with infrastructure lines and monitored regions.
+
+  - target: assets/img/publication_preview/seev_training.jpg
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/seev_training.jpg"
+    sha256: 5c28877bc001c6ab32febb1eaf5023b8e46af76ed2cb7b1bb16197b98d1d1501
+    alt: SEEV workflow connecting training data, counterexamples, barrier-certificate training, boundary activation regions, and exact verification.
+
+  - target: assets/img/publication_preview/zhang2023exact.png
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/zhang2023exact.png"
+    sha256: a5eb1d8fb2fe649bcee168b0d097523593b6c67bcfd2a025aa185fc2ae10b877
+    alt: Research poster on exact verification of rectified-linear-unit neural control barrier functions.
+
+  - target: assets/img/publication_preview/zhang2024seev_poster.jpg
+    source: "website@facf7b01cc201d69b0b5707ac70b124f2a368b8c:assets/img/publication_preview/zhang2024seev_poster.jpg"
+    sha256: 7d6479bb9e76e38230827e3e9d4fa89c2bdfc0ca887dfc0b59ec11e7484807f4
+    alt: Research poster summarizing SEEV synthesis and efficient exact verification for rectified-linear-unit neural barrier functions.

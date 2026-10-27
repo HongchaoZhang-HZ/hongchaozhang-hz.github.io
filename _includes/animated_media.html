@@ -1,0 +1,15 @@
+<figure class="accessible-animation{% if include.compact %} accessible-animation-compact{% endif %}">
+  <img
+    class="animated-media img-fluid rounded z-depth-1"
+    src="{{ include.path | relative_url }}"
+    alt="{{ include.alt }}"
+    loading="lazy"
+  >
+  <img
+    class="static-media img-fluid rounded z-depth-1"
+    src="{{ include.fallback | relative_url }}"
+    alt="{{ include.alt }}"
+    loading="lazy"
+  >
+  {% if include.caption %}<figcaption class="caption">{{ include.caption }}</figcaption>{% endif %}
+</figure>

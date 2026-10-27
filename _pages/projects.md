@@ -2,57 +2,23 @@
 layout: page
 title: Projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: Research on safe control, formal verification, trustworthy AI, and critical infrastructure.
 nav: true
 nav_order: 2
-display_categories: [work]
 horizontal: true
 ---
 
-<!-- pages/projects.md -->
-<div class="projects">
-{%- if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {%- for category in page.display_categories %}
-  <h2 class="category">{{ category }}</h2>
-  {%- assign categorized_projects = site.projects | where: "category", category -%}
-  {%- assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal -%}
-  <div class="container">
-    <div class="row row-cols-1">
-    {%- for project in sorted_projects -%}
-      {% include projects_horizontal.html %}
-    {%- endfor %}
-    </div>
-  </div>
-  {%- else -%}
-  <div class="grid">
-    {%- for project in sorted_projects -%}
-      {% include projects.html %}
-    {%- endfor %}
-  </div>
-  {%- endif -%}
-  {% endfor %}
+My research connects formal verification, control theory, and artificial intelligence to establish when AI-enabled physical systems satisfy specified requirements. The five projects below develop this program across safety certificates, resilient autonomy, differential-algebraic systems, neural-network verification, and infrastructure monitoring.
 
-{%- else -%}
-<!-- Display projects without categories -->
+{% include figure.html path="assets/img/research-overview.png" class="img-fluid rounded z-depth-1" alt="Research map connecting formal verification, control theory, and artificial intelligence with trustworthy autonomy and critical infrastructure." %}
+
+<div class="projects">
   {%- assign sorted_projects = site.projects | sort: "importance" -%}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal -%}
   <div class="container">
     <div class="row row-cols-1">
-    {%- for project in sorted_projects -%}
-      {% include projects_horizontal.html %}
-    {%- endfor %}
+      {%- for project in sorted_projects -%}
+        {% include projects_horizontal.html %}
+      {%- endfor -%}
     </div>
   </div>
-  {%- else -%}
-  <div class="grid">
-    {%- for project in sorted_projects -%}
-      {% include projects.html %}
-    {%- endfor %}
-  </div>
-  {%- endif -%}
-{%- endif -%}
 </div>

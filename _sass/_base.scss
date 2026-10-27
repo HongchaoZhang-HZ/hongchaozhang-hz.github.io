@@ -53,6 +53,16 @@ table.table a {
   }
 }
 
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 3px solid var(--global-theme-color);
+  outline-offset: 3px;
+}
+
+button.navbar-toggler:focus-visible {
+  outline: 3px solid var(--global-theme-color);
+  outline-offset: 3px;
+}
+
 .table-dark {
   background-color: transparent;
 }
@@ -84,6 +94,40 @@ blockquote {
   margin-top: 0.75rem;
   margin-bottom: 1.5rem;
   text-align: center;
+}
+
+.accessible-animation {
+  margin: 0;
+
+  .animated-media,
+  .static-media {
+    display: block;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .static-media {
+    display: none;
+  }
+}
+
+.accessible-animation-compact {
+  .animated-media,
+  .static-media {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accessible-animation {
+    .animated-media {
+      display: none;
+    }
+
+    .static-media {
+      display: block;
+    }
+  }
 }
 
 // Card
@@ -669,14 +713,26 @@ footer.sticky-bottom {
           font-style: normal;
         }
 
-        >span.more-authors {
+        >button.more-authors {
+          appearance: none;
+          background: transparent;
+          border: 0;
           color: var(--global-text-color-light);
           border-bottom: 1px dashed var(--global-text-color-light);
           cursor: pointer;
+          font: inherit;
+          line-height: inherit;
+          margin: 0;
+          padding: 0;
 
           &:hover {
             color: var(--global-text-color);
             border-bottom: 1px dashed var(--global-text-color);
+          }
+
+          &:focus-visible {
+            color: var(--global-text-color);
+            border-bottom-color: var(--global-text-color);
           }
         }
       }
