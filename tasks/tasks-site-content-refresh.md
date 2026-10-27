@@ -2,7 +2,7 @@
 
 ## Status
 
-Correction verified — commit/push authorized and pending
+Complete — corrected site committed and pushed
 
 The full-site refresh passed its first final verification. The 2026-10-27 user correction reopens the task to restore publication year dividers, use one chronological timeline with inline under-review labels, and restore the public title `Outreach`. Commit and push are authorized after validation; no separate manual deployment is authorized.
 
@@ -644,12 +644,13 @@ Optional previews are omitted before any content, metadata, privacy, build, acce
   - Validate: audit script, build, browser review, independent verifier report.
   - Evidence: all deterministic audits and the production build pass; browser inspection confirms the year timeline, eight inline labels, and Outreach name. Independent verifier session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS after coordination replay, with zero blocking Standards or Spec findings. AcadJob remains clean at `71064afc0e3d3e835455d62f46c9666de540e35d`.
 
-- [ ] T17 Commit and push the validated complete refresh.
+- [x] T17 Commit and push the validated complete refresh.
   - Dependencies: T16 PASS
   - Scope: all authorized website changes for DZSITE-20261026-001
-  - Acceptance: one commit exists on `master`; push to `origin/master` succeeds; local and remote branch revisions match.
+  - Acceptance: the validated refresh is committed on `master`; push to `origin/master` succeeds; local and remote branch revisions match.
   - Validate: `git status`, `git rev-parse HEAD`, and `git rev-parse origin/master` after push.
+  - Evidence: product commit `ce8cbd9` (`Refresh academic site content and publications`) was pushed successfully to `origin/master`; the delivery-record update is committed separately so T17 is recorded only after the push gate actually passed.
 
 ## Blockers
 
-None at continuation start.
+None. Final correction verification and push passed.
