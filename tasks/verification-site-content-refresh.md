@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — prior delivery is pushed; T19 publication-year clarification is validated and awaiting commit/push
+PASS — T19 publication-year clarification committed as `0e55028` and pushed to `origin/master`
 
 ## Scope
 
@@ -47,7 +47,7 @@ PASS — prior delivery is pushed; T19 publication-year clarification is validat
 
 ## Publication Boundary
 
-The user explicitly authorized commit and push to the existing `master` branch after PASS. Full-refresh product commit `ce8cbd9` and T18 product commit `efaf819` were pushed successfully. No separate manual deployment action was performed; the pushes may trigger the repository's existing GitHub Pages workflow.
+The user explicitly authorized commit and push to the existing `master` branch after PASS. Full-refresh product commit `ce8cbd9`, T18 product commit `efaf819`, and T19 product commit `0e55028` were pushed successfully. No separate manual deployment action was performed; the pushes may trigger the repository's existing GitHub Pages workflow.
 
 ## T18 Follow-Up
 
