@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — T18 homepage image-size correction committed as `efaf819` and pushed to `origin/master`
+PASS — prior delivery is pushed; T19 publication-year clarification is validated and awaiting commit/push
 
 ## Scope
 
@@ -29,6 +29,7 @@ PASS — T18 homepage image-size correction committed as `efaf819` and pushed to
 | Independent review | Final replay reports no blocking product or coordination finding and declares T17 eligible | PASS |
 | Homepage Research overview size | Only the homepage image uses the scoped class; it renders centered at 86% width with a 720px maximum and automatic height | PASS |
 | Homepage responsive behavior | Independent measurements at 400×837 and 1440×900 report centered, legible rendering and no horizontal overflow | PASS |
+| SAIV/Springer year distinction | `wooding2027selfcorrecting` remains under 2027 and visibly distinguishes SAIV 2026, Springer citation year 2027, and first online 18 July 2026 | PASS |
 
 ## Preserved Full-Site Evidence
 
@@ -51,3 +52,7 @@ The user explicitly authorized commit and push to the existing `master` branch a
 ## T18 Follow-Up
 
 The production build, generated-HTML audit, and `git diff --check` pass. Independent review confirmed the scoped CSS and responsive rendering. Its first verdict withheld commit/push eligibility only because the task plan and current-task record had not yet been reconciled. After reconciliation, the final replay returned PASS and declared T18 commit/push eligible under the existing authorization.
+
+## T19 Follow-Up
+
+Springer's official record prescribes citation year 2027, names the venue `AI Verification (SAIV 2026)`, and reports first online 18 July 2026. The active CV matches that distinction. The generated entry remains under the 2027 divider and now labels the citation year and first-online date explicitly. The production build, focused timeline check, bibliography/generated-HTML audits, mobile browser inspection, `git diff --check`, AcadJob no-change check, and independent read-only replay pass. T19 is commit/push eligible under the existing authorization.

@@ -2,7 +2,7 @@
 
 ## Status
 
-Complete — homepage image-size correction committed and pushed
+Publication-year clarification validated; commit/push eligible
 
 The full-site refresh passed its first final verification. The 2026-10-27 user correction reopens the task to restore publication year dividers, use one chronological timeline with inline under-review labels, and restore the public title `Outreach`. Commit and push are authorized after validation; no separate manual deployment is authorized.
 
@@ -658,6 +658,13 @@ Optional previews are omitted before any content, metadata, privacy, build, acce
   - Validate: production build, generated HTML audit, browser inspection at 400×837 and desktop width, and `git diff --check`.
   - Evidence: only the homepage image gains `research-overview`; its scoped rule uses `width: 86%`, `max-width: 720px`, automatic height, and centered margins. The production build, generated-HTML audit, and `git diff --check` pass. Independent browser measurements report 309.6 px at 400×837 and 662.2 px at 1440×900, centered and legible with no horizontal overflow. Product commit `efaf819` (`Reduce homepage research overview size`) was pushed successfully to `origin/master`.
 
+- [x] T19 Clarify the SAIV conference year and Springer citation year.
+  - Dependencies: T18
+  - Scope: `_bibliography/papers.bib`
+  - Acceptance: `wooding2027selfcorrecting` remains under the 2027 divider because Springer prescribes citation year 2027; the visible venue and note distinguish SAIV 2026, citation year 2027, and the 18 July 2026 first-online date.
+  - Validate: production build, bibliography/generated-HTML audits, focused rendered-text inspection, browser inspection, and `git diff --check`.
+  - Evidence: Springer and the active CV both prescribe citation year 2027 while naming the venue SAIV 2026 and the first-online date 18 July 2026. The rendered entry remains under the 2027 divider and displays all three meanings explicitly. The production build, bibliography/generated-HTML audits, focused timeline check, mobile browser inspection, `git diff --check`, and independent read-only verification pass; all 32 records and year dividers 2027 through 2020 remain intact.
+
 ## Blockers
 
-None. The final T18 independent replay returned PASS and declared commit/push eligible under the existing authorization.
+None. The final T19 independent replay returned PASS and declared commit/push eligible under the existing authorization.
