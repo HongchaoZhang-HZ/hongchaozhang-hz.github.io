@@ -30,13 +30,15 @@ I am a Postdoctoral Scholar at the [Institute for Convergent Software Integrated
 
 ## Research
 
-My research develops foundations and methods for trustworthy decision-making in AI and physical systems, with a focus on safety and resilience. I study how to establish when systems meet their requirements and how to guide their reasoning and behavior in the presence of errors, uncertainty, or disruptions. My long-term vision is to connect trustworthy AI reasoning with dependable operation in the physical world, enabling autonomous systems and critical infrastructure to fulfill their intended functions under changing and adverse conditions.
+In 1942, Isaac Asimov proposed that a robot should not harm a person, including through inaction. Turning that principle into a working system requires more than avoiding dangerous actions: a vehicle must navigate, a robot must complete its task, and infrastructure must keep serving its community. Artificial intelligence (AI) can help these systems make decisions, but people also need to know when those decisions meet the requirements for dependable operation.
+
+**My research develops foundations and methods for trustworthy decision-making in AI and physical systems, with a focus on safety and resilience.** I study how to establish when systems meet their requirements and how to guide their reasoning and behavior in the presence of errors, uncertainty, or disruptions. My long-term vision is to connect trustworthy AI reasoning with dependable operation in the physical world, enabling autonomous systems and critical infrastructure to fulfill their intended functions under changing and adverse conditions.
 
 {% include figure.html path="assets/img/cps-challenges.png" class="research-challenges img-fluid rounded z-depth-1" alt="Closed-loop AI-enabled physical system showing sensors, an adversary, a black-box decision maker, physical objects, requirements, actions, and feedback." caption="Figure 1. AI-enabled physical systems operate through a closed loop of sensing, decision-making, and action. Adversarial interference and the opacity of AI decisions pose two key challenges." %}
 
-Physical systems, including robots, power grids, and water networks, depend on sensors to observe operating conditions and algorithms to select actions. Faulty or corrupted measurements can undermine safe operation. AI decisions can also be difficult to analyze, making it harder to determine whether they meet system requirements and how to correct them when they do not.
+Physical systems, including robots, power grids, and water networks, must meet operating requirements and safety regulations to remain functional and safe. These systems rely on sensors to observe their operating conditions and on algorithms to select actions intended to satisfy these requirements. As shown in Figure 1, two challenges arise. First, faulty or corrupted measurements can undermine safe operation. Second, AI decisions can be difficult to analyze and verify, making it harder to determine whether they meet the system’s requirements and how to adjust them when they do not. Together, these challenges pose key barriers to establishing the trustworthiness of AI-enabled physical systems.
 
-To address these challenges, my research connects formal verification, control theory, and AI through three research areas:
+My research connects formal verification, control theory, and AI through three research areas:
 
 {% include figure.html path="assets/img/research-overview.png" class="research-overview img-fluid rounded z-depth-1" alt="Research map connecting formal verification, control theory, and artificial intelligence with trustworthy autonomy and critical infrastructure." %}
 

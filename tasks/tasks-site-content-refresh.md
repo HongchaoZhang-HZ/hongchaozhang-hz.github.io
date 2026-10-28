@@ -681,6 +681,14 @@ Optional previews are omitted before any content, metadata, privacy, build, acce
   - Media provenance: source `AcadJob/job_app/research_statement/figures/cps-challenges.pdf`; source SHA-256 `9f830ab08223c476e8052f71ea561a5557daf6db109ef8427f2a1f5e2464fc18`; rendered at 1536×1059 PNG using Poppler `pdftoppm -png -singlefile -scale-to-x 1536 -scale-to-y -1`; target SHA-256 `ab739f5a02d770da8dde73b8e13c65100d1ec1be560cf03a59b85e5074370ea2`; AcadJob remains read-only.
   - Evidence: `body.tex:23` includes the PDF source, and the recorded command reproduces the website PNG byte-for-byte. The production build, four deterministic audits, exact-order check, responsive replays, and `git diff --check` pass. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS: mobile renders the 480×331 variant at 355×244.8 CSS pixels; desktop renders at 770×530.875; neither overflows. The pre-existing AcadJob cover-letter PDF modification remained unchanged and no Research Statement source changed. Product commit `74ef2f2` (`Correct homepage research figure`) was pushed successfully to `origin/master`.
 
+- [x] T22 Align the About Research opening with the latest compiled Research Statement.
+  - Dependencies: T21
+  - Scope: `_pages/about.md`
+  - Acceptance: the Research section follows the latest RS vision by including its opening motivation and long-term-vision paragraph, then Figure 1 and the current two-challenge explanation; Figure 2 and the established/future research summaries retain their existing order.
+  - Validate: exact source-text comparison against the 2026-10-27 18:54 compiled RS and `body.tex`; production build; deterministic audits; generated order check; responsive browser inspection; `git diff --check`; independent read-only verification; AcadJob source-integrity check.
+  - Source evidence: `AcadJob/job_app/research_statement/research-statement.pdf` (three pages; creation time 2026-10-27 18:54:39 CDT; SHA-256 `ca9a27a5281ac27bce81b06fb25cd1c7f4a9fdebd7ff4fa71e0472cab6fe8070`) and `research_statement/body.tex:2-31` (SHA-256 `70f7b18ba75b9485a0e20d23d9c74b668fda392c06f69fa6a5960d0a58682eae`).
+  - Evidence: five exact RS prose anchors pass in both `body.tex` and `_pages/about.md`; the production build, four deterministic audits, generated-order check, and `git diff --check` pass. Browser inspection confirms the complete Vision opening, bold research identity, Figure 1, current two-challenge explanation, Figure 2, and established/future summaries. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and confirmed no horizontal overflow at 400×837 or 1440×900. The pre-existing AcadJob cover-letter PDF modification remained unchanged; the RS diff is empty.
+
 ## Blockers
 
-None. T21 passed independent read-only verification and is commit/push eligible under the existing authorization.
+None. T22 passed independent read-only verification and is commit/push eligible under the existing authorization.
