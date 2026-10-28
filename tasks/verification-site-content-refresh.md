@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — T22 About Research opening matches the latest compiled Research Statement
+PASS — T22 latest Research Statement alignment committed as `bd94555` and pushed to `origin/master`
 
 ## Scope
 
@@ -70,4 +70,4 @@ T20 selected the unused same-stem PNG. The current Research Statement includes `
 
 ## T22 Follow-Up
 
-The latest compiled Research Statement is the three-page PDF created 2026-10-27 18:54:39 CDT with SHA-256 `ca9a27a5281ac27bce81b06fb25cd1c7f4a9fdebd7ff4fa71e0472cab6fe8070`. The About Research section now includes its complete Vision motivation, preserves the bold research-identity sentence and long-term vision, then presents Figure 1 and the current two-challenge explanation before Figure 2 and the existing established/future summaries. Five exact source anchors, the production build, deterministic audits, generated-order check, browser review, and `git diff --check` pass. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and confirmed no mobile or desktop overflow. The pre-existing AcadJob cover-letter PDF modification remained unchanged; no Research Statement source changed. T22 is commit/push eligible under the existing authorization.
+The latest compiled Research Statement is the three-page PDF created 2026-10-27 18:54:39 CDT with SHA-256 `ca9a27a5281ac27bce81b06fb25cd1c7f4a9fdebd7ff4fa71e0472cab6fe8070`. The About Research section now includes its complete Vision motivation, preserves the bold research-identity sentence and long-term vision, then presents Figure 1 and the current two-challenge explanation before Figure 2 and the existing established/future summaries. Five exact source anchors, the production build, deterministic audits, generated-order check, browser review, and `git diff --check` pass. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and confirmed no mobile or desktop overflow. The pre-existing AcadJob cover-letter PDF modification remained unchanged; no Research Statement source changed. Product commit `bd94555` was pushed successfully to `origin/master`.
