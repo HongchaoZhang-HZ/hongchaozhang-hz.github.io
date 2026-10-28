@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — T21 About Figure 1 now matches the PDF included by the current Research Statement
+PASS — T21 About Figure 1 correction committed as `74ef2f2` and pushed to `origin/master`
 
 ## Scope
 
@@ -66,4 +66,4 @@ The About page now places Education and Professional Experience before Research.
 
 ## T21 Follow-Up
 
-T20 selected the unused same-stem PNG. The current Research Statement includes `research_statement/figures/cps-challenges.pdf` at `body.tex:23`. T21 deterministically rendered that PDF to the website PNG; the recorded command reproduces SHA-256 `ab739f5a02d770da8dde73b8e13c65100d1ec1be560cf03a59b85e5074370ea2` at 1536×1059. Caption, prose, and order are unchanged. Production build, media/orphan/accessibility/generated-HTML audits, responsive replays, and `git diff --check` pass. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and found no overflow at mobile or desktop widths. AcadJob is now at revision `02d346ddcead9cd647e6e86f8092b36b8ed4304e`; its pre-existing cover-letter PDF modification remained unchanged, and no Research Statement source changed. T21 is commit/push eligible under the existing authorization.
+T20 selected the unused same-stem PNG. The current Research Statement includes `research_statement/figures/cps-challenges.pdf` at `body.tex:23`. T21 deterministically rendered that PDF to the website PNG; the recorded command reproduces SHA-256 `ab739f5a02d770da8dde73b8e13c65100d1ec1be560cf03a59b85e5074370ea2` at 1536×1059. Caption, prose, and order are unchanged. Production build, media/orphan/accessibility/generated-HTML audits, responsive replays, and `git diff --check` pass. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and found no overflow at mobile or desktop widths. AcadJob is now at revision `02d346ddcead9cd647e6e86f8092b36b8ed4304e`; its pre-existing cover-letter PDF modification remained unchanged, and no Research Statement source changed. Product commit `74ef2f2` was pushed successfully to `origin/master`.
