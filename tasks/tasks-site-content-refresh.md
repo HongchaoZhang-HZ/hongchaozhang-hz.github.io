@@ -673,6 +673,14 @@ Optional previews are omitted before any content, metadata, privacy, build, acce
   - Media provenance: source `AcadJob/job_app/research_statement/figures/cps-challenges.png`; target `assets/img/cps-challenges.png`; source SHA-256 `126f42b60b154b0ec1aae0306a832925c2b0ef2d8134bc8f6c861c573ad690c4`; 1536×1024 PNG; copied without modifying AcadJob.
   - Evidence: generated order is Education → Professional Experience → Research → approved long-term vision → RS Figure 1 and exact caption → two challenges → existing research-framework Figure 2 → established areas → future directions. The copied asset is byte-identical to the active RS source. The production build, media/orphan/accessibility/generated-HTML audits, exact-order check, `git diff --check`, and AcadJob no-change gate pass. Browser replay reports Figure 1 at 360×240 in the 400×837 viewport and 770×513.328 in the 1440×900 viewport, with no horizontal overflow. Final independent verification returned PASS and declared commit/push eligible. Product commit `38312ee` (`Reorder About and add research vision figure`) was pushed successfully to `origin/master`.
 
+- [x] T21 Correct About Figure 1 to the PDF asset used by the current Research Statement.
+  - Dependencies: T20
+  - Scope: `_pages/about.md`, `assets/img/cps-challenges.png`
+  - Acceptance: the homepage Figure 1 visually matches `research_statement/figures/cps-challenges.pdf`, which is the file included by the current Research Statement; the caption, page order, and surrounding prose remain unchanged.
+  - Validate: source-PDF render comparison, production build, media/orphan/accessibility/generated-HTML audits, responsive browser inspection, `git diff --check`, independent read-only verification, and AcadJob no-change check.
+  - Media provenance: source `AcadJob/job_app/research_statement/figures/cps-challenges.pdf`; source SHA-256 `9f830ab08223c476e8052f71ea561a5557daf6db109ef8427f2a1f5e2464fc18`; rendered at 1536×1059 PNG using Poppler `pdftoppm -png -singlefile -scale-to-x 1536 -scale-to-y -1`; target SHA-256 `ab739f5a02d770da8dde73b8e13c65100d1ec1be560cf03a59b85e5074370ea2`; AcadJob remains read-only.
+  - Evidence: `body.tex:23` includes the PDF source, and the recorded command reproduces the website PNG byte-for-byte. The production build, four deterministic audits, exact-order check, responsive replays, and `git diff --check` pass. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS: mobile renders the 480×331 variant at 355×244.8 CSS pixels; desktop renders at 770×530.875; neither overflows. The pre-existing AcadJob cover-letter PDF modification remained unchanged and no Research Statement source changed.
+
 ## Blockers
 
-None. The final T20 independent replay returned PASS and declared commit/push eligible under the existing authorization.
+None. T21 passed independent read-only verification and is commit/push eligible under the existing authorization.

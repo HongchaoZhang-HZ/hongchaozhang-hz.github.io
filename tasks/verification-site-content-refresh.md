@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — T20 About-page research narrative correction committed as `38312ee` and pushed to `origin/master`
+PASS — T21 About Figure 1 now matches the PDF included by the current Research Statement
 
 ## Scope
 
@@ -63,3 +63,7 @@ Springer's official record prescribes citation year 2027, names the venue `AI Ve
 ## T20 Follow-Up
 
 The About page now places Education and Professional Experience before Research. Research opens with the approved long-term vision, then the RS Figure 1 and exact caption, the two RS challenges, and the existing research-framework figure before the established areas and future directions. The copied Figure 1 hash matches the active read-only source. The production build, deterministic audits, exact-order check, responsive browser replays, `git diff --check`, AcadJob no-change check, and independent read-only replay pass. T20 is commit/push eligible under the existing authorization.
+
+## T21 Follow-Up
+
+T20 selected the unused same-stem PNG. The current Research Statement includes `research_statement/figures/cps-challenges.pdf` at `body.tex:23`. T21 deterministically rendered that PDF to the website PNG; the recorded command reproduces SHA-256 `ab739f5a02d770da8dde73b8e13c65100d1ec1be560cf03a59b85e5074370ea2` at 1536×1059. Caption, prose, and order are unchanged. Production build, media/orphan/accessibility/generated-HTML audits, responsive replays, and `git diff --check` pass. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and found no overflow at mobile or desktop widths. AcadJob is now at revision `02d346ddcead9cd647e6e86f8092b36b8ed4304e`; its pre-existing cover-letter PDF modification remained unchanged, and no Research Statement source changed. T21 is commit/push eligible under the existing authorization.
