@@ -89,7 +89,7 @@ DELETED_PATHS = %w[
 ].freeze
 
 REQUIRED_MEDIA_TARGETS = %w[
-  assets/img/research-overview.png
+  assets/img/challenges-and-research.png
   assets/img/publication_preview/FTNCBF_Demo.gif
   assets/img/publication_preview/ICRA2021.gif
   assets/img/publication_preview/IEEECDC2024.gif

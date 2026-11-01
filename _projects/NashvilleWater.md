@@ -22,10 +22,10 @@ Our ICML 2026 paper develops a node-level spectral-energy formulation for graph 
 
 ## Nashville Metro Water collaboration
 
-The collaboration studies leak detection under limited sensor coverage, limited historical data, and legacy-system constraints. Work with domain engineers and operators has helped identify actual leaks in the city's water network. This field experience informs what evidence a monitoring method must provide and how physical and operational constraints affect its use.
+The collaboration translates this research into leak detection for Nashville Metro Water under limited sensor coverage, limited historical data, and legacy-system constraints. Work with domain engineers and operators has helped identify actual leaks in the city's water network, delivering societal impact beyond publications. This field experience informs what evidence a monitoring method must provide and how physical and operational constraints affect its use.
 
 ## Critical-infrastructure direction
 
 The Nashville work supports the Vanderbilt Center for Sustainability, Energy, and Climate project *Reliable AI and Critical Infrastructure: Compliance, Resilience, and Explainability in Electric and Water Networks*. The project brings together computer science, engineering, and law to study how AI data-center growth affects electric and water systems. The direction is supported by the 2026 VSEC Seed Project Fund Award ($200,000 total).
 
-Future work will connect physical constraints, anomaly analysis, and formal verification when measurements are incomplete. The goal is to assess whether operating or recovery decisions satisfy specified requirements without assuming a completed deployment or operator dashboard.
+Future work will connect physical constraints, anomaly analysis, and formal verification when measurements are incomplete. The goal is to assess whether operating or recovery decisions satisfy specified requirements without assuming a completed deployment or operator dashboard. The collaboration has received positive stakeholder feedback, and I will build on it to pursue technology transfer to utilities and industry partners.

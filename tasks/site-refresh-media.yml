@@ -1,8 +1,11 @@
 media:
-  - target: assets/img/research-overview.png
-    source: AcadJob/job_app/research_statement/figures/research-venn-two-directions.png
-    sha256: 24d8ec6c9e1e024ce47344431218c27443f0cc39b8e0292844ab9e5cb688464f
-    alt: Diagram connecting established work in safe AI control, resilient control, AI verification, and infrastructure monitoring to future work in cyber-physical-system foundation models and language-enabled safe autonomy.
+  - target: assets/img/challenges-and-research.png
+    source: AcadJob/job_app/research_statement/figures/challenges-and-research.pdf
+    source_sha256: b5a2a5adf67c5aa58c596cfdc02146957673eda1029800ebf509ba997f4d0519
+    sha256: cb2ecc818a0cb0cc7faa31dcf7d0b145175584aae04114deb47a712426eacd9e
+    alt: Physical AI research map connecting a sensing-decision-action loop and its adversarial and black-box challenges to resilient control, safe physical AI, anomaly detection, verification, and verified intelligent autonomy.
+    dimensions: 1800x1108
+    render: Poppler pdftoppm -png -singlefile -scale-to-x 1800 -scale-to-y -1
 
   - target: assets/img/publication_preview/FTNCBF_Demo.gif
     source: website/assets/img/publication_preview/FTNCBF_Demo.gif

@@ -8,9 +8,9 @@ nav_order: 2
 horizontal: true
 ---
 
-My research connects formal verification, control theory, and artificial intelligence to establish when AI-enabled physical systems satisfy specified requirements. The five projects below develop this program across safety certificates, resilient autonomy, differential-algebraic systems, neural-network verification, and infrastructure monitoring.
+My research connects formal verification, control theory, and artificial intelligence to establish when physical AI systems satisfy specified requirements. The five projects below develop this program across safety certificates, resilient autonomy, differential-algebraic systems, neural-network verification, and infrastructure monitoring.
 
-{% include figure.html path="assets/img/research-overview.png" class="img-fluid rounded z-depth-1" alt="Research map connecting formal verification, control theory, and artificial intelligence with trustworthy autonomy and critical infrastructure." %}
+{% include figure.html path="assets/img/challenges-and-research.png" class="research-position img-fluid rounded z-depth-1" alt="Physical AI research map connecting a sensing-decision-action loop and its adversarial and black-box challenges to resilient control, safe physical AI, anomaly detection, verification, and verified intelligent autonomy." %}
 
 <div class="projects">
   {%- assign sorted_projects = site.projects | sort: "importance" -%}
