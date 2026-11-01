@@ -2,7 +2,7 @@
 
 ## Verdict
 
-PASS — T23 latest Research Statement alignment is commit/push eligible
+PASS — T23 latest Research Statement alignment committed as `c5f41d0` and pushed to `origin/master`
 
 ## Scope
 
@@ -74,4 +74,4 @@ The latest compiled Research Statement is the three-page PDF created 2026-10-27 
 
 ## T23 Follow-Up
 
-The current compiled Research Statement is the four-page PDF created 2026-10-29 10:04:58 CDT with SHA-256 `c2ea1374abcaa79f43d0440f985cc1eb0163481694ccefece564a38cb4cfd6dd`. About now uses its revised Vision, trustworthy-Physical-AI identity, single merged Figure 1, exact caption, and revised area names. Projects uses the same merged figure, and the Nashville page records actual-leak societal impact, positive stakeholder feedback, and the technology-transfer direction. The 1800×1108 PNG reproduces the active RS figure PDF deterministically; the two superseded website figures and all rendered references to them are removed. The production build, bibliography/media/orphan/accessibility/generated-HTML audits, exact-anchor checks, and `git diff --check` pass. Codex internal-browser checks at 400×837 and 1440×900 show centered figures and no horizontal overflow or console errors. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and declared commit/push eligible. AcadJob remained read-only; its pre-existing user changes were preserved.
+The current compiled Research Statement is the four-page PDF created 2026-10-29 10:04:58 CDT with SHA-256 `c2ea1374abcaa79f43d0440f985cc1eb0163481694ccefece564a38cb4cfd6dd`. About now uses its revised Vision, trustworthy-Physical-AI identity, single merged Figure 1, exact caption, and revised area names. Projects uses the same merged figure, and the Nashville page records actual-leak societal impact, positive stakeholder feedback, and the technology-transfer direction. The 1800×1108 PNG reproduces the active RS figure PDF deterministically; the two superseded website figures and all rendered references to them are removed. The production build, bibliography/media/orphan/accessibility/generated-HTML audits, exact-anchor checks, and `git diff --check` pass. Codex internal-browser checks at 400×837 and 1440×900 show centered figures and no horizontal overflow or console errors. Independent session `01a17b75-1ba1-72c2-a1c1-34fb5b175275` returned PASS and declared commit/push eligible. AcadJob remained read-only; its pre-existing user changes were preserved. Product commit `c5f41d0` was pushed successfully to `origin/master`.
